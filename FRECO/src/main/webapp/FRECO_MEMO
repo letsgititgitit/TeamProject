@@ -1,0 +1,146 @@
+-------------------------------------------------------------------------------------
+-- MEMBER TABLE
+-------------------------------------------------------------------------------------
+DROP SEQUENCE MEMSEQ;
+CREATE SEQUENCE MEMSEQ 
+	START WITH 1
+	INCREMENT BY 1 
+	NOCACHE;
+
+DROP TABLE MEMBER CASCADE CONSTRAINTS;
+CREATE TABLE MEMBER(
+	MNUM INT PRIMARY KEY,
+	MID VARCHAR2(30),
+	MPW VARCHAR2(20),
+	MNAME VARCHAR2(20),
+	MBIRTH VARCHAR2(10) ,
+	MPHONE VARCHAR2(20) ,
+	MADDRESS1 VARCHAR2(10),
+	MADDRESS2 VARCHAR2(100),
+	MADDRESS3 VARCHAR2(100),
+	MCOUPON INT,
+	MPOINT INT DEFAULT 0
+);
+-------------------------------------------------------------------------------------
+-- PRODUCT TABLE
+-------------------------------------------------------------------------------------
+DROP SEQUENCE PROSEQ;
+CREATE SEQUENCE PROSEQ;
+	START WITH 1
+	INCREMENT BY 1 
+	NOCACHE;
+
+DROP TABLE PRODUCT CASCADE CONSTRAINTS;
+CREATE TABLE PRODUCT(
+	PNUM INT PRIMARY KEY,
+	PNAME VARCHAR2(30),
+	PQTY INT,
+	PPRICE INT,
+	PPOINT INT,
+	PBEST INT,
+	PINPUTDATE DATE DEFAULT SYSDATE,
+	PCATEGORY VARCHAR2(50) ,
+	PSUBCATEGORY VARCHAR2(50),
+	PIMG VARCHAR2(50),
+	PSUBIMG VARCHAR2(50)
+);
+-------------------------------------------------------------------------------------
+-- ORDER TABLE
+-------------------------------------------------------------------------------------
+DROP SEQUENCE ORDSEQ;
+CREATE SEQUENCE ORDSEQ;
+	START WITH 1001
+	INCREMENT BY 1 
+	NOCACHE;
+
+DROP TABLE ORDER CASCADE CONSTRAINTS;
+CREATE TABLE ORDER(
+	OINVOICE INT PRIMARY KEY,
+	OMNUM INT REFERENCES MEMBER(MNUM) ON DELETE SET NULL,
+	OPNUM INT REFERENCES PRODUCT(PNUM) ON DELETE SET NULL,
+	OQTY INT,
+	OORDERDATE DATE DEFAULT SYSDATE,
+	OREFUND VARCHAR2(20)
+);
+
+-------------------------------------------------------------------------------------
+-- COUPON TABLE
+-------------------------------------------------------------------------------------
+DROP SEQUENCE COUSEQ;
+CREATE SEQUENCE COUSEQ;
+	START WITH 1
+	INCREMENT BY 1 
+	NOCACHE;
+
+DROP TABLE COUPON CASCADE CONSTRAINTS;
+CREATE TABLE COUPON(
+	CNUM INT PRIMARY KEY,
+	CNAME VARCHAR2(100),
+	CIMG VARCHAR2(100),
+	CPRICE INT,
+	CDEADLINE DATE
+);
+
+-------------------------------------------------------------------------------------
+-- QNABOARD TABLE
+-------------------------------------------------------------------------------------
+DROP SEQUENCE QNASEQ;
+CREATE SEQUENCE QNASEQ;
+	START WITH 1
+	INCREMENT BY 1 
+	NOCACHE;
+
+DROP TABLE QNABOARD CASCADE CONSTRAINTS;
+CREATE TABLE QNABOARD(
+	QNUM INT PRIMARY KEY,
+	QID VARCHAR2(50) REFERENCES MEMBER(MID) ON DELETE SET NULL,
+	QSUBJECT VARCHAR2(100),
+	QPW VARCHAR2(50),
+	QREGDATE DATE DEFAULT SYSDATE,
+	QCONTENT VARCHAR2(500),
+	QREF INT,
+	QRESTEP INT,
+	QRELEVEL INT
+);
+
+-------------------------------------------------------------------------------------
+-- REVIEWBOARD TABLE
+-------------------------------------------------------------------------------------
+DROP SEQUENCE REVSEQ;
+CREATE SEQUENCE REVSEQ;
+	START WITH 1
+	INCREMENT BY 1 
+	NOCACHE;
+
+DROP TABLE REVIEWBOARD CASCADE CONSTRAINTS;
+CREATE TABLE REVIEWBOARD (
+	RNUM INT PRIMARY KEY,
+	RID VARCHAR2(50) REFERENCES MEMBER(MID) ON DELETE SET NULL,
+	RPW VARCHAR2(50) NOT NULL,
+	RCONTENT VARCHAR2(500) NOT NULL,
+	RSUBJECT VARCHAR2(100) NOT NULL,
+	RRATING VARCHAR2(30) NOT NULL,
+	RIMG VARCHAR2(100),
+	RREF INT,
+	RRESTEP INT,
+	RRELEVEL INT
+);
+
+-------------------------------------------------------------------------------------
+-- FAQ TABLE
+-------------------------------------------------------------------------------------
+DROP SEQUENCE FAQSEQ;
+CREATE SEQUENCE FAQSEQ;
+	START WITH 1
+	INCREMENT BY 1 
+	NOCACHE;
+
+DROP TABLE FAQ CASCADE CONSTRAINTS;
+CREATE TABLE FAQ(
+	FNUM INT PRIMARY KEY,
+	FCATEGORY VARCHAR2(50),
+	FSUBJECT VARCHAR2(100),
+	FCONTENT VARCHAR2(500)
+);
+
+
