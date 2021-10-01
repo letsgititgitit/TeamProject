@@ -9,8 +9,8 @@ CREATE SEQUENCE MEMSEQ
 
 DROP TABLE MEMBER CASCADE CONSTRAINTS;
 CREATE TABLE MEMBER(
-	MNUM INT PRIMARY KEY,
-	MID VARCHAR2(30),
+	MID VARCHAR2(50) PRIMARY KEY,
+	MNUM INT,
 	MPW VARCHAR2(20),
 	MNAME VARCHAR2(20),
 	MBIRTH VARCHAR2(10) ,
@@ -19,13 +19,17 @@ CREATE TABLE MEMBER(
 	MADDRESS2 VARCHAR2(100),
 	MADDRESS3 VARCHAR2(100),
 	MCOUPON INT,
-	MPOINT INT DEFAULT 0
+	MPOINT INT DEFAULT 0	
 );
+
+COMMIT;
+
+SELECT * FROM MEMBER;
 -------------------------------------------------------------------------------------
 -- PRODUCT TABLE
 -------------------------------------------------------------------------------------
 DROP SEQUENCE PROSEQ;
-CREATE SEQUENCE PROSEQ;
+CREATE SEQUENCE PROSEQ
 	START WITH 1
 	INCREMENT BY 1 
 	NOCACHE;
@@ -44,30 +48,38 @@ CREATE TABLE PRODUCT(
 	PIMG VARCHAR2(50),
 	PSUBIMG VARCHAR2(50)
 );
+
+COMMIT;
+
+SELECT * FROM PRODUCT;
 -------------------------------------------------------------------------------------
--- ORDER TABLE
+-- ORDERS TABLE
 -------------------------------------------------------------------------------------
 DROP SEQUENCE ORDSEQ;
-CREATE SEQUENCE ORDSEQ;
+CREATE SEQUENCE ORDSEQ
 	START WITH 1001
 	INCREMENT BY 1 
 	NOCACHE;
 
-DROP TABLE ORDER CASCADE CONSTRAINTS;
-CREATE TABLE ORDER(
+DROP TABLE ORDERS CASCADE CONSTRAINTS;
+CREATE TABLE ORDERS(
 	OINVOICE INT PRIMARY KEY,
-	OMNUM INT REFERENCES MEMBER(MNUM) ON DELETE SET NULL,
+	OMID VARCHAR2(50) REFERENCES MEMBER(MID) ON DELETE SET NULL,
 	OPNUM INT REFERENCES PRODUCT(PNUM) ON DELETE SET NULL,
 	OQTY INT,
 	OORDERDATE DATE DEFAULT SYSDATE,
 	OREFUND VARCHAR2(20)
 );
 
+COMMIT;
+
+SELECT * FROM ORDERS;
+
 -------------------------------------------------------------------------------------
 -- COUPON TABLE
 -------------------------------------------------------------------------------------
 DROP SEQUENCE COUSEQ;
-CREATE SEQUENCE COUSEQ;
+CREATE SEQUENCE COUSEQ
 	START WITH 1
 	INCREMENT BY 1 
 	NOCACHE;
@@ -81,11 +93,14 @@ CREATE TABLE COUPON(
 	CDEADLINE DATE
 );
 
+COMMIT;
+
+SELECT * FROM COUPON;
 -------------------------------------------------------------------------------------
 -- QNABOARD TABLE
 -------------------------------------------------------------------------------------
 DROP SEQUENCE QNASEQ;
-CREATE SEQUENCE QNASEQ;
+CREATE SEQUENCE QNASEQ
 	START WITH 1
 	INCREMENT BY 1 
 	NOCACHE;
@@ -103,11 +118,15 @@ CREATE TABLE QNABOARD(
 	QRELEVEL INT
 );
 
+COMMIT;
+
+SELECT * FROM QNABOARD;
+
 -------------------------------------------------------------------------------------
 -- REVIEWBOARD TABLE
 -------------------------------------------------------------------------------------
 DROP SEQUENCE REVSEQ;
-CREATE SEQUENCE REVSEQ;
+CREATE SEQUENCE REVSEQ
 	START WITH 1
 	INCREMENT BY 1 
 	NOCACHE;
@@ -126,11 +145,15 @@ CREATE TABLE REVIEWBOARD (
 	RRELEVEL INT
 );
 
+COMMIT;
+
+SELECT * FROM REVIEWBOARD;
+
 -------------------------------------------------------------------------------------
 -- FAQ TABLE
 -------------------------------------------------------------------------------------
 DROP SEQUENCE FAQSEQ;
-CREATE SEQUENCE FAQSEQ;
+CREATE SEQUENCE FAQSEQ
 	START WITH 1
 	INCREMENT BY 1 
 	NOCACHE;
@@ -143,4 +166,7 @@ CREATE TABLE FAQ(
 	FCONTENT VARCHAR2(500)
 );
 
+COMMIT;
+
+SELECT * FROM FAQ;
 
