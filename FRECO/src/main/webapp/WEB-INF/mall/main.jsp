@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>  
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -7,7 +8,7 @@
     <meta name="keywords" content="Ogani, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Ogani | Template</title>
+    <title>FRECO 프레코</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
@@ -21,137 +22,130 @@
     <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
-</head>
+    
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" rel="stylesheet">
+    <style>
+      .scrolltop {
+        display: none;
+        position: fixed;
+        right: 30px;
+        bottom: 50px;
+        z-index: 1030;
+        font-size: 1.875rem;
+        color: #868e96;
+        transition: all 0.5s ease-in-out;
+        opacity: 0.8;
+      }
+      .scrolltop:hover, 
+      .scrolltop:focus {
+        color: #7fad39;  
+        transition: all 0.5s ease-in-out;
+      }
+    </style>
+  </head>
 
-<body>
+ 
+<script type="text/javascript">
+   //새로고침 스크롤 상단
+   history.scrollRestoration = "manual"
+   
+   //오른쪽 마우스 금지
+   function blockRightClick(){
+      alert('오른쪽 마우스 버튼을 사용할 수 없습니다');
+      return false;
+   }
+   
+   function blockDrag(){
+      alert('드래그 기능을 사용할 수 없습니다');
+      return false;
+   }
+   
+   function blockSelect(){
+      //alert('선택 기능을 사용할 수 없습니다');
+      return false;
+   }
+</script>
+
+	<script src="js/jquery-3.3.1.min.js"></script>
+    <script>
+      jQuery(document).ready(function () {
+        $(window).scroll(function () {
+          if ($(this).scrollTop() > 100) {
+            $('#backToTop').fadeIn(500);
+          } else {
+            $('#backToTop').fadeOut('slow');
+          }
+        });
+        $('#backToTop').click(function (e) {
+          e.preventDefault();
+          $('html, body').animate({scrollTop: 0}, 200);
+        });
+      });
+    </script>
+    
+<body oncontextmenu="return blockRightClick()" ondragstart="return blockDrag()" 
+onselectstart="return blockSelect()">	
+	
+	<a id="backToTop" class="scrolltop" href="#">
+      <i class="fas fa-chevron-circle-up"></i>
+    </a>
+
     <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
     </div>
-
-    <!-- Humberger Begin -->
-    <div class="humberger__menu__overlay"></div>
-    <div class="humberger__menu__wrapper">
-        <div class="humberger__menu__logo">
-            <a href="#"><img src="img/logo.png" alt=""></a>
-        </div>
-        <div class="humberger__menu__cart">
-            <ul>
-                <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
-            </ul>
-            <div class="header__cart__price">item: <span>$150.00</span></div>
-        </div>
-        <div class="humberger__menu__widget">
-            <div class="header__top__right__language">
-                <img src="img/language.png" alt="">
-                <div>English</div>
-                <span class="arrow_carrot-down"></span>
-                <ul>
-                    <li><a href="#">Spanis</a></li>
-                    <li><a href="#">English</a></li>
-                </ul>
-            </div>
-            <div class="header__top__right__auth">
-                <a href="#"><i class="fa fa-user"></i> Login</a>
-            </div>
-        </div>
-        <nav class="humberger__menu__nav mobile-menu">
-            <ul>
-                <li class="active"><a href="main.mall">Home</a></li>
-                <li><a href="shop-grid.jsp">Shop</a></li>
-                <li><a href="#">Pages</a>
-                    <ul class="header__menu__dropdown">
-                        <li><a href="shop-details.jsp">Shop Details</a></li>
-                        <li><a href="shoping-cart.jsp">Shoping Cart</a></li>
-                        <li><a href="checkout.jsp">Check Out</a></li>
-                        <li><a href="blog-details.jsp">Blog Details</a></li>
-                    </ul>
-                </li>
-                <li><a href="blog.jsp">Blog</a></li>
-                <li><a href="contact.jsp">Contact</a></li>
-            </ul>
-        </nav>
-        <div id="mobile-menu-wrap"></div>
-        <div class="header__top__right__social">
-            <a href="#"><i class="fa fa-facebook"></i></a>
-            <a href="#"><i class="fa fa-twitter"></i></a>
-            <a href="#"><i class="fa fa-linkedin"></i></a>
-            <a href="#"><i class="fa fa-pinterest-p"></i></a>
-        </div>
-        <div class="humberger__menu__contact">
-            <ul>
-                <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
-                <li>Free Shipping for all Order of $99</li>
-            </ul>
-        </div>
-    </div>
-    <!-- Humberger End -->
-
-    <!-- Header Section Begin -->
+ 
+     <!-- Header Section Begin -->
     <header class="header">
         <div class="header__top">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-6 col-md-6">
-                        <div class="header__top__left">
-                            <ul>
-                                <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
-                                <li>Free Shipping for all Order of $99</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6">
+      
+                    <div class="col-lg-12 col-md-12">
                         <div class="header__top__right">
-                            <div class="header__top__right__social">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-linkedin"></i></a>
-                                <a href="#"><i class="fa fa-pinterest-p"></i></a>
-                            </div>
-                            <div class="header__top__right__language">
-                                <img src="img/language.png" alt="">
-                                <div>English</div>
-                                <span class="arrow_carrot-down"></span>
-                                <ul>
-                                    <li><a href="#">Spanis</a></li>
-                                    <li><a href="#">English</a></li>
-                                </ul>
-                            </div>
+           
                             <div class="header__top__right__auth">
-                                <a href="#"><i class="fa fa-user"></i> Login</a>
+                               <a href="#">로그인&nbsp;</a>
                             </div>
-                        </div>
+                                 <a>&nbsp;|&nbsp;</a> 
+                            <div class="header__top__right__auth">
+                               <a href="#">&nbsp;회원가입</a>
+                            </div>
+                      
+                        </div>                       
                     </div>
+                    
                 </div>
             </div>
         </div>
+        
         <div class="container">
             <div class="row">
                 <div class="col-lg-3">
                     <div class="header__logo">
-                        <a href="main.mall"><img src="img/logo.png" alt=""></a>
+                        <a href="main.mall"><img src="img/frecoLogo.png" alt="FRECO로고"></a>
                     </div>
                 </div>
-                <div class="col-lg-6">
+                   
+                
+                <div class="col-lg-9">
                     <nav class="header__menu">
                         <ul>
                             <li class="active"><a href="main.mall">Home</a></li>
-                            <li><a href="shop-grid.jsp">Shop</a></li>
-                            <li><a href="#">Pages</a>
-                                <ul class="header__menu__dropdown">
-                                    <li><a href="shop-details.jsp">Shop Details</a></li>
-                                    <li><a href="shoping-cart.jsp">Shoping Cart</a></li>
-                                    <li><a href="checkout.jsp">Check Out</a></li>
-                                    <li><a href="blog-details.jsp">Blog Details</a></li>
+                            <li><a href="#">회사소개</a></li>
+                            <li><a href="#">이벤트</a></li>  
+                            <li><a href="#">고객센터</a>
+                            	<ul class="header__menu__dropdown">
+                                    <li><a href="" style="font-size: 15px;">자주하는질문</a></li>
+                                    <li><a href="" style="font-size: 15px;">1:1 문의</a></li>
                                 </ul>
-                            </li>
-                            <li><a href="blog.jsp">Blog</a></li>
-                            <li><a href="contact.jsp">Contact</a></li>
+                            </li>    
                         </ul>
                     </nav>
                 </div>
-                <div class="col-lg-3">
+                
+            
+                <!-- <div class="col-lg-3">
                     <div class="header__cart">
                         <ul>
                             <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
@@ -159,62 +153,65 @@
                         </ul>
                         <div class="header__cart__price">item: <span>$150.00</span></div>
                     </div>
-                </div>
+                </div>  -->
+                
             </div>
+            
+            
             <div class="humberger__open">
                 <i class="fa fa-bars"></i>
-            </div>
+            </div> 
+            
+            
         </div>
+        
     </header>
     <!-- Header Section End -->
 
     <!-- Hero Section Begin -->
-    <section class="hero">
+    <section class="hero">   
         <div class="container">
+        
             <div class="row">
+            
                 <div class="col-lg-3">
                     <div class="hero__categories">
                         <div class="hero__categories__all">
                             <i class="fa fa-bars"></i>
-                            <span>All departments</span>
+                            <span>카테고리</span>
                         </div>
                         <ul>
-                            <li><a href="#">Fresh Meat</a></li>
-                            <li><a href="#">Vegetables</a></li>
-                            <li><a href="#">Fruit & Nut Gifts</a></li>
-                            <li><a href="#">Fresh Berries</a></li>
-                            <li><a href="#">Ocean Foods</a></li>
-                            <li><a href="#">Butter & Eggs</a></li>
-                            <li><a href="#">Fastfood</a></li>
-                            <li><a href="#">Fresh Onion</a></li>
-                            <li><a href="#">Papayaya & Crisps</a></li>
-                            <li><a href="#">Oatmeal</a></li>
-                            <li><a href="#">Fresh Bananas</a></li>
+                            <li><a href="list.product?PSUBCATEGORY='best'">베스트</a></li>
+                            <li><a href="list.product?PSUBCATEGORY='new'">신상품</a></li>
+                            <li><a href="list.product?PCATEGORY='food'">식품</a></li>
+                            <li><a href="list.product?PCATEGORY='home'">생활용품</a></li>
+                            <li><a href="list.product?PCATEGORY='baby'">베이비/키즈</a></li>
+                            <li><a href="list.product?PCATEGORY='pet'">반려동물</a></li>
                         </ul>
                     </div>
                 </div>
+                
                 <div class="col-lg-9">
                     <div class="hero__search">
                         <div class="hero__search__form">
-                            <form action="#">
-                                <div class="hero__search__categories">
-                                    All Categories
+                            <form action="list.product" method="get">
+                            
+                               <!--  <div class="hero__search__categories">
+                                	전체검색
                                     <span class="arrow_carrot-down"></span>
-                                </div>
-                                <input type="text" placeholder="What do yo u need?">
-                                <button type="submit" class="site-btn">SEARCH</button>
-                            </form>
-                        </div>
+                                </div> -->     
+                                
+                                <input type="text" name="keyword" placeholder="검색어를 입력하세요">
+                                <button type="submit" class="site-btn">SEARCH</button>     
+                               </form>      
+                        </div>          
+                           
                         <div class="hero__search__phone">
-                            <div class="hero__search__phone__icon">
-                                <i class="fa fa-phone"></i>
-                            </div>
-                            <div class="hero__search__phone__text">
-                                <h5>+65 11.188.888</h5>
-                                <span>support 24/7 time</span>
-                            </div>
-                        </div>
+                            <a href="#"><img src="img/mypageimg11.png" width="50px" style="margin-right: 20px"></a>                           
+                            <a href="#"><img src="img/cartimg11.png" width="50px" style="margin-right: 45px"> </a>                          
+                        </div>    
                     </div>
+                    
                     <div class="hero__item set-bg" data-setbg="img/hero/banner.jpg">
                         <div class="hero__text">
                             <span>FRUIT FRESH</span>
@@ -228,11 +225,18 @@
         </div>
     </section>
     <!-- Hero Section End -->
-
+  
     <!-- Categories Section Begin -->
     <section class="categories">
         <div class="container">
             <div class="row">
+            
+            	<div class="col-lg-12">
+          	 		<div class="section-title">
+                        <h2>베스트</h2>
+                    </div>
+            	</div>
+            
                 <div class="categories__slider owl-carousel">
                     <div class="col-lg-3">
                         <div class="categories__item set-bg" data-setbg="img/categories/cat-1.jpg">
@@ -271,19 +275,21 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title">
-                        <h2>Featured Product</h2>
+                        <h2>신상품</h2>
                     </div>
                     <div class="featured__controls">
                         <ul>
                             <li class="active" data-filter="*">All</li>
-                            <li data-filter=".oranges">Oranges</li>
-                            <li data-filter=".fresh-meat">Fresh Meat</li>
-                            <li data-filter=".vegetables">Vegetables</li>
-                            <li data-filter=".fastfood">Fastfood</li>
+                            <li data-filter=".oranges">식품</li>
+                            <li data-filter=".fresh-meat">생활용품</li>
+                            <li data-filter=".vegetables">베이비/키즈</li>
+                            <li data-filter=".fastfood">반려동물</li>
                         </ul>
                     </div>
                 </div>
             </div>
+            
+            
             <div class="row featured__filter">
                 <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
                     <div class="featured__item">
@@ -407,6 +413,9 @@
                 </div>
             </div>
         </div>
+        
+        
+        
     </section>
     <!-- Featured Section End -->
 
@@ -429,7 +438,10 @@
     </div>
     <!-- Banner End -->
 
-    <!-- Latest Product Section Begin -->
+<br><br><br><br>
+
+<!-- 
+    Latest Product Section Begin
     <section class="latest-product spad">
         <div class="container">
             <div class="row">
@@ -631,9 +643,11 @@
             </div>
         </div>
     </section>
-    <!-- Latest Product Section End -->
-
-    <!-- Blog Section Begin -->
+    Latest Product Section End
+  -->   
+    
+<!-- 
+    Blog Section Begin
     <section class="from-blog spad">
         <div class="container">
             <div class="row">
@@ -692,48 +706,34 @@
             </div>
         </div>
     </section>
-    <!-- Blog Section End -->
+    Blog Section End
+ -->
+
+
 
     <!-- Footer Section Begin -->
     <footer class="footer spad">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3 col-md-6 col-sm-6">
+            
+                <div class="col-lg-6 col-md-6 col-sm-6">
                     <div class="footer__about">
                         <div class="footer__about__logo">
-                            <a href="main.mall"><img src="img/logo.png" alt=""></a>
+                            <a href="main.mall"><img src="img/frecoLogo.png" alt=""></a>
                         </div>
                         <ul>
-                            <li>Address: 60-49 Road 11378 New York</li>
-                            <li>Phone: +65 11.188.888</li>
-                            <li>Email: hello@colorlib.com</li>
+                            <li>주소: 서울 마포구 신촌로 176 중앙빌딩</li>
+                            <li>사업자 등록번호: 220-95-00629</li>
+                            <li>TEL: 02-704-1711</li>
+                            <li>FAX: 02-393-9218</li>
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
-                    <div class="footer__widget">
-                        <h6>Useful Links</h6>
-                        <ul>
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">About Our Shop</a></li>
-                            <li><a href="#">Secure Shopping</a></li>
-                            <li><a href="#">Delivery infomation</a></li>
-                            <li><a href="#">Privacy Policy</a></li>
-                            <li><a href="#">Our Sitemap</a></li>
-                        </ul>
-                        <ul>
-                            <li><a href="#">Who We Are</a></li>
-                            <li><a href="#">Our Services</a></li>
-                            <li><a href="#">Projects</a></li>
-                            <li><a href="#">Contact</a></li>
-                            <li><a href="#">Innovation</a></li>
-                            <li><a href="#">Testimonials</a></li>
-                        </ul>
-                    </div>
-                </div>
+               
+              
                 <div class="col-lg-4 col-md-12">
                     <div class="footer__widget">
-                        <h6>Join Our Newsletter Now</h6>
+                        <!-- <h6>Join Our Newsletter Now</h6>
                         <p>Get E-mail updates about our latest shop and special offers.</p>
                         <form action="#">
                             <input type="text" placeholder="Enter your mail">
@@ -744,21 +744,48 @@
                             <a href="#"><i class="fa fa-instagram"></i></a>
                             <a href="#"><i class="fa fa-twitter"></i></a>
                             <a href="#"><i class="fa fa-pinterest"></i></a>
-                        </div>
+                        </div> -->
+                        
+                        <br>
+                        <h6>커뮤니티</h6>
+                        <ul>
+                            <li><a href="#">회사소개</a></li>
+                            <li><a href="#">개인정보처리방침</a></li>
+                            <li><a href="#">이용약관</a></li>
+                            <li><a href="#">고객센터</a></li>
+                        </ul>
+                       <!--  <ul>
+                            <li><a href="#">Who We Are</a></li>
+                            <li><a href="#">Our Services</a></li>
+                            <li><a href="#">Projects</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">Innovation</a></li>
+                            <li><a href="#">Testimonials</a></li>
+                        </ul> -->
                     </div>
                 </div>
-            </div>
+            </div>             
+            
+<!--             
             <div class="row">
                 <div class="col-lg-12">
                     <div class="footer__copyright">
-                        <div class="footer__copyright__text"><p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p></div>
+                    
+                        <div class="footer__copyright__text"><p>
+                        Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0.
+  Copyright &copy;<script>document.write(new Date().getFullYear());</script> 
+  All rights reserved | This template is made with 
+  <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+  Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0.</p></div>
+  
+  
                         <div class="footer__copyright__payment"><img src="img/payment-item.png" alt=""></div>
                     </div>
                 </div>
             </div>
         </div>
+ -->       
+  
     </footer>
     <!-- Footer Section End -->
 
@@ -772,8 +799,5 @@
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
 
-
-
 </body>
-
 </html>
