@@ -399,7 +399,7 @@ ol {
 
 .header__top__right__auth a {
 	display: block;
-	font-size: 14px;
+	font-size: 12px;  
 	color: #1c1c1c;
 }
 
@@ -416,13 +416,13 @@ ol {
 }
 
 .header__menu {
-	padding: 24px 0;
+	padding: 20px 0;
 }
 
 .header__menu ul li {
 	list-style: none;
 	display: inline-block;
-	margin-right: 50px;
+	margin-right: 100px;  
 	position: relative;
 }
 
@@ -464,7 +464,7 @@ ol {
 }
 
 .header__menu ul li:hover .header__menu__dropdown {
-	top: 30px;
+	top: 45px;
 	opacity: 1;
 	visibility: visible;
 }
@@ -475,10 +475,10 @@ ol {
 
 .header__menu ul li:last-child {
 	margin-right: 0;
-}
+}   
 
 .header__menu ul li a {
-	font-size: 14px;
+	font-size: 20px;
 	color: #252525;
 	text-transform: uppercase;
 	font-weight: 700;
@@ -488,7 +488,7 @@ ol {
 	-ms-transition: all, 0.3s;
 	-o-transition: all, 0.3s;
 	transition: all, 0.3s;
-	padding: 5px 0;
+	padding: 10px 0;
 	display: block;
 }
 
@@ -662,10 +662,10 @@ ol {
 	right: 0;
 	top: 14px;
 	height: 20px;
-	width: 1px;
+	width: 1px;   
 	background: #000000;
 	opacity: 0.1;
-	content: "";
+	content: "";  
 }
 
 .hero__search__form form .hero__search__categories span {
@@ -695,10 +695,10 @@ ol {
 }
 
 .hero__search__phone {
-	float: right;
+	float: right;    
 }
 
-.hero__search__phone__icon {
+.hero__search__phone__icon {   /* 나중에 지우기 */
 	font-size: 18px;
 	color: #7fad39;
 	height: 50px;
@@ -711,17 +711,17 @@ ol {
 	margin-right: 20px;
 }
 
-.hero__search__phone__text {
+.hero__search__phone__text {    /* 나중에 지우기 */
 	overflow: hidden;
 }
 
-.hero__search__phone__text h5 {
+.hero__search__phone__text h5 {      /* 나중에 지우기 */
 	color: #1c1c1c;
 	font-weight: 700;
 	margin-bottom: 5px;
 }
 
-.hero__search__phone__text span {
+.hero__search__phone__text span {       /* 나중에 지우기 */
 	font-size: 14px;
 	color: #6f6f6f;
 }
@@ -3465,4 +3465,6 @@ ol {
 	.blog__details__hero__text h2 {
 		font-size: 24px;
 	}
+
+
 }
