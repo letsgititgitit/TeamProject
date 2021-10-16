@@ -91,14 +91,9 @@ onselectstart="return blockSelect()">
       <i class="fas fa-chevron-circle-up"></i>
     </a>
 
-    <!-- Page Preloder -->
-    <div id="preloder">
-        <div class="loader"></div>
-    </div>
-
     <!-- Header Section Begin -->
     <header class="header">
-        <div class="header__top">
+<%--         <div class="header__top">
             <div class="container">
                 <div class="row">
                     
@@ -106,11 +101,11 @@ onselectstart="return blockSelect()">
                         <div class="header__top__right">
            
                             <div class="header__top__right__auth">
-                               <a href="#">로그인&nbsp;</a>
+                               <a href="<%=request.getContextPath()+"/login.me"%>">로그인&nbsp;</a>
                             </div>
                                  <a>&nbsp;|&nbsp;</a> 
                             <div class="header__top__right__auth">
-                               <a href="#">&nbsp;회원가입</a>
+                               <a href="<%=request.getContextPath()+"/registerForm.me"%>">&nbsp;회원가입</a>
                             </div>
                       
                         </div>                       
@@ -118,7 +113,7 @@ onselectstart="return blockSelect()">
                     
                 </div>
             </div>
-        </div>
+        </div> --%>
         <div class="container">
             <div class="row">
                 <div class="col-lg-3">
@@ -131,8 +126,8 @@ onselectstart="return blockSelect()">
                     <nav class="header__menu">
                         <ul>
                             <li class="active"><a href="main.mall">Home</a></li>
-                            <li><a href="#">회사소개</a></li>
-                            <li><a href="#">이벤트</a></li>  
+                            <li><a href="info.in">회사소개</a></li>
+                            <li><a href="event.ev">이벤트</a></li>  
                             <li><a href="#">고객센터</a>
                             	<ul class="header__menu__dropdown">
                                     <li><a href="" style="font-size: 15px;">자주하는질문</a></li>
@@ -202,7 +197,7 @@ onselectstart="return blockSelect()">
                         </div>  
                         
                         <div class="hero__search__phone">
-                            <a href="#"><img src="img/mypageimg11.png" width="50px" style="margin-right: 20px"></a>                           
+                            <a href="mypageOrderList.mp"><img src="img/mypageimg11.png" width="50px" style="margin-right: 20px"></a>                           
                             <a href="#"><img src="img/cartimg11.png" width="50px" style="margin-right: 45px"> </a>                          
                         </div>
                     </div>
