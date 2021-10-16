@@ -152,7 +152,7 @@ onselectstart="return blockSelect()">
                             <li><a href="event.ev">이벤트</a></li>  
                             <li><a href="#">고객센터</a>
                             	<ul class="header__menu__dropdown">
-                                    <li><a href="fqa.mall" style="font-size: 15px;">자주하는질문</a></li>
+                                    <li><a href="faq.mall" style="font-size: 15px;">자주하는질문</a></li>
                                     <li><a href="qna.mall" style="font-size: 15px;">1:1 문의</a></li>
                                 </ul>
                             </li>    
@@ -768,7 +768,7 @@ onselectstart="return blockSelect()">
                             <li><a href="info.in">회사소개</a></li>
                             <li><a href="privacy.in">개인정보처리방침</a></li>
                             <li><a href="terms.in">이용약관</a></li>
-                            <li><a href="fqa.mall">고객센터</a></li>
+                            <li><a href="faq.mall">고객센터</a></li>
                         </ul>
                        <!--  <ul>
                             <li><a href="#">Who We Are</a></li>
