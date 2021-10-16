@@ -122,7 +122,34 @@
 		<url-pattern>*.ev</url-pattern> 
 	</servlet-mapping>
 
-		
+<!-- admin 관련 -->
+	<servlet>
+		<servlet-name>admin</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/spring/appServlet/admin-servlet.xml</param-value>
+		</init-param>
+	</servlet>		
+	<servlet-mapping>
+		<servlet-name>admin</servlet-name>
+		<url-pattern>*.admin</url-pattern>
+	</servlet-mapping>
+
+<!-- product 관련 -->
+	<servlet>
+		<servlet-name>product</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/spring/appServlet/product-servlet.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>		
+	<servlet-mapping>
+		<servlet-name>product</servlet-name>
+		<url-pattern>*.product</url-pattern> 
+	</servlet-mapping>	
 	
 
 
