@@ -67,6 +67,9 @@
       //alert('선택 기능을 사용할 수 없습니다');
       return false;
    }
+   function Cart(){
+       location.href="cartlist.mall";
+   }
 </script>
 
 	<script src="js/jquery-3.3.1.min.js"></script>
@@ -221,7 +224,7 @@ onselectstart="return blockSelect()">
                            
                         <div class="hero__search__phone">
                             <a href="mypageOrderList.mp"><img src="img/mypageimg11.png" width="50px" style="margin-right: 20px"></a>                           
-                            <a href="#"><img src="img/cartimg11.png" width="50px" style="margin-right: 45px"> </a>                          
+                            <a href="javascript:Cart()"><img src="img/cartimg11.png" width="50px" style="margin-right: 45px"> </a>                          
                         </div>    
                     </div>
                     
