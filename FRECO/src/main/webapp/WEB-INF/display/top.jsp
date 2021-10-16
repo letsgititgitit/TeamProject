@@ -174,12 +174,12 @@ onselectstart="return blockSelect()">
                             <span>카테고리</span>
                         </div>
                         <ul>
-                            <li><a href="list.product?PSUBCATEGORY='best'">베스트</a></li>
-                            <li><a href="list.product?PSUBCATEGORY='new'">신상품</a></li>
-                            <li><a href="list.product?PCATEGORY='food'">식품</a></li>
-                            <li><a href="list.product?PCATEGORY='home'">생활용품</a></li>
-                            <li><a href="list.product?PCATEGORY='baby'">베이비/키즈</a></li>
-                            <li><a href="list.product?PCATEGORY='pet'">반려동물</a></li>
+                            <li><a href="list.product?PCATEGORY=베스트">베스트</a></li>
+                            <li><a href="list.product?PCATEGORY=신상품">신상품</a></li>
+                            <li><a href="list.product?PCATEGORY=식품">식품</a></li>   
+                            <li><a href="list.product?PCATEGORY=생활용품">생활용품</a></li>
+                            <li><a href="list.product?PCATEGORY=베이비∙키즈">베이비∙키즈</a></li>
+                            <li><a href="list.product?PCATEGORY=반려동물">반려동물</a></li>
                         </ul>
                     </div>
                 </div>
@@ -187,15 +187,15 @@ onselectstart="return blockSelect()">
                 <div class="col-lg-9">
                     <div class="hero__search">
                         <div class="hero__search__form">
-                            <form action="list.product" method="get">
+                            <form action="listSearh.product" method="get">
                             
                                <!--  <div class="hero__search__categories">
                                 	전체검색
                                     <span class="arrow_carrot-down"></span>
                                 </div> -->     
-                                
-                                <input type="text" name="keyword" placeholder="검색어를 입력하세요">
-                                <button type="submit" class="site-btn">SEARCH</button>     
+                                <input type="hidden" name="whatColumn" value="all">
+                                <input type="text" name="keyword" placeholder="상품명을 입력하세요">
+                                <button type="submit" class="site-btn">SEARCH</button>    
                                </form>      
                         </div>  
                         
