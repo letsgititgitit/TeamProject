@@ -6,10 +6,14 @@
 <configuration>
 	<typeAliases>
 		<typeAlias alias="MyMember" type="member.model.MemberBean"/>
+		<typeAlias alias="MyCoupon" type="admin.model.Coupon"/>
+		<typeAlias alias="MyProduct" type="product.model.ProductBean"/>
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="mybatis/member.xml"/>
 		<mapper resource="mybatis/mypage.xml"/>
+		<mapper resource="mybatis/coupon.xml"/>
+		<mapper resource="mybatis/product.xml"/>
 	</mappers>
 </configuration>
