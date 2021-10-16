@@ -8,6 +8,8 @@
 		<typeAlias alias="MyMember" type="member.model.MemberBean"/>
 		<typeAlias alias="MyCoupon" type="admin.model.Coupon"/>
 		<typeAlias alias="MyProduct" type="product.model.ProductBean"/>
+		<typeAlias alias="MyFAQ" type="mall.model.FAQBean" />
+		<typeAlias alias="MyQNA" type="mall.model.QNABean" />
 	</typeAliases>
 	
 	<mappers>
@@ -15,5 +17,6 @@
 		<mapper resource="mybatis/mypage.xml"/>
 		<mapper resource="mybatis/coupon.xml"/>
 		<mapper resource="mybatis/product.xml"/>
+		<mapper resource="mybatis/mall.xml"/>
 	</mappers>
 </configuration>
