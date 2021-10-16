@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+<!-- product.xml -->
+
+<mapper namespace="product.model.ProductBean">
+
+
+	<!-- 카테고리 : list출력 -->
+	<select id="getTotalCountCate" resultType="int">
+		SELECT COUNT (*) FROM PRODUCT
+		WHERE PCATEGORY=#{whatCate}
+	</select>
+	<select id="getProductListCate" resultType="MyProduct">
+		SELECT * FROM PRODUCT
+		WHERE PCATEGORY=#{whatCate}
+		<if test="lineUp=='신상품순'">
+	  		ORDER BY PINPUTDATE DESC, PNUM ASC
+	  	</if>
+	  	<if test="lineUp=='인기상품순'">
+	  		ORDER BY PBEST DESC, PNUM ASC
+	  	</if>
+	  	<if test="lineUp=='낮은가격순'">
+	  		ORDER BY PPRICE ASC, PNUM ASC 
+	  	</if>
+	  	<if test="lineUp=='높은가격순'">
+	  		ORDER BY PPRICE DESC, PNUM ASC 
+	  	</if>
+	  	<if test="lineUp=='null'">
+	  		ORDER BY PNUM ASC 
+	  	</if>	 
+	</select>
+
+	<!-- 세부 카테고리 : list출력 -->
+	<select id="getTotalCountSubCate" resultType="int">
+		SELECT COUNT (*) FROM PRODUCT
+		WHERE PSUBCATEGORY=#{whatSub}
+	</select>
+	<select id="getProductListSubCate" resultType="MyProduct">
+		SELECT * FROM PRODUCT
+		WHERE PSUBCATEGORY=#{whatSub}
+		<if test="lineUp=='신상품순'">
+	  		ORDER BY PINPUTDATE DESC, PNUM ASC
+	  	</if>
+	  	<if test="lineUp=='인기상품순'">
+	  		ORDER BY PBEST DESC, PNUM ASC
+	  	</if>
+	  	<if test="lineUp=='낮은가격순'">
+	  		ORDER BY PPRICE ASC, PNUM ASC 
+	  	</if>
+	  	<if test="lineUp=='높은가격순'">
+	  		ORDER BY PPRICE DESC, PNUM ASC 
+	  	</if>
+	  	<if test="lineUp=='null'">
+	  		ORDER BY PNUM DESC 
+	  	</if>	
+	</select> 
+
+	<!-- 카테고리별 : best상품순 -->
+	<select id="getBestItem" resultType="MyProduct">
+		SELECT * FROM PRODUCT
+		WHERE PCATEGORY=#{PCATEGORY}
+		ORDER BY PBEST DESC, PNUM ASC
+	</select>
+	
+	<!-- 가격별(카테고리:ALL일 때) : list출력 -->
+	<select id="getTotalCountPrice" resultType="int">
+		SELECT COUNT (*) FROM PRODUCT
+		WHERE PCATEGORY=#{whatCate}
+		<if test="lineUpPrice=='5,000원 이하'">
+			<![CDATA[ AND PPRICE<=5000 ]]>
+		</if>
+		<if test="lineUpPrice=='10,000원 이하'">
+			<![CDATA[ AND PPRICE<=10000 ]]>
+		</if>
+		<if test="lineUpPrice=='15,000원 이하'">
+			<![CDATA[ AND PPRICE<=15000 ]]>
+		</if>
+		<if test="lineUpPrice=='20,000원 이하'">
+			<![CDATA[ AND PPRICE<=20000 ]]>
+		</if>
+		<if test="lineUpPrice=='20,000원 이상'">
+			<![CDATA[ AND PPRICE>=20000 ]]>
+		</if>				
+	</select>
+	<select id="getProductListPrice" resultType="MyProduct">
+		SELECT * FROM PRODUCT
+		WHERE PCATEGORY=#{whatCate}
+		<if test="lineUpPrice=='5,000원 이하'">
+			<![CDATA[ AND PPRICE<=5000 ]]>
+		</if>
+		<if test="lineUpPrice=='10,000원 이하'">
+			<![CDATA[ AND PPRICE<=10000 ]]>
+		</if>
+		<if test="lineUpPrice=='15,000원 이하'">
+			<![CDATA[ AND PPRICE<=15000 ]]>
+		</if>
+		<if test="lineUpPrice=='20,000원 이하'">
+			<![CDATA[ AND PPRICE<=20000 ]]>
+		</if>
+		<if test="lineUpPrice=='20,000원 이상'">
+			<![CDATA[ AND PPRICE>=20000 ]]>
+		</if>
+		<if test="lineUp=='신상품순'">
+	  		ORDER BY PINPUTDATE DESC, PNUM ASC
+	  	</if>
+	  	<if test="lineUp=='인기상품순'">
+	  		ORDER BY PBEST DESC, PNUM ASC
+	  	</if>
+	  	<if test="lineUp=='낮은가격순'">
+	  		ORDER BY PPRICE ASC, PNUM ASC 
+	  	</if>
+	  	<if test="lineUp=='높은가격순'">
+	  		ORDER BY PPRICE DESC, PNUM ASC 
+	  	</if>
+	  	<if test="lineUp=='null'">
+	  		ORDER BY PNUM DESC 
+	  	</if>	
+	</select>
+	
+	<!-- 가격별(카테고리:세부일 때) : list출력 -->
+	<select id="getTotalCountPriceSub" resultType="int">
+		SELECT COUNT (*) FROM PRODUCT
+		WHERE PSUBCATEGORY=#{whatSub}
+		<if test="lineUpPrice=='5,000원 이하'">
+			<![CDATA[ AND PPRICE<=5000 ]]>
+		</if>
+		<if test="lineUpPrice=='10,000원 이하'">
+			<![CDATA[ AND PPRICE<=10000 ]]>
+		</if>
+		<if test="lineUpPrice=='15,000원 이하'">
+			<![CDATA[ AND PPRICE<=15000 ]]>
+		</if>
+		<if test="lineUpPrice=='20,000원 이하'">
+			<![CDATA[ AND PPRICE<=20000 ]]>
+		</if>
+		<if test="lineUpPrice=='20,000원 이상'">
+			<![CDATA[ AND PPRICE>=20000 ]]>
+		</if>		
+	</select>
+	<select id="getProductListPriceSub" resultType="MyProduct">
+		SELECT * FROM PRODUCT
+		WHERE PSUBCATEGORY=#{whatSub}
+		<if test="lineUpPrice=='5,000원 이하'">
+			<![CDATA[ AND PPRICE<=5000 ]]>
+		</if>
+		<if test="lineUpPrice=='10,000원 이하'">
+			<![CDATA[ AND PPRICE<=10000 ]]>
+		</if>
+		<if test="lineUpPrice=='15,000원 이하'">
+			<![CDATA[ AND PPRICE<=15000 ]]>
+		</if>
+		<if test="lineUpPrice=='20,000원 이하'">
+			<![CDATA[ AND PPRICE<=20000 ]]>
+		</if>
+		<if test="lineUpPrice=='20,000원 이상'">
+			<![CDATA[ AND PPRICE>=20000 ]]>
+		</if>
+		<if test="lineUp=='신상품순'">
+	  		ORDER BY PINPUTDATE DESC, PNUM ASC
+	  	</if>
+	  	<if test="lineUp=='인기상품순'">
+	  		ORDER BY PBEST DESC, PNUM ASC
+	  	</if>
+	  	<if test="lineUp=='낮은가격순'">
+	  		ORDER BY PPRICE ASC, PNUM ASC 
+	  	</if>
+	  	<if test="lineUp=='높은가격순'">
+	  		ORDER BY PPRICE DESC, PNUM ASC 
+	  	</if>
+	  	<if test="lineUp=='null'">
+	  		ORDER BY PNUM DESC 
+	  	</if>	
+	</select>
+	
+	<!-- 상품디테일 요청 -->
+	<select id="getSelectNum" resultType="MyProduct">
+		SELECT * FROM PRODUCT
+		WHERE PNUM=#{PNUM}
+	</select>
+	
+	<!-- 상품디테일요청 : 해당상품 제외 추천상품 list출력 -->
+	<select id="getWithoutPnum" resultType="MyProduct">
+		SELECT * FROM PRODUCT
+		WHERE PCATEGORY=#{whatCate} AND PNUM!=#{number}
+		ORDER BY PBEST DESC, PNUM ASC
+	</select>
+	
+	<!-- /////////////////////////////////////////////////////////////////  -->
+	<select id="getAllList" resultType="MyProduct">
+		SELECT * FROM PRODUCT ORDER BY PNUM DESC
+	</select>
+	
+	<select id="checkPqty" resultType="MyProduct">
+		SELECT * FROM PRODUCT WHERE <![CDATA[ PQTY <= 10 ]]>
+	</select>
+	
+	<select id="getPqtyNum" resultType="int">
+		SELECT COUNT(*) FROM PRODUCT WHERE <![CDATA[ PQTY <= 10 ]]>
+	</select>
+
+	<insert id="insertProduct">
+		INSERT INTO PRODUCT VALUES
+		(PROSEQ.NEXTVAL,#{PNAME},#{PQTY},#{PPRICE},#{PPRICE}/100,0,SYSDATE, #{PCATEGORY},#{PSUBCATEGORY},#{PIMG1},
+		#{PIMG2},#{PIMG3},#{PIMG4},#{PIMG5},#{PINFOIMG},#{PSUBIMG})
+	</insert>
+
+	<select id="getOneData" resultType="MyProduct">
+		SELECT * FROM PRODUCT WHERE PNUM=#{PNUM}
+	</select>
+	
+	<delete id="deleteData">
+		DELETE FROM PRODUCT WHERE PNUM=#{PNUM}
+	</delete>
+	
+	<update id="updateProduct">
+		UPDATE PRODUCT SET PNAME=#{PNAME},PQTY=#{PQTY},PPRICE=#{PPRICE},PPOINT=#{PPRICE}/100,PCATEGORY=#{PCATEGORY},PSUBCATEGORY=#{PSUBCATEGORY}
+	 	<if test='PIMG1 != null and !PIMG1.equals("")'>
+			,PIMG1=#{PIMG1}
+		</if>
+		<if test='PIMG1 == null and PIMG1.equals("")'>
+			,PIMG1=#{OLDUPLOAD1}
+		</if>
+		<if test='PIMG2 != null and !PIMG2.equals("")'>
+			,PIMG2=#{PIMG2}
+		</if>
+		<if test='PIMG2 == null and PIMG2.equals("")'>
+			,PIMG2=#{OLDUPLOAD2}
+		</if>
+		<if test='PIMG3 != null and !PIMG3.equals("")'>
+			,PIMG3=#{PIMG3}
+		</if>
+		<if test='PIMG3 == null and PIMG3.equals("")'>
+			,PIMG3=#{OLDUPLOAD3}
+		</if>
+		<if test='PIMG4 != null and !PIMG4.equals("")'>
+			,PIMG4=#{PIMG4}
+		</if>
+		<if test='PIMG4 == null and PIMG4.equals("")'>
+			,PIMG4=#{OLDUPLOAD4}
+		</if>
+		<if test='PIMG5 != null and !PIMG5.equals("")'>
+			,PIMG5=#{PIMG5}
+		</if>
+		<if test='PIMG5 == null and PIMG5.equals("")'>
+			,PIMG5=#{OLDUPLOAD5}
+		</if>
+		<if test='PINFOIMG != null and !PINFOIMG.equals("")'>
+			,PINFOIMG=#{PINFOIMG}
+		</if>
+		<if test='PINFOIMG == null and PINFOIMG.equals("")'>
+			,PINFOIMG=#{OLDINFOUPLOAD}
+		</if>
+		<if test='PSUBIMG != null and !PSUBIMG.equals("")'>
+			,PSUBIMG=#{PSUBIMG}
+		</if>
+		<if test='PSUBIMG == null and PSUBIMG.equals("")'>
+			,PSUBIMG=#{OLDSUBUPLOAD} 
+		</if>
+		WHERE PNUM=#{PNUM}
+	</update>
+	
+	<!-- 결제 : 해당상품 수량감소 -->
+	<update id="stockDecrease">
+		UPDATE PRODUCT SET PQTY=PQTY-#{PQTY}
+		WHERE PNUM=#{PNUM}
+	</update>
+	
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
