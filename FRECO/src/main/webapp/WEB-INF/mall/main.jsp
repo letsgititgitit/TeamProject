@@ -152,8 +152,8 @@ onselectstart="return blockSelect()">
                             <li><a href="event.ev">이벤트</a></li>  
                             <li><a href="#">고객센터</a>
                             	<ul class="header__menu__dropdown">
-                                    <li><a href="" style="font-size: 15px;">자주하는질문</a></li>
-                                    <li><a href="" style="font-size: 15px;">1:1 문의</a></li>
+                                    <li><a href="fqa.mall" style="font-size: 15px;">자주하는질문</a></li>
+                                    <li><a href="qna.mall" style="font-size: 15px;">1:1 문의</a></li>
                                 </ul>
                             </li>    
                         </ul>
