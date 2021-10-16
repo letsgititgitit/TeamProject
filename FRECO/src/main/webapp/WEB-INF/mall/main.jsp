@@ -768,7 +768,7 @@ onselectstart="return blockSelect()">
                             <li><a href="info.in">회사소개</a></li>
                             <li><a href="privacy.in">개인정보처리방침</a></li>
                             <li><a href="terms.in">이용약관</a></li>
-                            <li><a href="#">고객센터</a></li>
+                            <li><a href="fqa.mall">고객센터</a></li>
                         </ul>
                        <!--  <ul>
                             <li><a href="#">Who We Are</a></li>
