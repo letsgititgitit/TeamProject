@@ -1087,22 +1087,45 @@ ol {
 	overflow: hidden;
 }
 
+/*--------------------------------------------------------------
+  하은 추가작성 시작
+-----------------------*/
+
 .sidebar__item h4 {
 	color: #1c1c1c;
 	font-weight: 700;
-	margin-bottom: 25px;
-}
+	margin-bottom: 20px;
+} 
 
 .sidebar__item ul li {
 	list-style: none;
 }
 
 .sidebar__item ul li a {
-	font-size: 16px;
+	font-size: 15px;
 	color: #1c1c1c;
-	line-height: 39px;
+	line-height: 50px;
+	-webkit-transition: all, 0.3s;
+	-moz-transition: all, 0.3s;
+	-ms-transition: all, 0.3s;
+	-o-transition: all, 0.3s;
+	transition: all, 0.3s;
 	display: block;
 }
+
+.sidebar__item ul li.active a {
+	font-weight: 700;
+	color: #e84118;
+}  
+
+.sidebar__item ul li:hover>a {
+	font-weight: 700;
+	color: #e84118;
+}
+
+/*-------------------------------------------------------------
+  하은 추가작성 끝
+-----------------------*/
 
 .sidebar__item .latest-product__text {
 	position: relative;
@@ -1228,26 +1251,53 @@ ol {
 	border-radius: 50%;
 }
 
-.sidebar__item__size {
+/*---------------------------------------------------------------------------------------------
+ 	 하은 변경 시작
+-----------------------*/
+
+.sidebar__item__price {
 	display: inline-block;
 	margin-right: 16px;
 	margin-bottom: 10px;
 }
 
-.sidebar__item__size label {
+.sidebar__item__price input.activePrice {
+	color: #f5f5f5;
+	background: #7fad39;
+	border: 0;
+}
+
+.sidebar__item__price input {
 	font-size: 12px;
 	color: #6f6f6f;
-	display: inline-block;
-	padding: 8px 25px 6px;
+	display: block;
+	padding: 8px 30px 6px;
 	background: #f5f5f5;
-	cursor: pointer;
+	border: 0;
+	cursor: pointer;  
+	-webkit-transition: all, 0.3s;
+	-moz-transition: all, 0.3s;
+	-ms-transition: all, 0.3s;
+	-o-transition: all, 0.3s;
+	transition: all, 0.3s;
 	margin-bottom: 0;
 }
 
-.sidebar__item__size label input {
+.sidebar__item__price input:hover{
+	color: #f5f5f5;
+	background: #7fad39;
+	border: 0;
+}
+
+/* .sidebar__item__price a label input { 필요없음
 	position: absolute;
 	visibility: hidden;
-}
+} */
+
+
+/*---------------------------------------------------------------------------------------------
+ 	 하은 변경 끝
+-----------------------*/
 
 /*---------------------
   Shop Grid
@@ -1390,7 +1440,7 @@ ol {
 .product__discount__item__text .product__item__price span {
 	display: inline-block;
 	font-weight: 400;
-	text-decoration: line-through;
+		/* text-decoration: line-through; 하은 변경*/
 	margin-left: 10px;
 }
 
@@ -1643,6 +1693,20 @@ ol {
 	transition: all, 0.3s;
 }
 
+/*--------------------------------------------------------------------------------------------------
+  하은추가작성
+-----------------------*/
+
+.product__pagination a.active{
+	background: #7fad39;
+	border-color: #7fad39;
+	color: #ffffff;	
+}
+
+/*--------------------------------------------------------------------------------------------------
+  하은추가작성끝
+-----------------------*/
+
 .product__pagination a:hover,
 .blog__pagination a:hover {
 	background: #7fad39;
@@ -1656,7 +1720,7 @@ ol {
 }
 
 /*---------------------
-  Shop Details
+  Shop Details + 하은추가있음
 -----------------------*/
 
 .product-details {
@@ -1717,18 +1781,18 @@ ol {
 	margin-bottom: 5px;
 }
 
-.product__details__text .heart-icon {
+/* .product__details__text .heart-icon {  하은수정 찜CSS필요없음
 	display: inline-block;
 	font-size: 16px;
 	color: #6f6f6f;
 	padding: 13px 16px 13px;
 	background: #f5f5f5;
-}
+} */
 
-.product__details__text ul {
-	border-top: 1px solid #ebebeb;
-	padding-top: 40px;
-	margin-top: 50px;
+.product__details__text ul {  /* 하은수정 */
+	border-bottom: 1px solid #ebebeb;
+	padding-bottom: 40px;  
+	margin-bottom: 50px;
 }
 
 .product__details__text ul li {
@@ -1848,6 +1912,10 @@ ol {
 
 .product__details__tab .product__details__tab__desc {
 	padding-top: 44px;
+}
+
+.product__details__tab .product__details__tab__desc { /* 하은추가 */
+	padding: 50px 175px;
 }
 
 .product__details__tab .product__details__tab__desc h6 {
@@ -2454,8 +2522,8 @@ ol {
 	text-transform: uppercase;
 }
 
-.blog__sidebar__item__tags a {
-	font-size: 16px;
+.blog__sidebar__item__tags a { /* 하은수정 */
+	font-size: 18px;
 	color: #6f6f6f;
 	background: #f5f5f5;
 	display: inline-block;
