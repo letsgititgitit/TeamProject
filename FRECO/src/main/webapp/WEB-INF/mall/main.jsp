@@ -1,4 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>  
+<%@page import="member.model.MemberBean"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
+<%@include file="./../common/common.jsp" %>  
+
 <!DOCTYPE html>
 <html lang="zxx">  
    
@@ -91,7 +94,6 @@ onselectstart="return blockSelect()">
     </a>
 
     <!-- Page Preloder -->
-    <div id="preloder">
         <div class="loader"></div>
     </div>
  
@@ -100,17 +102,28 @@ onselectstart="return blockSelect()">
         <div class="header__top">
             <div class="container">
                 <div class="row">
-      
                     <div class="col-lg-12 col-md-12">
                         <div class="header__top__right">
-           
+                    <c:choose>
+                    	<c:when test="${empty loginInfo}">
                             <div class="header__top__right__auth">
-                               <a href="#">로그인&nbsp;</a>
+                               <a href="login.me">로그인&nbsp;</a>
                             </div>
                                  <a>&nbsp;|&nbsp;</a> 
                             <div class="header__top__right__auth">
-                               <a href="#">&nbsp;회원가입</a>
+                               <a href="registerForm.me">&nbsp;회원가입</a>
                             </div>
+                        </c:when> 
+                        <c:otherwise>
+                        	<div class="header__top__right__auth">
+                              		<a>${loginInfo.getMNAME()}님 반갑습니다</a>
+                            </div>
+                                 <a>&nbsp;|&nbsp;</a> 
+                            <div class="header__top__right__auth">
+                               <a href="Logout.jsp">&nbsp;로그아웃</a>
+                            </div>
+                        </c:otherwise>
+                     </c:choose>           
                       
                         </div>                       
                     </div>
@@ -132,8 +145,8 @@ onselectstart="return blockSelect()">
                     <nav class="header__menu">
                         <ul>
                             <li class="active"><a href="main.mall">Home</a></li>
-                            <li><a href="#">회사소개</a></li>
-                            <li><a href="#">이벤트</a></li>  
+                            <li><a href="info.in">회사소개</a></li>
+                            <li><a href="event.ev">이벤트</a></li>  
                             <li><a href="#">고객센터</a>
                             	<ul class="header__menu__dropdown">
                                     <li><a href="" style="font-size: 15px;">자주하는질문</a></li>
@@ -207,7 +220,7 @@ onselectstart="return blockSelect()">
                         </div>          
                            
                         <div class="hero__search__phone">
-                            <a href="#"><img src="img/mypageimg11.png" width="50px" style="margin-right: 20px"></a>                           
+                            <a href="mypageOrderList.mp"><img src="img/mypageimg11.png" width="50px" style="margin-right: 20px"></a>                           
                             <a href="#"><img src="img/cartimg11.png" width="50px" style="margin-right: 45px"> </a>                          
                         </div>    
                     </div>
@@ -749,9 +762,9 @@ onselectstart="return blockSelect()">
                         <br>
                         <h6>커뮤니티</h6>
                         <ul>
-                            <li><a href="#">회사소개</a></li>
-                            <li><a href="#">개인정보처리방침</a></li>
-                            <li><a href="#">이용약관</a></li>
+                            <li><a href="info.in">회사소개</a></li>
+                            <li><a href="privacy.in">개인정보처리방침</a></li>
+                            <li><a href="terms.in">이용약관</a></li>
                             <li><a href="#">고객센터</a></li>
                         </ul>
                        <!--  <ul>
