@@ -15,5 +15,7 @@
 	</bean>	
 
 	<context:component-scan base-package="mall" />
-	
+	<context:component-scan base-package="product" />
+	<context:component-scan base-package="order" />   
+	<context:component-scan base-package="member" />
 </beans>
