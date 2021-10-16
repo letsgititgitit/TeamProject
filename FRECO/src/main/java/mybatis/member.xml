@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">	
+<!-- member.xml -->
+
+<mapper namespace="member.model.MemberBean">
+	<!-- 회원가입  -->	
+	<insert id="insertMember">
+		INSERT INTO MEMBER(MID,MPW,MNAME,MBIRTH,MPHONE,MADDRESS1,MADDRESS2,MADDRESS3)
+		VALUES(#{MID},#{MPW},#{MNAME},#{MBIRTH},#{MPHONE},#{MADDRESS1},#{MADDRESS2},#{MADDRESS3})	
+	</insert>
+	<!-- 로그인,비밀번호 찾기 -->
+	<select id="getData" resultType="MyMember">
+		SELECT * FROM MEMBER
+		WHERE MID=#{MID}
+	</select>
+	<!-- 아이디 찾기 -->
+	<select id="searchId" resultType="MyMember">
+		SELECT * FROM MEMBER
+		WHERE MPHONE=#{MPHONE}
+	</select>
+	<!-- 아이디 중복체크 -->	
+	<select id="IdDuplicate" resultType="int">
+		SELECT COUNT(*) FROM MEMBER
+		WHERE MID=#{MID}
+	</select>	
+	<!-- 휴대폰번호 중복체크  -->
+	<select id="PhoneDuplicate" resultType="int">
+		SELECT COUNT(*) FROM MEMBER
+		WHERE MPHONE=#{MPHONE}
+	</select>	
+	
+
+</mapper>
