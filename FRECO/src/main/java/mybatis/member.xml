@@ -30,5 +30,16 @@
 		WHERE MPHONE=#{MPHONE}
 	</select>	
 	
-
+	<!-- 하은: 결제요청 -> 사용한 MPOINT만큼 감소 -->
+	<update id="mpointMinus">
+		UPDATE MEMBER SET MPOINT= MPOINT-#{MPOINT}
+		WHERE MID=#{MID}
+	</update>
+	<!-- 하은: 결제요청 -> 구매한 MPOINT만큼 증가 -->
+	<update id="mpointPlus">
+		UPDATE MEMBER SET MPOINT= MPOINT+#{MPOINT}
+		WHERE MID=#{MID}
+	</update>
+	
+	
 </mapper>
