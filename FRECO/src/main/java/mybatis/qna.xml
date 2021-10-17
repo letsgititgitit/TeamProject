@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<!-- mall.xml -->  
+  
+<mapper namespace="mall.QNABean">
+
+	<select id="getQNAList" resultType="MyQNA">
+		SELECT * FROM QNABOARD
+		ORDER BY QNUM DESC
+	</select>
+
+	<insert id="insertQNA">
+		INSERT INTO QNABOARD(QNUM, QID, QSUBJECT, QCONTENT, QREGDATE, QREPLY)
+		VALUES(QNASEQ.NEXTVAL, #{QID}, #{QSUBJECT}, #{QCONTENT}, SYSDATE, #{QREPLY})
+	</insert>
+	
+	<select id="getQNA" resultType="MyQNA">
+		SELECT * FROM QNABOARD
+		WHERE QNUM = #{QNUM}
+	</select>
+	
+	<update id="updateQNA">
+		UPDATE QNABOARD SET QID = #{QID}, QSUBJECT= #{QSUBJECT}, QCONTENT = #{QCONTENT}
+		WHERE QNUM = #{QNUM}
+	</update>
+	
+	<delete id="deleteQNA">
+		DELETE FROM QNABOARD
+		WHERE QNUM = #{QNUM}
+	</delete>
+</mapper>  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
