@@ -14,13 +14,13 @@
 
 <br>
 <center>
-
-	<p><img src="img/event/banner_best.jpg" onclick="location.href='mypageCouponList.mp'"></p><br>
+	<p><img src="img/event/banner_coupon.jpg" onclick="location.href='eventToMypage.ev'"></p><br>
+	<p><img src="img/event/banner_best.jpg" onclick=""></p><br>
 	<p><img src="img/event/banner_food.jpg" onclick=""></p><br>
 	<p><img src="img/event/banner_living.jpg" onclick=""></p><br>
 	<p><img src="img/event/banner_baby.jpg" onclick=""></p><br>
 	<p><img src="img/event/banner_pet.jpg" onclick=""></p>
 </center>
 
-<br><br>
+<br><br><br>
 <%@include file="./../display/bottom.jsp" %>
