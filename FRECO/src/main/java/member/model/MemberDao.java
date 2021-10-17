@@ -35,7 +35,25 @@ public class MemberDao {
 		return cnt;
 	}	
 
-	
+	//하은: 결제요청 -> 사용한 MPOINT만큼 감소 (-)
+	public int mpointMinus(String mid, int useMPOINT) {
+		MemberBean mbean =  new MemberBean();
+		mbean.setMID(mid);
+		mbean.setMPOINT(useMPOINT);
+		int cnt = sqlSessionTemplate.update(namespace+".mpointMinus", mbean);
+			System.out.println("mpointMinus 완료후: " + mbean.getMPOINT());
+		return cnt;
+		
+	}
+	//하은: 결제요청 -> 구입한 MPOINT만큼 증가 (+)
+	public int mpointPlus(String mid, int totalPaymentPoint) {
+		MemberBean mbean =  new MemberBean();
+		mbean.setMID(mid);
+		mbean.setMPOINT(totalPaymentPoint);
+		int cnt = sqlSessionTemplate.update(namespace+".mpointMinus", mbean);
+			System.out.println("mpointMinus 완료후: " + mbean.getMPOINT());
+		return cnt;
+	}	
 	
 
 	
