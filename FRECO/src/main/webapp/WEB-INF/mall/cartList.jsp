@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>  
 <%@include file="../display/top.jsp" %>
 <%@include file="../common/common.jsp" %>  
-
+<!-- push 테스트 -->
 
 <style type="text/css">
  a:link { color: black; text-decoration: none;}
