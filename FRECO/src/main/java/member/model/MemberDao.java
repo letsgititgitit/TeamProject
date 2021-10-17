@@ -55,7 +55,11 @@ public class MemberDao {
 		return cnt;
 	}	
 	
-
+	//예인:관리자 회원 목록 출력
+	public List<MemberBean> getAllList() {
+		List<MemberBean> memlist = sqlSessionTemplate.selectList(namespace+".getAllList");
+		return memlist;
+	}
 	
 	
 	
