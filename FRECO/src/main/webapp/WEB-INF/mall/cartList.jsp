@@ -126,7 +126,7 @@
                             <li>Total Point <span>${totalPoint }</span></li>                      
                         </ul>
                        
-                        <a href="#" class="primary-btn">결제하기</a>
+                        <a href="payment.mall" class="primary-btn">결제하기</a>
                     </div>
                 </div>          
             </div>
