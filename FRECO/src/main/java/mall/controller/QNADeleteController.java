@@ -46,9 +46,11 @@ public class QNADeleteController {
 		
 		System.out.println("---- delete POST ----");
 		
-//		QNABean qnaOne = qdao.getQNA(QNUM);
+		QNABean qnaOne = qdao.getQNA(QNUM);
+		System.out.println("db 비번 " + qnaOne.getQPW());
+		System.out.println("입력비번 " + QPW);
 		
-		if(QPW.equals("1234")) {
+		if(QPW.equals(qnaOne.getQPW())) {
 			System.out.println("비밀번호 일치");
 			
 			qdao.deleteQNA(QNUM);

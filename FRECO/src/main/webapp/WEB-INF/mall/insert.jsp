@@ -57,12 +57,7 @@
 		   				<h3>글쓰기</h3> <br><br> 
 		   			</div>
 		   			
-		   			<div>
-		            <%--	<div class="name">
-		            		 작성자  <input type="text" name="QID" value="${QNABean.QID }">
-		            			 <form:errors path="QID" cssClass="err" />
-		            			 
-		            			 <input type="hidden" name="QREPLY" value="답변대기"> --%>		            			 
+		   			<div>		            			 
 		            		<table>
 		            			<tr >
 		            				<th>작성자</th>
@@ -75,10 +70,6 @@
 		            				 
 		            	<!-- </div><br> -->
 		            	
-		            	<%--<div class="subject">
-		            		 제목  <input type="text" name="QSUBJECT" value="${QNABean.QSUBJECT }">
-		            			<form:errors path="QSUBJECT" cssClass="err" /> --%>
-		            		
 		            			<tr>
 		            				<th>제목</th>
 		            				<td>
@@ -89,10 +80,6 @@
 		            		
 		            	<!-- </div><br> -->
 		            		
-		            	<%--<div class="content">
-		            		 내용  <textarea name="QCONTENT" rows="15" cols="50">${QNABean.QCONTENT }</textarea>
-		            			<form:errors path="QCONTENT" cssClass="err" /> --%>
-		            		
 		            			<tr>
 		            				<th>내용</th>
 		            				<td>
@@ -102,15 +89,11 @@
 		            			</tr>
 		            		
 		            	<!-- </div><br> -->
-		            		
-		            	<%--<div class="pw">
-		            		 비밀번호  <input type="password" name="QPW" value="">
-		            				<form:errors path="QPW" cssClass="err" /> --%>
-		            		
+	
 		            			<tr>
 		            				<th>비밀번호</th>
 		            				<td>
-		            					<input type="password" name="QPW" value="">
+		            					<input type="password" name="QPW" value="${QNABean.QPW }">
 		            					<form:errors path="QPW" cssClass="err" />
 		            				</td>
 		            			</tr>

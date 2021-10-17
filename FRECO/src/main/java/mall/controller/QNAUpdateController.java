@@ -65,7 +65,11 @@ public class QNAUpdateController {
 			return mav;
 		}
 		
-		if(!qna.getQPW().equals("1234")) {
+		QNABean dbqna = qdao.getQNA(QNUM);
+		System.out.println("db 비번 " + dbqna.getQPW());
+		System.out.println("입력비번 " + qna.getQPW());
+		
+		if(!qna.getQPW().equals(dbqna.getQPW())) {
 			System.out.println("비번 틀림 : " + qna.getQPW());
 			
 			PrintWriter pw = response.getWriter();

@@ -2,6 +2,8 @@ package mall.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,17 +22,26 @@ public class QNAController {
 	QNADao qdao;
 	
 	@RequestMapping(value=command)
-	public ModelAndView doAction(ModelAndView mav) {
+	public ModelAndView doAction(HttpSession session, ModelAndView mav) {
 		
 		System.out.println(" ----- QNA Controller ---- ");
 		
-		List<QNABean> lists = qdao.getQNAList();
-		System.out.println("lists 갯수 : " + lists.size());
-		
-		mav.addObject("lists", lists);
-		mav.setViewName(gotoPage);
-		
-		return mav;
-	}
-	
+		//로그인 X
+		if(session.getAttribute("loginInfo") == null) {
+			session.setAttribute("destination", "redirect:/mypageOrderList.mp");
+			mav.setViewName("redirect:/login.me");
+			return mav;
+		}
+		//로그인 O
+		else {			
+			List<QNABean> lists = qdao.getQNAList();
+			System.out.println("lists 갯수 : " + lists.size());
+			
+			mav.addObject("lists", lists);
+			mav.setViewName(gotoPage);
+			
+			return mav;				
+		}
+
+	}	
 }

@@ -88,7 +88,7 @@
 		            			<tr>
 		            				<th>비밀번호</th>
 		            				<td>
-		            					<input type="password" name="QPW" value="${qna.QPW }">
+		            					<input type="password" name="QPW">
 		            					<form:errors path="QPW" cssClass="err" />
 		            				</td>
 		            			</tr>

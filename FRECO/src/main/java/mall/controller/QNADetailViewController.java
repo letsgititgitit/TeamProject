@@ -1,5 +1,7 @@
 package mall.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,9 +20,15 @@ public class QNADetailViewController {
 	@Autowired
 	QNADao qdao;
 	
+	// 1대1 문의에서 제목 눌렀을때 상세페이지로 이동
 	@RequestMapping(value = command)
-	public String doAction(@RequestParam("QNUM") int QNUM, Model model) {
+	public String doAction(@RequestParam("QNUM") int QNUM, Model model, HttpSession session) {
+		
 		System.out.println("---- QNADetailViewController ----");
+		
+		// session 정보 넘어왔나 확인
+		System.out.println("session : " + session.getAttribute("loginInfo"));
+		
 		QNABean qna =  qdao.getQNA(QNUM);
 		
 		model.addAttribute("qna", qna);

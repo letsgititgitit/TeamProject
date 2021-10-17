@@ -44,8 +44,6 @@ public class QNAInsertController {
 			return mav; 
 		}
 		
-		System.out.println("비밀번호 일치");
-		
 		int cnt = qdao.insertQNA(qna);
 		System.out.println("cnt: " + cnt);
 		
