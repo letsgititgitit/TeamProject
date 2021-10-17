@@ -15,6 +15,8 @@
 	</bean>
 	
 	<context:component-scan base-package="admin" />
+	<context:component-scan base-package="member" />
+	<context:component-scan base-package="order" />
 
 <!-- 파일 업로드 -->
 
