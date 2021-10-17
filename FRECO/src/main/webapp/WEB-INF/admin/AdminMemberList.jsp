@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../display/adminTop.jsp" %>    
+<%@ include file="../display/adminTop.jsp" %>
+<%@include file="../common/common.jsp" %>    
     
 				<div id="layoutSidenav_content">
                 <main>
@@ -28,28 +29,19 @@
                                             <th>쿠폰번호</th>
                                             <th>포인트</th>
                                         </tr>
-                                    </thead>
-                                   <!--  <tfoot>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            <th>Salary</th>
-                                        </tr>
-                                    </tfoot> -->
+                                    </thead>                              
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>System</td>
-                                            <td>홍길동</td>
-                                            <td>01033334444</td>
-                                            <td>17342 서울특별시 어쩌구 저쩌고 주소 111동 2002호</td>
-                                            <td>1</td>
-                                            <td>1000</td>
+                                   <c:forEach var="list" items="${memlist}">
+                                      <tr>
+                                            <td>${list.MNUM }</td>
+                                            <td>${list.MID }</td>
+                                            <td>${list.MNAME }</td>
+                                            <td>${list.MPHONE }</td>
+                                            <td>${list.MADDRESS1 } ${list.MADDRESS2 } ${list.MADDRESS3 }</td>
+                                            <td>${list.MCOUPON }</td>
+                                            <td>${list.MPOINT }</td>
                                         </tr>
-                                     
+                                     </c:forEach>
                               
                                     </tbody>
                                 </table>
