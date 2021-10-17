@@ -18,5 +18,6 @@
 		<mapper resource="mybatis/coupon.xml"/>
 		<mapper resource="mybatis/product.xml"/>
 		<mapper resource="mybatis/mall.xml"/>
+		<mapper resource="mybatis/qna.xml"/>
 	</mappers>
 </configuration>

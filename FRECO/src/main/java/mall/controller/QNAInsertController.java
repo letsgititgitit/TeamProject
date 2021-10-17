@@ -3,11 +3,9 @@ package mall.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
-import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -46,31 +44,14 @@ public class QNAInsertController {
 			return mav; 
 		}
 		
-		if(!qna.getQPW().equals("1234")) {
-			System.out.println("비밀번호 오류 " + qna.getQPW());
-			
-			try {
-				PrintWriter pw = response.getWriter();
-				pw.println("<script>alert('비밀번호가 틀렸습니다.');</script>");
-				pw.flush();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			
-			mav.setViewName(getPage); 
-			return mav; 
-		}
-		else {
-			System.out.println("비밀번호 일치");
-			
-			int cnt = qdao.insertQNA(qna);
-			System.out.println("cnt: " + cnt);
-			
-			mav.setViewName(gotoPage);
-			return mav;
-		}
-		 		
+		System.out.println("비밀번호 일치");
 		
+		int cnt = qdao.insertQNA(qna);
+		System.out.println("cnt: " + cnt);
+		
+		mav.setViewName(gotoPage);
+		return mav;
+	
 	}
 	
 	
