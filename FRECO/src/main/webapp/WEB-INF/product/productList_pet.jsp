@@ -5,7 +5,12 @@
 
 <script type="text/javascript">
 	function cartPopup(PNUM,PNAME,ORDERPQTY){
-		//alert(1);
+	
+	<% if(session.getAttribute("loginInfo")==null) { 
+			session.setAttribute("destination", "redirect:/list.product"); %>
+			location.href="login.me";
+				
+	<%	}else{	%>	
 	var _width=400;
 	var _height=180;
 	var _left = Math.ceil(( window.screen.width - _width )/2);
@@ -17,6 +22,7 @@
 				"FRECO CART",
 				options
 				); 
+		 <%}%>
 	}
 	
 	function goCartList2(){
