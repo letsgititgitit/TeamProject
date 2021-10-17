@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
 <%@ include file="../display/adminTop.jsp" %> 
 <%@include file="../common/common.jsp" %> 
-          <!--   content -->                
+<%@include file="../common/adminChart.jsp" %>      
+    
+
+          <!--   content -->                  
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
@@ -109,7 +112,7 @@
 					  ],
 						  datasets: [{
 						    label: 'Dataset',
-						    data: [10, 50],
+						    data: [${ordercnt}, ${refundcnt}],
 						    backgroundColor: [
 						      'rgb(54, 162, 235)',
 						      'rgb(255, 99, 132)'
@@ -122,18 +125,19 @@
 					     }
 					});
 					
-					 
-					 
+					 					 
 					 var ctx2 = document.getElementById("orderChart");
 						var myLineChart2 = new Chart(ctx2, {
 						     type: 'line',   
 						     data: {
-						      labels: ["월요일", "화요일", "수요일", "목요일", "금요일", "토요일", "일요일"],
+						    	
+						      labels: ["${day7date}", "${day6date}", "${day5date}", "${day4date}", "${day3date}", "${day2date}", "${day1date}"],
+						      
 						      datasets: [{
 						        label: '주문 수',
 						       data: [ 
 						    	   	
-						    	   10, 69, 90, 41, 36, 45, 20
+						    	   ${day7cnt},${day6cnt},${day5cnt},${day4cnt},${day3cnt},${day2cnt},${day1cnt}
 						    	   	
 						    	   	],
 						       borderColor: [
