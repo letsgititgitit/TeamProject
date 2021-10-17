@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">	
+<!-- member.xml -->
+
+<mapper namespace="order.model.OrderBean">
+	<insert id="insertData">
+		INSERT INTO ORDERS 
+		VALUES(ORDSEQ.NEXTVAL, #{OMID}, sysdate, 'NO')
+	</insert>
+
+	<select id="getMaxOrderOINVOICE" resultType="int">
+		SELECT MAX(OINVOICE) FROM ORDERS
+	</select>
+	
+	<!-- 관리자 차트: 주문수 -->
+	<select id="getCount" resultType="int">
+		SELECT COUNT(*) FROM ORDERS WHERE OREFUND='NO'
+	</select>
+	<!-- 관리자 차트: 환불수 -->
+	<select id="getRefundCount" resultType="int">
+		SELECT COUNT(*) FROM ORDERS WHERE OREFUND='YES'
+	</select>
+	
+	<!-- 관리자 차트:카운트 출력 -->
+	<select id="day7cnt" resultType="int">
+		SELECT COUNT(*) FROM ORDERS  WHERE OORDERDATE = TO_CHAR(SYSDATE-6,'YYYYMMDD')      
+	</select>
+	<select id="day6cnt" resultType="int">
+		SELECT COUNT(*) FROM ORDERS  WHERE OORDERDATE = TO_CHAR(SYSDATE-5,'YYYYMMDD')      
+	</select>
+	<select id="day5cnt" resultType="int">
+		SELECT COUNT(*) FROM ORDERS  WHERE OORDERDATE = TO_CHAR(SYSDATE-4,'YYYYMMDD')      
+	</select>
+	<select id="day4cnt" resultType="int">
+		SELECT COUNT(*) FROM ORDERS  WHERE OORDERDATE = TO_CHAR(SYSDATE-3,'YYYYMMDD')      
+	</select>
+	<select id="day3cnt" resultType="int">
+		SELECT COUNT(*) FROM ORDERS  WHERE OORDERDATE = TO_CHAR(SYSDATE-2,'YYYYMMDD')      
+	</select>
+	<select id="day2cnt" resultType="int">
+		SELECT COUNT(*) FROM ORDERS  WHERE OORDERDATE = TO_CHAR(SYSDATE-1,'YYYYMMDD')      
+	</select>
+	<select id="day1cnt" resultType="int">
+		SELECT COUNT(*) FROM orders WHERE TO_CHAR(OORDERDATE,'YYYYMMDD') = TO_CHAR(SYSDATE,'YYYYMMDD')     
+	</select> 
+	
+	<!-- 관리자 차트:해당 날짜 출력 -->
+	<select id="day7date" resultType="MyOrder">
+		SELECT distinct OORDERDATE FROM ORDERS  WHERE OORDERDATE = TO_CHAR(SYSDATE-6,'YYYYMMDD')      
+	</select>
+	<select id="day6date" resultType="MyOrder">
+		SELECT distinct OORDERDATE FROM ORDERS  WHERE OORDERDATE = TO_CHAR(SYSDATE-5,'YYYYMMDD')      
+	</select> 
+	<select id="day5date" resultType="MyOrder">
+		SELECT distinct OORDERDATE FROM ORDERS  WHERE OORDERDATE = TO_CHAR(SYSDATE-4,'YYYYMMDD')      
+	</select> 
+	<select id="day4date" resultType="MyOrder">
+		SELECT distinct OORDERDATE FROM ORDERS  WHERE OORDERDATE = TO_CHAR(SYSDATE-3,'YYYYMMDD')      
+	</select> 
+	<select id="day3date" resultType="MyOrder">
+		SELECT distinct OORDERDATE FROM ORDERS  WHERE OORDERDATE = TO_CHAR(SYSDATE-2,'YYYYMMDD')      
+	</select> 
+	<select id="day2date" resultType="MyOrder">
+		SELECT distinct OORDERDATE FROM ORDERS  WHERE OORDERDATE = TO_CHAR(SYSDATE-1,'YYYYMMDD')      
+	</select> 
+	<select id="day1date" resultType="MyOrder">
+		SELECT distinct OORDERDATE FROM ORDERS WHERE TO_CHAR(OORDERDATE,'YYYYMMDD') = TO_CHAR(SYSDATE,'YYYYMMDD')      
+	</select> 
+</mapper>
