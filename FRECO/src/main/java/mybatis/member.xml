@@ -6,8 +6,8 @@
 <mapper namespace="member.model.MemberBean">
 	<!-- 회원가입  -->	
 	<insert id="insertMember">
-		INSERT INTO MEMBER(MID,MPW,MNAME,MBIRTH,MPHONE,MADDRESS1,MADDRESS2,MADDRESS3)
-		VALUES(#{MID},#{MPW},#{MNAME},#{MBIRTH},#{MPHONE},#{MADDRESS1},#{MADDRESS2},#{MADDRESS3})	
+		INSERT INTO MEMBER(MNUM,MID,MPW,MNAME,MBIRTH,MPHONE,MADDRESS1,MADDRESS2,MADDRESS3)
+		VALUES(MEMSEQ.NEXTVAL,#{MID},#{MPW},#{MNAME},#{MBIRTH},#{MPHONE},#{MADDRESS1},#{MADDRESS2},#{MADDRESS3})	
 	</insert>
 	<!-- 로그인,비밀번호 찾기 -->
 	<select id="getData" resultType="MyMember">
