@@ -1,9 +1,9 @@
+<%@page import="java.util.Calendar"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
 <%@ include file="../display/adminTop.jsp" %> 
 <%@include file="../common/common.jsp" %> 
-<%@include file="../common/adminChart.jsp" %>      
-    
-
+     
           <!--   content -->                  
             <div id="layoutSidenav_content">
                 <main>
@@ -15,18 +15,20 @@
                         <div class="row">
                             <div class="col-xl-4 col-md-6">
                                 <div class="card bg-primary text-white mb-4">
-                                    <div class="card-body">오늘 주문 <h2>0개</h2></div>                                 
+                                    <div class="card-body">오늘 주문 <h2>${sysorder }개</h2></div>                                 
                                 </div>
                             </div>
                            
                             <div class="col-xl-4 col-md-6">
                                 <div class="card bg-success text-white mb-4">
-                                    <div class="card-body">관리자 처리 완료 <h2>0개</h2></div>                        
+                                    <div class="card-body">관리자 처리 완료 <h2>0개</h2></div>
+                                    <!-- 답변 완료 고민:주문 완료도? -->                        
                                 </div>
                             </div>
                             <div class="col-xl-4 col-md-6">
                                 <div class="card bg-danger text-white mb-4">
-                                    <div class="card-body">관리자 미처리 현황 <h2>0개</h2></div>                               
+                                    <div class="card-body">관리자 미처리 현황 <h2>${refundcnt}개</h2></div>   
+                                    <!-- 답변 미완료 + 환불 갯수 -->                            
                                 </div>
                             </div>
                         </div>
@@ -58,105 +60,45 @@
                                 ORDER LIST
                             </div>
                             <div class="card-body">
-                                <table id="datatablesSimple">
+                                 <table id="datatablesSimple">
                                     <thead>
                                         <tr>
-                                            <th>주문 번호</th><!-- 누르면 주문 정보로 넘어감 -->
+                                            <th>주문 번호</th>
                                             <th>아이디</th>
-                                           <!--  <th>상품</th>
-                                            <th>가격</th> -->
                                             <th>주문 날짜</th>
-                                            <th>처리 현황</th>
-                                            <!-- 환불은 버튼으로 이동 refund.admin 가서 CartInfo의 total point, total price 0으로,
-                                            	member 테이블 point 적립됐던거 빼기(mid로 member 테이블에서 mpoint 구하고 적립된 point구해서 빼기), 
-                                            	mcoupon이 null이라면 다시 update 내용은 coupon 테이블에서 갖고 오고 -->
+                                            <th>처리 현황</th>                                       
                                         </tr>
                                     </thead>
                                    
                                     <tbody>
+                                      <c:forEach var="list" items="${orderlist }">
                                         <tr>
-                                        	<td><input type="button" class="btn btn-outline-dark btn-sm" value="12312" onClick="location.href='orderDetail.admin'"></td>
-                                            <td>lee</td>
-                                         <!--    <td>Edinburgh</td>
-                                            <td>15000</td> -->
-                                            <td>2011/04/25</td>                        
-                                            <td>
-                                            
-                                            	<%--  <c:choose>
-                                            	<c:when test="">
-                                            		<input type="button" class="btn btn-outline-danger btn-sm" value="환불" onClick="">
-                                            	</c:when>
-                                            	<c:otherwise>
-                                            		<input type="button" class="btn btn-outline-dark btn-sm" value="주문" onClick="">
-                                            	</c:otherwise>
-                                            </c:choose> --%>
-                                            	<input type="button" class="btn btn-outline-danger btn-sm" value="환불" onClick="">
+                                        	<td><input type="button" class="btn btn-outline-dark btn-sm" value="${list.OINVOICE }" onClick="location.href='orderDetail.admin?OINVOICE=${list.OINVOICE }'"></td>
+                                            <td>${list.OMID }</td>
+                                            <fmt:parseDate var="date" value="${list.OORDERDATE }" pattern="yyyy-MM-dd"/>
+                                            <fmt:formatDate var="OORDERDATE" value="${date }" pattern="yyyy-MM-dd"/>
+                                            <td>${OORDERDATE }</td>                        
+                                            <td>                                      
+	                                            <c:choose>
+	                                            	<c:when test="${list.OREFUND eq 'YES'}">
+	                                            		<input type="button" class="btn btn-outline-danger btn-sm" value="환불" onClick="">
+	                                            	</c:when>
+	                                            	<c:when test="${list.OREFUND eq '환불완료'}">
+	                                            		<b>환불 완료</b>
+	                                            	</c:when>
+	                                            	<c:otherwise>
+	                                            		<b>주문</b>
+	                                            	</c:otherwise>
+	                                            </c:choose>                                            	
                                             </td>
                                         </tr>
-                                       
+                                      </c:forEach> 
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
-                   
-              <!-- 차트 설정 -->
-              <script>
-					 var ctx = document.getElementById("levelChart");
-					 var myLineChart = new Chart(ctx, {
-					 	type: 'pie',
-					 	data: {
-					  labels: [
-					    '구매',
-					    '환불'
-					  ],
-						  datasets: [{
-						    label: 'Dataset',
-						    data: [${ordercnt}, ${refundcnt}],
-						    backgroundColor: [
-						      'rgb(54, 162, 235)',
-						      'rgb(255, 99, 132)'
-						    ],
-						    hoverOffset: 2
-						  }]
-					  },
-					  options: {
-					        responsive: false
-					     }
-					});
-					
-					 					 
-					 var ctx2 = document.getElementById("orderChart");
-						var myLineChart2 = new Chart(ctx2, {
-						     type: 'line',   
-						     data: {
-						    	
-						      labels: ["${day7date}", "${day6date}", "${day5date}", "${day4date}", "${day3date}", "${day2date}", "${day1date}"],
-						      
-						      datasets: [{
-						        label: '주문 수',
-						       data: [ 
-						    	   	
-						    	   ${day7cnt},${day6cnt},${day5cnt},${day4cnt},${day3cnt},${day2cnt},${day1cnt}
-						    	   	
-						    	   	],
-						       borderColor: [
-						                  'rgba(255, 99, 132, 0.2)',//red
-						                ]            	        
-						      }]
-						     },
-						     options: {
-						         scales: {
-						             yAxes: [{
-						                 stacked: true
-						             }]
-						         }
-						     }
-						 });
-					
-				</script> 
- 
-                
- 
-                </main>
+                                   
+<%@include file="../common/adminChart.jsp" %> 
+                </main>                
 <%@ include file="../display/adminBottom.jsp" %>               

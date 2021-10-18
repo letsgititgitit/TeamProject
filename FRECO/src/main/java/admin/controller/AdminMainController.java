@@ -1,5 +1,7 @@
 package admin.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,9 +22,17 @@ public class AdminMainController {
 	
 	@RequestMapping(value=command)
 	public ModelAndView doAction(ModelAndView mav) {
+			
+		List<OrderBean> orderlist = orderDao.getAllList();
+		mav.addObject("orderlist", orderlist);
+		
+		int sysorder = orderDao.getOrderBySysdate();
+		mav.addObject("sysorder", sysorder);
+		
+		int refundcnt = orderDao.getRefundCount();
+		mav.addObject("refundcnt", refundcnt);
 		
 		int ordercnt = orderDao.getCount();
-		int refundcnt = orderDao.getRefundCount();
 		
 		int day7cnt = orderDao.day7cnt();
 		int day6cnt = orderDao.day6cnt();
@@ -32,16 +42,7 @@ public class AdminMainController {
 		int day2cnt = orderDao.day2cnt();
 		int day1cnt = orderDao.day1cnt(); 
 		
-		OrderBean day7date = orderDao.day7date();
-		OrderBean day6date = orderDao.day6date();
-		OrderBean day5date = orderDao.day5date();
-		OrderBean day4date = orderDao.day4date();
-		OrderBean day3date = orderDao.day3date();
-		OrderBean day2date = orderDao.day2date();
-		OrderBean day1date = orderDao.day1date();
-		
-		mav.addObject("ordercnt", ordercnt);
-		mav.addObject("refundcnt", refundcnt);
+		mav.addObject("ordercnt", ordercnt);		
 		
 		mav.addObject("day7cnt", day7cnt);
 		mav.addObject("day6cnt", day6cnt);
@@ -51,14 +52,6 @@ public class AdminMainController {
 		mav.addObject("day2cnt", day2cnt);
 		mav.addObject("day1cnt", day1cnt);
 		
-		mav.addObject("day7date",day7date );
-		mav.addObject("day6date",day6date );
-		mav.addObject("day5date",day5date );
-		mav.addObject("day4date",day4date );
-		mav.addObject("day3date",day3date );
-		mav.addObject("day2date",day2date );
-		mav.addObject("day1date",day1date );
-		 
 		mav.setViewName(getPage);
 		return mav;
 	}

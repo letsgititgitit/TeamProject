@@ -2,6 +2,8 @@ package admin.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class AdminOrderDetailController {
@@ -10,8 +12,12 @@ public class AdminOrderDetailController {
 	private final String getPage="AdminOrderDetail";
 	
 	@RequestMapping(value=command)
-	public String doAction() {
-		return getPage;
+	public ModelAndView doAction(@RequestParam(value="OINVOICE") int OINVOICE,
+							ModelAndView mav) {
+		
+		mav.addObject("OINVOICE", OINVOICE);
+		mav.setViewName(getPage);
+		return mav;
 	}
 	
 }

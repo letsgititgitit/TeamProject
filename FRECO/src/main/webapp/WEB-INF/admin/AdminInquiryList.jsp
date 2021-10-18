@@ -1,7 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../display/adminTop.jsp" %>    
-    
+<%@include file="../common/common.jsp" %>
+<style type="text/css">
+	.reply-wait{
+		color: #C90000;
+		font-size: 15px;
+		font-weight: bold;
+	}
+
+	.reply-success{
+		color: #221DB5;
+		font-size: 15px;
+	}
+
+</style>    
 				<div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
@@ -30,27 +43,37 @@
                                 <table id="datatablesSimple">
                                     <thead>
                                         <tr>
+                                            <th>번호</th>
                                             <th>아이디</th>
                                             <th>제목</th>
                                             <th>내용</th>
-                                            <th>상태확인</th>
-                                            <th>미정</th>
-                                            <th>미정</th>
-                                            <th>미정</th>
+                                            <th>날짜</th>                                           
+                                            <th>상태</th>                                           
                                         </tr>
                                     </thead>
                             
                                     <tbody>
+                                    
+                                    <c:forEach var="qna" items="${qlist }">
                                         <tr>
-                                            <td>1</td>
-                                            <td>System</td>
-                                            <td>홍길동</td>
-                                            <td>01033334444</td>
-                                            <td>17342 서울특별시 우현로 67 강서힐스테이트 121동 303호</td>
-                                            <td>1</td>
-                                            <td>1000</td>
+                                            <td>${qna.QNUM }</td>
+                                            <td>${qna.QID }</td>
+                                            <td>${qna.QSUBJECT }</td>
+                                            <td>${qna.QCONTENT }</td>
+                                            <td>${qna.QREGDATE }</td>                                           
+                                            <td>
+                                            	<c:choose>
+                                            		<c:when test="${qna.QREPLY eq '답변대기'}">
+                                            			<p class="reply-wait">${qna.QREPLY }</p>
+                                            		</c:when>
+                                            		<c:otherwise>
+                                            			<p class="reply-success">${qna.QREPLY }</p>
+                                            		</c:otherwise>
+                                            	</c:choose>
+                                            		
+                                            </td>                                           
                                         </tr>
-                                     
+                                    </c:forEach>  
                               
                                     </tbody>
                                 </table>

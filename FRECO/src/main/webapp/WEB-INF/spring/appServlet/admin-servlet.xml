@@ -17,7 +17,8 @@
 	<context:component-scan base-package="admin" />
 	<context:component-scan base-package="member" />
 	<context:component-scan base-package="order" />
-
+	<context:component-scan base-package="mall" />
+	<context:component-scan base-package="product" />
 <!-- 파일 업로드 -->
 
 	<bean id="multipartResolver"
