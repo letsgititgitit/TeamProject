@@ -69,7 +69,15 @@ public class QNADao {
 		int cnt = sqlSessionTemplate.selectOne(namespace + ".getTotalCount", map);
 		return cnt;
 	}
+/*
+	public List<QNABean> getArticles(int start, int end) {
+		List<QNABean> lists = new ArrayList<QNABean>();
+		
+		lists = sqlSessionTemplate.selectList(namespace + ".getArticles", start);
+		
+		return lists;
+	}
 
-
+*/
 
 }

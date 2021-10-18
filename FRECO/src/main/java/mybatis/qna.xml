@@ -8,12 +8,11 @@
 <mapper namespace="mall.QNABean">
 
 	<select id="getQNAList" resultType="MyQNA">
-		SELECT * FROM QNABOARD
-		<if test="whatColumn == 'QSUBJECT'">
-			where name like #{keyword}
-		</if>
-		ORDER BY QNUM DESC
-	</select>
+      SELECT * FROM QNABOARD ORDER BY QREF DESC, QRESTEP ASC 
+      <if test="whatColumn == 'QSUBJECT'">
+         where name like #{keyword}
+      </if>      
+   </select>
 	
 	<select id="getTotalCount" resultType="int">
 		SELECT COUNT(*) FROM QNABOARD
@@ -51,16 +50,16 @@
 		INSERT INTO QNABOARD (QNUM, QID, QSUBJECT, QREGDATE, QREF, QRESTEP, QRELEVEL, QCONTENT, QPW)
 		VALUES(QNASEQ.NEXTVAL, #{QID}, #{QSUBJECT}, SYSDATE, #{QREF}, #{QRESTEP}+1, #{QRELEVEL}+1, #{QCONTENT}, #{QPW})
 	</insert> 
-<!-- 	
-	<select id="" resultType="">
+	
+<!-- 	<select id="getArticles" resultType="MyQNA">
 		SELECT QNUM, QID, QSUBJECT, QREGDATE, QREF, QRESTEP, QRELEVEL, QCONTENT
 		FROM (SELECT ROWNUM AS RANK, QNUM, QID, QSUBJECT, QREGDATE, QREF, QRESTEP, QRELEVEL, QCONTENT)
 		FROM (SELECT QNUM, QID, QSUBJECT, QREGDATE, QREF, QRESTEP, QRELEVEL, QCONTENT)
 		FROM QNABOARD
 		ORDER BY QREF DESC, QRESTEP
 		WHERE RANK BETWEEN START AND END
-	</select>
-	 -->
+	</select> -->
+
 </mapper>  
   
 

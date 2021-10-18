@@ -56,7 +56,7 @@ replyForm.jsp <br>
 
 				<div class="col-lg-9">
                     <div class="container">
-						<form method="post" name="replyForm?pageNumber=${pageNumber}" action="reply.mall">
+						<form method="post" name="replyForm" action="reply.mall?pageNumber=${pageNumber}">
 							<input type="hidden" name="QREF" value="${QREF }">
 							<input type="hidden" name="QRESTEP" value="${QRESTEP }">
 							<input type="hidden" name="QRELEVEL" value="${QRELEVEL }">

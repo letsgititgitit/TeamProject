@@ -1,6 +1,5 @@
 package mall.controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -46,11 +45,11 @@ public class QNAController {
 /*			
 			int pageSize = 10;
 			
-			if(pageNumber == 0){
-				pageNumber = 1;  //어느 페이지부터 보이게 할것인지 지정
+			if(pageNumber == null){
+				pageNumber = "1";  //어느 페이지부터 보이게 할것인지 지정
 			}
 			
-			int currentPage = pageNumber;  //내가 클릭한 페이지번호
+			int currentPage = Integer.parseInt(pageNumber);  //내가 클릭한 페이지번호
 			int startRow = (currentPage - 1) * pageSize + 1;  // 시작하는 행번호 : 1 11 21
 			int endRow = currentPage * pageSize; // 끝나는 행번호 : 10 20 30
 			int count = 0;
