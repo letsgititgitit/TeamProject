@@ -166,7 +166,7 @@ public class PaymentController {
 		ODao.insertData(obean);
 		
 		int maxOINVOICE = ODao.getMaxOrderOINVOICE();
-			System.out.println("maxOINVOICE: "+ maxOINVOICE);      
+			System.out.println("maxOINVOICE: "+ maxOINVOICE);        
 		
 		//송장에 해당하는 주문 상품-수량 디테일에 입력
 		for(Integer key : keylists) {
