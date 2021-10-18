@@ -6,7 +6,7 @@
 <mapper namespace="order.model.OrderBean">
 	<insert id="insertData">
 		INSERT INTO ORDERS 
-		VALUES(ORDSEQ.NEXTVAL, #{OMID}, sysdate, 'NO')
+		VALUES(ORDSEQ.NEXTVAL, #{OMID}, sysdate, #{OUSECOUPON}, #{OUSEPOINT}, 'NO')
 	</insert>
 
 	<select id="getMaxOrderOINVOICE" resultType="int">
