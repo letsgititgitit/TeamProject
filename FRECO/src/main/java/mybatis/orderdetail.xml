@@ -6,6 +6,6 @@
 <mapper namespace="order.model.OrderDetailBean">
 	<insert id="insertData">
 		INSERT INTO ORDERDETAIL
-		VALUES(ORDDTAILSEQ.NEXTVAL, #{ODINVOICE}, #{ODPNUM}, #{ODQTY});
+		VALUES(ORDDTAILSEQ.NEXTVAL, #{ODOINVOICE}, #{ODPNUM}, #{ODQTY})
 	</insert>
 </mapper>
