@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../common/common.jsp" %>
+<%@include file="./../display/top_header.jsp" %> 
 <%@include file="../display/top.jsp" %>
 
 <!-- deleteForm.jsp <Br> -->
@@ -28,7 +29,7 @@
 <!-- Hero Section Begin -->
     <section class="hero">
         <div class="container">
-            <form action="delete.mall" method="post">
+            <form action="delete.mall?pageNumber=${pageNumber}" method="post">
             	<input type="hidden" name="QNUM" value="${QNUM}">
 	            <div align="center">
 	   				비밀번호 &nbsp;&nbsp; <input type="password" name="QPW" value="${QNABean.QPW }">
@@ -37,7 +38,7 @@
 	   			
 	   			<div align="center">
 	   				<input type="submit" value="삭제"> &nbsp;&nbsp;
-	   				<input type="button" value="목록보기" onClick="document.location.href='qna.mall'">			
+	   				<input type="button" value="목록보기" onClick="document.location.href='qna.mall?pageNumber=${pageNumber}'">			
 	   			</div>
 			</form>
 		</div>

@@ -32,7 +32,7 @@ public class QNAUpdateController {
 	
 	@RequestMapping(value = command, method = RequestMethod.GET)
 	public String doActionGet(@RequestParam(value = "QNUM") int QNUM,
-			/* @RequestParam(value = "pageNumber") int pageNumber, */
+			 @RequestParam(value = "pageNumber") int pageNumber,
 								Model model) {
 		
 		System.out.println("---- updateForm ----");
@@ -41,7 +41,7 @@ public class QNAUpdateController {
 		
 		model.addAttribute("qna", qna);
 		model.addAttribute("QNUM", QNUM);
-//		model.addAttribute("pageNumber", pageNumber);
+		model.addAttribute("pageNumber", pageNumber);
 		
 		return getPage;
 	}
@@ -49,7 +49,7 @@ public class QNAUpdateController {
 	
 	
 	@RequestMapping(value = command, method = RequestMethod.POST)
-	public ModelAndView doActionPost(/* @RequestParam(value = "pageNumber") int pageNumber, */
+	public ModelAndView doActionPost( @RequestParam(value = "pageNumber") int pageNumber, 
 							@ModelAttribute("qna") @Valid QNABean qna, BindingResult result,
 							@RequestParam(value = "QNUM") int QNUM,
 							HttpServletResponse response, ModelAndView mav) throws IOException {
@@ -58,7 +58,7 @@ public class QNAUpdateController {
 		
 		if(result.hasErrors()) {  
 			System.out.println("유효성 검사 실패");
-//			mav.addObject("pageNumber", pageNumber);
+			mav.addObject("pageNumber", pageNumber);
 			System.out.println("QNA : " +qna.getQPW()+" "+ qna.getQID() + " " + qna.getQSUBJECT() + " " + qna.getQCONTENT());
 			mav.addObject("QNUM", QNUM);
 			mav.setViewName(getPage);  
@@ -72,11 +72,15 @@ public class QNAUpdateController {
 		if(!qna.getQPW().equals(dbqna.getQPW())) {
 			System.out.println("비번 틀림 : " + qna.getQPW());
 			
+			response.setCharacterEncoding("UTF-8"); 
+			response.setContentType("text/html; charset=UTF-8");
+			
 			PrintWriter pw = response.getWriter();
 			pw.println("<script>alert('비밀번호가 틀렸습니다.');</script>");
 			pw.flush();
 			
 			mav.addObject("QNUM", QNUM);
+			mav.addObject("pageNumber", pageNumber);
 			mav.setViewName(getPage);  
 		}
 		else {
@@ -88,12 +92,12 @@ public class QNAUpdateController {
 			if(cnt != -1) { 
 				System.out.println("수정 성공");
 				mav.setViewName(gotoPage);
-//				mav.addObject("pageNumber", pageNumber);
+				mav.addObject("pageNumber", pageNumber);
 			}
 			else { 
 				System.out.println("수정 실패");
 				mav.addObject("QNUM", QNUM);
-				mav.setViewName(getPage + "?pageNumber=" /* + pageNumber */); 
+				mav.setViewName(getPage + "?pageNumber="  + pageNumber ); 
 			}
 		}
 		return mav;		

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,9 +35,12 @@ public class QNAInsertController {
 	
 	
 	@RequestMapping(value=command, method = RequestMethod.POST)
-	public ModelAndView doActionPOST(@Valid QNABean qna, BindingResult result, 
+	public ModelAndView doActionPOST(@Valid QNABean qna, BindingResult result, HttpSession session, 
 										ModelAndView mav, HttpServletResponse response) {
-		System.out.println("---- insert POST ----");		
+		System.out.println("---- insert POST ----");
+		
+		// session 정보 넘어왔나 확인
+		System.out.println("session : " + session.getAttribute("loginInfo"));
 		
 		if(result.hasErrors()) { 
 			System.out.println("유효성 검사 오류입니다.");

@@ -1,7 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ include file="../common/common.jsp" %>
+<%@include file="./../display/top_header.jsp" %> 
 <%@include file="../display/top.jsp" %>
-
 <style type="text/css">
 	.err{
 		font-size: 9pt;
@@ -38,21 +39,24 @@
 
 
 <!-- Hero Section Begin -->
-    <section class="hero">
+    <section class="product spad">
         <div class="container">
-        	<div class="row">
-        	
-        		<div class="col-lg-3">               
-                    <div>
-						<h3>고객센터</h3>
-						<div><a href="#">공지사항</a></div>
-						<div><a href="faq.mall">FAQ</a></div>
-						<div><a href="qna.mall">1:1문의</a></div>
-					</div>
+            <div class="row">          
+                <div class="col-lg-3 col-md-5">
+                    <div class="sidebar">
+                    	<div class="sidebar__item"> 
+                    	 	<h4>고객센터</h4>                   	 	
+                    	 	<ul>
+                    	 		<li><a href="#">공지사항</a></li>
+                    	 		<li><a href="faq.mall">FAQ</a></li>
+                    	 		<li><a href="qna.mall">1:1문의</a></li>
+                    	 	</ul>
+                    	</div>
+                    </div>                                
     			</div>
     			
     			
-	            <form:form commandName="qna" action="update.mall" method="post">
+	            <form:form commandName="qna" action="update.mall?pageNumber=${pageNumber}" method="post">
 		            <div align="center">
 		   				<h3>글 수정하기</h3> <br><br> 
 		   			</div>
@@ -97,7 +101,7 @@
 		            	<div align="center">
 		            		<input type="submit" value="수정하기">
 							<input type="reset" value="다시작성">
-							<input type="button" value="목록보기" onClick="document.location.href='qna.mall'">			
+							<input type="button" value="목록보기" onClick="document.location.href='qna.mall?pageNumber=${pageNumber}'">			
 		            	</div>
 	            	</div>		                         	 
 	            </form:form>

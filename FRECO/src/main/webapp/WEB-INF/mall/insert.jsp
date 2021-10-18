@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../common/common.jsp" %>
+<%@include file="./../display/top_header.jsp" %>
 <%@include file="../display/top.jsp" %>
-
+ 
 <style type="text/css">
 	.err{
 		font-size: 9pt;
@@ -38,17 +39,20 @@
 
 
 	<!-- Hero Section Begin -->
-    <section class="hero">
+    <section class="product spad">
         <div class="container">
-        	<div class="row">
-        	
-        		<div class="col-lg-3">               
-                    <div>
-						<h3>고객센터</h3>
-						<div><a href="#">공지사항</a></div>
-						<div><a href="faq.mall">FAQ</a></div>
-						<div><a href="qna.mall">1:1문의</a></div>
-					</div>
+            <div class="row">          
+                <div class="col-lg-3 col-md-5">
+                    <div class="sidebar">
+                    	<div class="sidebar__item"> 
+                    	 	<h4>고객센터</h4>                   	 	
+                    	 	<ul>
+                    	 		<li><a href="#">공지사항</a></li>
+                    	 		<li><a href="faq.mall">FAQ</a></li>
+                    	 		<li><a href="qna.mall">1:1문의</a></li>
+                    	 	</ul>
+                    	</div>
+                    </div>                                
     			</div>
     			
     			
@@ -58,52 +62,45 @@
 		   			</div>
 		   			
 		   			<div>		            			 
-		            		<table>
-		            			<tr >
-		            				<th>작성자</th>
-		            				<td>
-		            					<input type="text" name="QID" value="${QNABean.QID }">
-		            					<form:errors path="QID" cssClass="err" />
-		            					<input type="hidden" name="QREPLY" value="답변대기">
-		            				</td>
-		            			</tr>
-		            				 
-		            	<!-- </div><br> -->
-		            	
-		            			<tr>
-		            				<th>제목</th>
-		            				<td>
-		            					<input type="text" name="QSUBJECT" value="${QNABean.QSUBJECT }">
-		            					<form:errors path="QSUBJECT" cssClass="err" />
-		            				</td>
-		            			</tr> 
+		            	<table>
+		            		<tr>
+		            			<th>작성자</th>
+		            			<td>
+		            				<input type="text" name="QID" value="${loginInfo.MID}" readonly>
+		            				<form:errors path="QID" cssClass="err" />
+		            				<input type="hidden" name="QREPLY" value="답변대기">
+		            			</td>
+		            		</tr>
+
+		            		<tr>
+		            			<th>제목</th>
+		            			<td>
+		            				<input type="text" name="QSUBJECT" value="${QNABean.QSUBJECT }">
+		            				<form:errors path="QSUBJECT" cssClass="err" />
+		            			</td>
+		            		</tr> 
 		            		
-		            	<!-- </div><br> -->
+		            		<tr>
+		            			<th>내용</th>
+		            			<td>
+		            				<textarea name="QCONTENT" rows="15" cols="50">${QNABean.QCONTENT }</textarea>
+		            				<form:errors path="QCONTENT" cssClass="err" />
+		            			</td>
+		            		</tr>
 		            		
-		            			<tr>
-		            				<th>내용</th>
-		            				<td>
-		            					<textarea name="QCONTENT" rows="15" cols="50">${QNABean.QCONTENT }</textarea>
-		            					<form:errors path="QCONTENT" cssClass="err" />
-		            				</td>
-		            			</tr>
-		            		
-		            	<!-- </div><br> -->
-	
-		            			<tr>
-		            				<th>비밀번호</th>
-		            				<td>
-		            					<input type="password" name="QPW" value="${QNABean.QPW }">
-		            					<form:errors path="QPW" cssClass="err" />
-		            				</td>
-		            			</tr>
-		            		</table>
-		            	<!-- </div><br> -->
-		            	
+		            		<tr>
+		            			<th>비밀번호</th>
+		            			<td>
+		            				<input type="password" name="QPW" value="${QNABean.QPW }">
+		            				<form:errors path="QPW" cssClass="err" />
+		            			</td>
+		            		</tr>
+		            	</table> <br>
+
 		            	<div align="center">
-		            		<input type="submit" value="글쓰기">
-							<input type="reset" value="다시작성">
-							<input type="button" value="목록보기" onClick="document.location.href='qna.mall'">			
+		            		<input type="submit" value="글쓰기"> &nbsp;
+							<input type="reset" value="다시작성"> &nbsp;
+							<input type="button" value="목록보기" onClick="document.location.href='qna.mall?pageNumber=${pageNumber}'">			
 		            	</div>
 	            	</div>		                         	 
 	            </form:form>

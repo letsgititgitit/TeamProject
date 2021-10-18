@@ -9,12 +9,22 @@
 
 	<select id="getQNAList" resultType="MyQNA">
 		SELECT * FROM QNABOARD
+		<if test="whatColumn == 'QSUBJECT'">
+			where name like #{keyword}
+		</if>
 		ORDER BY QNUM DESC
+	</select>
+	
+	<select id="getTotalCount" resultType="int">
+		SELECT COUNT(*) FROM QNABOARD
+		<if test="whatColumn == 'QSUBJECT'">
+			where name like #{keyword}
+		</if>
 	</select>
 
 	<insert id="insertQNA">
-		INSERT INTO QNABOARD(QNUM, QID, QSUBJECT, QCONTENT, QPW, QREGDATE, QREPLY)
-		VALUES(QNASEQ.NEXTVAL, #{QID}, #{QSUBJECT}, #{QCONTENT}, #{QPW}, SYSDATE, #{QREPLY})
+		INSERT INTO QNABOARD(QNUM, QID, QSUBJECT, QCONTENT, QPW, QREGDATE, QREPLY, QREF, QRESTEP, QRELEVEL)
+		VALUES(QNASEQ.NEXTVAL, #{QID}, #{QSUBJECT}, #{QCONTENT}, #{QPW}, SYSDATE, #{QREPLY}, QNASEQ.CURRVAL, 0, 0)
 	</insert>
 	
 	<select id="getQNA" resultType="MyQNA">
@@ -31,6 +41,26 @@
 		DELETE FROM QNABOARD
 		WHERE QNUM = #{QNUM}
 	</delete>
+	
+	<update id="replyQNAUpdate">
+		UPDATE QNABOARD SET QRESTEP = QRESTEP+1 
+		WHERE QREF = #{QREF} AND QRESTEP > #{QRESTEP}
+	</update>
+	
+ 	<insert id="replyQNAInsert">
+		INSERT INTO QNABOARD (QNUM, QID, QSUBJECT, QREGDATE, QREF, QRESTEP, QRELEVEL, QCONTENT, QPW)
+		VALUES(QNASEQ.NEXTVAL, #{QID}, #{QSUBJECT}, SYSDATE, #{QREF}, #{QRESTEP}+1, #{QRELEVEL}+1, #{QCONTENT}, #{QPW})
+	</insert> 
+<!-- 	
+	<select id="" resultType="">
+		SELECT QNUM, QID, QSUBJECT, QREGDATE, QREF, QRESTEP, QRELEVEL, QCONTENT
+		FROM (SELECT ROWNUM AS RANK, QNUM, QID, QSUBJECT, QREGDATE, QREF, QRESTEP, QRELEVEL, QCONTENT)
+		FROM (SELECT QNUM, QID, QSUBJECT, QREGDATE, QREF, QRESTEP, QRELEVEL, QCONTENT)
+		FROM QNABOARD
+		ORDER BY QREF DESC, QRESTEP
+		WHERE RANK BETWEEN START AND END
+	</select>
+	 -->
 </mapper>  
   
 

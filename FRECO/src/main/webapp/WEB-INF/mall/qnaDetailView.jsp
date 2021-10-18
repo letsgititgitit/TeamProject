@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../common/common.jsp" %>
+<%@include file="./../display/top_header.jsp" %> 
 <%@include file="../display/top.jsp" %>
 
 
@@ -32,17 +33,20 @@
 
 
 <!-- Hero Section Begin -->
-    <section class="hero">
+    <section class="product spad">
         <div class="container">
-            <div class="row">
-            
-                <div class="col-lg-3">               
-                    <div>
-						<h3>고객센터</h3>
-						<div><a href="#">공지사항</a></div>
-						<div><a href="faq.mall">FAQ</a></div>
-						<div><a href="qna.mall">1:1문의</a></div>
-					</div>
+            <div class="row">          
+                <div class="col-lg-3 col-md-5">
+                    <div class="sidebar">
+                    	<div class="sidebar__item"> 
+                    	 	<h4>고객센터</h4>                   	 	
+                    	 	<ul>
+                    	 		<li><a href="#">공지사항</a></li>
+                    	 		<li><a href="faq.mall">FAQ</a></li>
+                    	 		<li><a href="qna.mall">1:1문의</a></li>
+                    	 	</ul>
+                    	</div>
+                    </div>                                
     			</div>
     			
     			<div class="col-lg-9">
@@ -89,10 +93,10 @@
 					    		
 					    		<tr>
 					    			<td align="center" colspan="2">
-					    				<input type="button" value="글수정" onClick="location.href='update.mall?QNUM=${qna.QNUM}<%-- &pageNumber=${pageNumber} --%>'"> 
-										<input type="button" value="글삭제" onClick="location.href='delete.mall?QNUM=${qna.QNUM}<%-- &pageNumber=${pageNumber} --%>'">
+					    				<input type="button" value="글수정" onClick="location.href='update.mall?QNUM=${qna.QNUM}&pageNumber=${pageNumber}'"> 
+										<input type="button" value="글삭제" onClick="location.href='delete.mall?QNUM=${qna.QNUM}&pageNumber=${pageNumber}'">
 										<input type="button" value="답글쓰기" onClick="location.href='reply.mall?QREF=${qna.QREF}&QRESTEP=${qna.QRESTEP }&QRELEVEL=${qna.QRELEVEL }'"> 
-										<input type="button" value="글목록" onClick="location.href='qna.mall?<%-- pageNumber=${pageNumber} --%>'">			
+										<input type="button" value="글목록" onClick="location.href='qna.mall?pageNumber=${pageNumber}'">			
 					    			</td>
 					    		</tr>			    					    				    				    				    						    		
 				    	</table>

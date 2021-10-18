@@ -9,10 +9,18 @@
 
 	<select id="getFAQList" resultType="MyFAQ">
 		select * from FAQ
+		<if test="whatColumn == 'FCATEGORY'">
+			where name like #{keyword}
+		</if>	
 		order by FNUM desc
 	</select>
 
-
+	<select id="getTotalCount" resultType="int">
+		SELECT COUNT(*) FROM FAQ
+		<if test="whatColumn == 'FCATEGORY'">
+			where name like #{keyword}
+		</if>
+	</select>
 
 </mapper>  
   

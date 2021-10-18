@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../common/common.jsp" %>
+<%@include file="./../display/top_header.jsp" %> 
 <%@include file="../display/top.jsp" %>
 
 
- <!-- aside Section Begin -->
+ <!-- Breadcrumb Section Begin -->
     <section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb.jpg">
         <div class="container">
             <div class="row">
@@ -19,22 +20,26 @@
             </div>
         </div>
     </section>
-    <!-- aside Section End -->
+    <!-- Breadcrumb Section End -->
     
     <br><br> 
     
-    <!-- Hero Section Begin -->
-    <section class="hero">
+    <!-- QNA Section Begin -->
+    <section class="product spad">
         <div class="container">
-            <div class="row">
-            
-                <div class="col-lg-3">               
-                    <div>
-						<h3>고객센터</h3>
-						<div><a href="#">공지사항</a></div>
-						<div><a href="faq.mall">FAQ</a></div>
-						<div><a href="qna.mall">1:1문의</a></div>
-					</div>
+            <div class="row"> 
+                     
+                <div class="col-lg-3 col-md-5">
+                    <div class="sidebar">
+                    	<div class="sidebar__item"> 
+                    	 	<h4>고객센터</h4>                   	 	
+                    	 	<ul>
+                    	 		<li><a href="#">공지사항</a></li>
+                    	 		<li><a href="faq.mall">FAQ</a></li>
+                    	 		<li><a href="qna.mall">1:1문의</a></li>
+                    	 	</ul>
+                    	</div>
+                    </div>                                
     			</div>
     			
     			<div class="col-lg-9">
@@ -56,7 +61,17 @@
 				    		<tr class="menu">
 				    			<td width="10%" > ${QNA.QNUM} </td>
 				    			<td width="15%"> ${QNA.QREPLY} </td>
-								<td width="40%"> <a href="detail.mall?QNUM=${QNA.QNUM}"> ${QNA.QSUBJECT} </a></td>
+								<td width="40%"> 
+									<c:if test="${QRELEVEL > 0 }">
+										${width} = 30 * ${QRELEVEL}									
+										<img src="../../img/level.gif" width="${width}" height="15">
+										<img src="../../img/re.gif">
+									</c:if>
+									<c:if test="${QRELEVEL <= 0 }">
+										<img src="../../img/level.gif" width="${width}" height="15">
+									</c:if>
+									<a href="detail.mall?QNUM=${QNA.QNUM}&pageNumber=${pageInfo.pageNumber}"> ${QNA.QSUBJECT} </a>
+								</td>
 								<td width="15%"> ${QNA.QID} </td>
 								<td width="15%"> 
 									<fmt:parseDate var="fmtDate" value="${QNA.QREGDATE}" pattern="yyyy-MM-dd"/>
@@ -66,10 +81,13 @@
 				    		</tr>				    		
 				    		</c:forEach>		    				    				    						    		
 				    	</table>
-			    	 				    				    
-				    </div> 				              
-            	</div>
-            	
+				    	
+				    	<div align="center">
+            				${pageInfo.pagingHtml }
+            			</div>				    				    	 				    				    
+				    </div>
+				              
+            	</div>          	
     		</div>
     	</div> 
     </section>

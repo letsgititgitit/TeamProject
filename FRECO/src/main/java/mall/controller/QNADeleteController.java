@@ -28,12 +28,12 @@ public class QNADeleteController {
 	
 	@RequestMapping(value = command)
 	public String doAction(@RequestParam("QNUM") int QNUM, Model model
-				/* ,@RequestParam("pageNumber") int pageNumber */) {
+				 ,@RequestParam("pageNumber") int pageNumber ) {
 		
 		System.out.println("---- deleteForm  ----");
 		
 		model.addAttribute("QNUM", QNUM);
-//		model.addAttribute("pageNumber", pageNumber);
+		model.addAttribute("pageNumber", pageNumber);
 		
 		return getPage;
 	}
@@ -41,8 +41,8 @@ public class QNADeleteController {
 	
 	@RequestMapping(value = command, method = RequestMethod.POST)
 	public ModelAndView doActionP(@RequestParam("QNUM") int QNUM, HttpServletResponse response, 
-			@RequestParam("QPW") String QPW, ModelAndView mav 
-			/* ,@RequestParam("pageNumber") int pageNumber */) throws IOException {
+							@RequestParam("QPW") String QPW, ModelAndView mav, 
+							@RequestParam("pageNumber") int pageNumber) throws IOException {
 		
 		System.out.println("---- delete POST ----");
 		
@@ -54,18 +54,25 @@ public class QNADeleteController {
 			System.out.println("비밀번호 일치");
 			
 			qdao.deleteQNA(QNUM);
+			
+			System.out.println("레코드 삭제");
+			
 			mav.addObject("QNUM", QNUM);
-//			mav.addObject("pageNumber", pageNumber);
+			mav.addObject("pageNumber", pageNumber);
 			mav.setViewName(gotoPage);
 		}
 		else {
 			System.out.println("비밀번호 틀림");
+			
+			response.setCharacterEncoding("UTF-8"); 
+			response.setContentType("text/html; charset=UTF-8");
 			
 			PrintWriter pw = response.getWriter();
 			pw.println("<script>alert('비밀번호가 틀렸습니다.');</script>");
 			pw.flush();
 			
 			mav.addObject("QNUM", QNUM);
+			mav.addObject("pageNumber", pageNumber);
 			mav.setViewName(getPage);
 		}
 		return mav;

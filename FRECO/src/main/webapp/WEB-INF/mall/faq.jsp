@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../common/common.jsp" %>
+<%@include file="./../display/top_header.jsp" %> 
 <%@include file="../display/top.jsp" %>
 
 <style>
@@ -16,7 +17,7 @@
 
 </style>
 
- <!-- aside Section Begin -->
+ <!-- Breadcrumb Section Begin -->
     <section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb.jpg">
         <div class="container">
             <div class="row">
@@ -32,22 +33,26 @@
             </div>
         </div>
     </section>
-    <!-- aside Section End -->
+    <!-- Breadcrumb Section Begin -->
     
     <br><br> 
     
-    <!-- Hero Section Begin -->
-    <section class="hero">
+    <!-- FAQ Section Begin -->
+    <section class="product spad">
         <div class="container">
-            <div class="row">
-            
-                <div class="col-lg-3">               
-                    <div>
-						<h3>고객센터</h3>
-						<div><a href="#">공지사항</a></div>
-						<div><a href="faq.mall">FAQ</a></div>
-						<div><a href="qna.mall">1:1문의</a></div>
-					</div>
+            <div class="row"> 
+                     
+                <div class="col-lg-3 col-md-5">
+                    <div class="sidebar">
+                    	<div class="sidebar__item"> 
+                    	 	<h4>고객센터</h4>                   	 	
+                    	 	<ul>
+                    	 		<li><a href="#">공지사항</a></li>
+                    	 		<li><a href="faq.mall">FAQ</a></li>
+                    	 		<li><a href="qna.mall">1:1문의</a></li>
+                    	 	</ul>
+                    	</div>
+                    </div>                                
     			</div>
     			
     			<div class="col-lg-9">
@@ -71,14 +76,19 @@
 				    			</td>
 				    		</tr>				    		
 				    		</c:forEach>				    				    						    		
-				    	</table>			    				    
+				    	</table>
+				    	
+				    	<div align="center">
+            				${pageInfo.pagingHtml }
+            			</div>           				    				    
 				    </div> 				              
             	</div>
             	
+            	
+            	
     		</div>
     	</div> 
-    </section>
-    ${pageInfo.pagingHtml }
+    </section>    
     <!-- category End -->
 
 
