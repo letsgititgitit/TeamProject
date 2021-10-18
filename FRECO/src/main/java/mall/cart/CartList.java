@@ -31,8 +31,6 @@ public class CartList {
 	}//
 	
 	public void updateCart(int PNUM,int ORDERPQTY) {
-		//System.out.println("=======업데이트 카트:PNUM======"+PNUM);
-		//System.out.println("=======업데이트 카트:ORDERPQTY====="+ORDERPQTY);
 		
 		if(orderlists.containsKey(PNUM) == true) {
 			orderlists.replace(PNUM,ORDERPQTY);				
