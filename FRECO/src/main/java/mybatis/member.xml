@@ -45,5 +45,10 @@
 		SELECT * FROM MEMBER ORDER BY MNUM
 	</select>
 
-	
+	<!-- 하은: 결제요청 -> 사용한 쿠폰 지우기 -->
+	<update id="updateMcoupon">
+		UPDATE MEMBER SET 
+		MCOUPON = #{MCOUPON}
+		WHERE MNUM=#{MNUM} 
+	</update>
 </mapper>
