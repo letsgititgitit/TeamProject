@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>  
+    pageEncoding="UTF-8"%>
+<%@include file="./../display/top_header.jsp" %>   
 <%@include file="../display/top.jsp" %>
-<%@include file="../common/common.jsp" %>  
-<!-- push 테스트 -->
+<%@include file="../common/common.jsp" %>    
 
 <style type="text/css">
  a:link { color: black; text-decoration: none;}
@@ -20,7 +20,6 @@
 	border: none;
 }
 </style>
-
 
  <section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb.jpg">
         <div class="container">
