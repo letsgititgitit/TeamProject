@@ -1,8 +1,10 @@
 package order.model;
 
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
 
 @Component("myOrderDao")
 public class OrderDao {
@@ -12,8 +14,8 @@ public class OrderDao {
 	SqlSessionTemplate sqlSessionTemplate;
 
 	//송장만들기	
-	public int insertData(String OMID) {
-		int cnt = sqlSessionTemplate.insert(namespace+".insertData", OMID);
+	public int insertData(OrderBean obean) {
+		int cnt = sqlSessionTemplate.insert(namespace+".insertData", obean);
 			System.out.println("Dao: 송장만들기 cnt: "+ cnt);
 		return cnt;
 	}
@@ -93,6 +95,5 @@ public class OrderDao {
 		OrderBean order = sqlSessionTemplate.selectOne(namespace+".day1date");
 		return order;
 	}
-	
-	
+
 }
