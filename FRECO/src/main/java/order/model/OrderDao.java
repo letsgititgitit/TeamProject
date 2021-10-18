@@ -32,11 +32,7 @@ public class OrderDao {
 		int cnt =sqlSessionTemplate.selectOne(namespace+".getCount");
 		return cnt;
 	}
-	///////////////관리자 차트: 환불수
-	public int getRefundCount() {
-		int cnt =sqlSessionTemplate.selectOne(namespace+".getRefundCount");
-		return cnt;
-	}
+	
 	///////////////관리자 차트:날짜별 주문수
 	public int day7cnt() {
 		int cnt = sqlSessionTemplate.selectOne(namespace+".day7cnt");
@@ -66,34 +62,28 @@ public class OrderDao {
 		int cnt = sqlSessionTemplate.selectOne(namespace+".day1cnt");
 		return cnt;
 	}
-	///////////////관리자 차트:날짜 출력
-	public OrderBean day7date() {
-		OrderBean order = sqlSessionTemplate.selectOne(namespace+".day7date");
-		return order;
+	//관리자 주문 내역
+	public List<OrderBean> getAllList(){
+		List<OrderBean> orderlist = sqlSessionTemplate.selectList(namespace+".getAllList");
+		return orderlist;
 	}
-	public OrderBean day6date() {
-		OrderBean order = sqlSessionTemplate.selectOne(namespace+".day6date");
-		return order;
+	
+	//관리자 환불 신청 출력
+	public List<OrderBean> getRefundList(){
+		List<OrderBean> refundlist = sqlSessionTemplate.selectList(namespace+".getRefundList");
+		return refundlist;
 	}
-	public OrderBean day5date() {
-		OrderBean order = sqlSessionTemplate.selectOne(namespace+".day5date");
-		return order;
+	
+	//관리자 오늘 주문수
+	public int getOrderBySysdate() {
+		int cnt = sqlSessionTemplate.selectOne(namespace+".getOrderBySysdate");
+		return cnt;
 	}
-	public OrderBean day4date() {
-		OrderBean order = sqlSessionTemplate.selectOne(namespace+".day4date");
-		return order;
-	}
-	public OrderBean day3date() {
-		OrderBean order = sqlSessionTemplate.selectOne(namespace+".day3date");
-		return order;
-	}
-	public OrderBean day2date() {
-		OrderBean order = sqlSessionTemplate.selectOne(namespace+".day2date");
-		return order;
-	}
-	public OrderBean day1date() {
-		OrderBean order = sqlSessionTemplate.selectOne(namespace+".day1date");
-		return order;
+	
+	//관리자 처리 환불수
+	public int getRefundCount() {
+		int cnt = sqlSessionTemplate.selectOne(namespace+".getRefundCount");
+		return cnt;
 	}
 
 }
