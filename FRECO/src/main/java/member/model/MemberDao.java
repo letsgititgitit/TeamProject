@@ -39,21 +39,19 @@ public class MemberDao {
 
 	//하은: 결제요청 -> 사용한 MPOINT만큼 감소 (-)
 	public int mpointMinus(String mid, int useMPOINT) {
-		MemberBean mbean =  new MemberBean();
-		mbean.setMID(mid);
-		mbean.setMPOINT(useMPOINT);
-		int cnt = sqlSessionTemplate.update(namespace+".mpointMinus", mbean);
-			System.out.println("mpointMinus 완료후: " + mbean.getMPOINT());
+		MemberBean mb =  new MemberBean();
+		mb.setMID(mid);
+		mb.setMPOINT(useMPOINT);
+		int cnt = sqlSessionTemplate.update(namespace+".mpointMinus", mb);
 		return cnt;
 		
 	}
 	//하은: 결제요청 -> 구입한 MPOINT만큼 증가 (+)
 	public int mpointPlus(String mid, int totalPaymentPoint) {
-		MemberBean mbean =  new MemberBean();
-		mbean.setMID(mid);
-		mbean.setMPOINT(totalPaymentPoint);
-		int cnt = sqlSessionTemplate.update(namespace+".mpointMinus", mbean);
-			System.out.println("mpointMinus 완료후: " + mbean.getMPOINT());
+		MemberBean mb =  new MemberBean();
+		mb.setMID(mid);
+		mb.setMPOINT(totalPaymentPoint);
+		int cnt = sqlSessionTemplate.update(namespace+".mpointPlus", mb);
 		return cnt;
 	}	
 	
@@ -61,6 +59,14 @@ public class MemberDao {
 	public List<MemberBean> getAllList() {
 		List<MemberBean> memlist = sqlSessionTemplate.selectList(namespace+".getAllList");
 		return memlist;
+	}
+	
+	//하은: 결제요청 -> 사용한 쿠폰 지우기
+	public void updateMcoupon(int getnum, int resetCoupon) {
+		MemberBean mb =  new MemberBean();
+		mb.setMNUM(getnum);
+		mb.setMCOUPON(resetCoupon);
+		sqlSessionTemplate.update(namespace+".updateMcoupon", mb);
 	}
 	
 	
