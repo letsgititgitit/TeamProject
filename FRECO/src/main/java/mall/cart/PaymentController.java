@@ -72,7 +72,7 @@ public class PaymentController {
 			
 			CartInfo cartInfo = new CartInfo();
 			cartInfo.setPNUM(PNUM);
-			cartInfo.setPNAME(productbean.getPNAME());
+			cartInfo.setPNAME(productbean.getPNAME());  
 			cartInfo.setORDERPQTY(ORDERPQTY);
 			cartInfo.setPPOINT(productbean.getPPOINT());
 			cartInfo.setPPRICE(productbean.getPPRICE());
