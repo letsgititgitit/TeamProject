@@ -83,4 +83,53 @@ public class QNADao {
 		return lists;
 	}
 */
+	
+	//관리자 문의 내역 리스트 출력
+	public List<QNABean> getAdminQNAList(){
+		List<QNABean> qlist = sqlSessionTemplate.selectList(namespace+".getAdminQNAList");
+		return qlist;
+	}
+	
+	//관리자 미답변 갯수 출력
+	public int getReplyCount() {
+		int cnt = sqlSessionTemplate.selectOne(namespace+".getReplyCount");
+		return cnt;
+	}
+	
+	//관리자 미답변 리스트 출력
+	public List<QNABean> getNoReply(){
+		List<QNABean> qlist = sqlSessionTemplate.selectList(namespace+".getNoReply");
+		return qlist;
+	}
+	
+	//원글 상태 '답변완료'로 업데이트
+	public int originalUpdate(QNABean qna) {
+		sqlSessionTemplate.update(namespace+".originalUpdate",qna);
+		return 0;
+	}
+	
+	//관리자 답변 리스트 출력
+	public QNABean getReplyByQREF(int QREF){
+		QNABean qbean= sqlSessionTemplate.selectOne(namespace+".getReplyByQREF",QREF);
+		return qbean;
+	}
+	
+	//관리자 답변 수정
+	public int getReplyUpdate(QNABean qna) {
+		int cnt = sqlSessionTemplate.update(namespace+".getReplyUpdate",qna);
+		return cnt;
+	}
+	
+	//관리자 답변완료 갯수 출력
+	public int getAdminCnt() {
+		int cnt = sqlSessionTemplate.selectOne(namespace+".getAdminCnt");
+		return cnt;
+	}
+	
+	//관리자 답변대기 갯수 출력
+	public int getAdminReCnt() {
+		int cnt = sqlSessionTemplate.selectOne(namespace+".getAdminReCnt");
+		return cnt;
+	}
+
 }
