@@ -64,6 +64,46 @@
 		WHERE RANK BETWEEN #{startRow} AND ${endRow}
 	</select>
 -->
+	
+	<!-- 관리자 문의 내역 출력 -->
+	<select id="getAdminQNAList" resultType="MyQNA">
+		SELECT * FROM QNABOARD WHERE QRELEVEL=0 ORDER BY QREF DESC, QRESTEP ASC
+	</select>
+	
+	<!-- 관리자 미답변 갯수 출력 -->
+	<select id="getReplyCount" resultType="int">
+		SELECT COUNT(*) FROM QNABOARD WHERE QREPLY='답변대기'
+	</select>
+	
+	<!-- 관리자 미답변 리스트 출력 -->
+	<select id="getNoReply" resultType="MyQNA" >
+		SELECT * FROM QNABOARD WHERE QREPLY='답변대기'
+	</select>
+	
+	<!-- 원글 상태 변경 -->
+	<update id="originalUpdate">
+		UPDATE QNABOARD SET QREPLY='답변완료' WHERE QNUM=#{ORIGINQNUM}
+	</update>
+
+	<!-- 관리자 답변 내용 출력 -->
+	<select id="getReplyByQREF" resultType="MyQNA">
+		SELECT * FROM QNABOARD WHERE QREF=#{QREF} AND QRELEVEL=1
+	</select>
+	
+	<!-- 관리자 답변 확인 출력 -->
+	<update id="getReplyUpdate">
+		UPDATE QNABOARD SET QSUBJECT=#{QSUBJECT}, QCONTENT=#{QCONTENT} WHERE QNUM=#{QNUM}
+	</update>
+	
+	<!-- 관리자 답변완료 갯수 출력 -->
+	<select id="getAdminCnt" resultType="int">
+		SELECT COUNT(*) FROM QNABOARD WHERE QREPLY='답변완료'	
+	</select>
+	
+	<!-- 관리자 답변대기 갯수 출력 -->
+	<select id="getAdminReCnt" resultType="int">
+		SELECT COUNT(*) FROM QNABOARD WHERE QREPLY='답변대기'	
+	</select>
 </mapper>  
   
 
