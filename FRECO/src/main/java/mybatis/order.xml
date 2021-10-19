@@ -60,4 +60,27 @@
 	<select id="getRefundCount" resultType="int">
 		SELECT COUNT(*) FROM ORDERS WHERE OREFUND='YES'
 	</select>
+	
+	<!-- 하은: Mypage Order-list: 주문내역출력 -->
+	<select id="getTotalCountOrder" resultType="int">
+		SELECT COUNT(*) FROM ORDERS
+		WHERE OMID=#{OMID}
+	</select>
+	<select id="getOrderList" resultType="MyOrder">
+		SELECT * FROM ORDERS
+		WHERE OMID=#{OMID}
+		ORDER BY OINVOICE DESC
+	</select>
+	
+	<!-- 하은: 송장에 해당하는 o정보 -->
+	<select id="oneSelect" resultType="MyOrder">
+		SELECT * FROM ORDERS
+		WHERE OINVOICE=#{OINVOICE}
+	</select>		
+	
+	<!-- 하은:반품요청 -->
+	<update id="updateInfo">
+		UPDATE ORDERS SET OREFUND='YES'
+		WHERE OINVOICE=#{OINVOICE}
+	</update>
 </mapper>
