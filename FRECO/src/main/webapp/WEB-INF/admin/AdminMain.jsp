@@ -21,14 +21,12 @@
                            
                             <div class="col-xl-4 col-md-6">
                                 <div class="card bg-success text-white mb-4">
-                                    <div class="card-body">관리자 처리 완료 <h2>0개</h2></div>
-                                    <!-- 답변 완료 고민:주문 완료도? -->                        
+                                    <div class="card-body">관리자 처리 완료 <h2>${admincnt }개</h2></div>                      
                                 </div>
                             </div>
                             <div class="col-xl-4 col-md-6">
                                 <div class="card bg-danger text-white mb-4">
-                                    <div class="card-body">관리자 미처리 현황 <h2>${refundcnt}개</h2></div>   
-                                    <!-- 답변 미완료 + 환불 갯수 -->                            
+                                    <div class="card-body">관리자 미처리 현황 <h2>${refundcnt+adminrecnt}개</h2></div>                          
                                 </div>
                             </div>
                         </div>

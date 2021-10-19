@@ -24,6 +24,14 @@ public class QNABean {
 	private int  QRESTEP;
 	private int QRELEVEL;
 	
+	private int ORIGINQNUM;
+		
+	public int getORIGINQNUM() {
+		return ORIGINQNUM;
+	}
+	public void setORIGINQNUM(int oRIGINQNUM) {
+		ORIGINQNUM = oRIGINQNUM;
+	}
 	public int getQNUM() {
 		return QNUM;
 	}

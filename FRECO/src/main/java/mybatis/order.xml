@@ -43,7 +43,7 @@
 	
 	<!-- 관리자 주문 내역 출력 -->
 	<select id="getAllList" resultType="MyOrder">
-		SELECT * FROM ORDERS ORDER BY OINVOICE
+		SELECT * FROM ORDERS ORDER BY OINVOICE DESC
 	</select>
 	
 	<!-- 관리자 환불 내역 출력 -->

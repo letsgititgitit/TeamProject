@@ -42,7 +42,7 @@
 	</update>
 	<!-- 예인:관리자 회원 목록 -->
 	<select id="getAllList" resultType="MyMember">
-		SELECT * FROM MEMBER ORDER BY MNUM
+		SELECT * FROM MEMBER ORDER BY MNUM DESC
 	</select>
 
 	<!-- 하은: 결제요청 -> 사용한 쿠폰 지우기 -->

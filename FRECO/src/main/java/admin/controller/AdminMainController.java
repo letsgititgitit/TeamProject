@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import mall.model.QNADao;
 import order.model.OrderBean;
 import order.model.OrderDao;
 
@@ -19,6 +20,9 @@ public class AdminMainController {
 	
 	@Autowired
 	OrderDao orderDao;
+	
+	@Autowired
+	QNADao QnaDao;
 	
 	@RequestMapping(value=command)
 	public ModelAndView doAction(ModelAndView mav) {
@@ -33,6 +37,13 @@ public class AdminMainController {
 		mav.addObject("refundcnt", refundcnt);
 		
 		int ordercnt = orderDao.getCount();
+		mav.addObject("ordercnt", ordercnt);	
+		
+		int admincnt = QnaDao.getAdminCnt();
+		mav.addObject("admincnt", admincnt);
+		
+		int adminrecnt = QnaDao.getAdminReCnt();
+		mav.addObject("adminrecnt", adminrecnt);
 		
 		int day7cnt = orderDao.day7cnt();
 		int day6cnt = orderDao.day6cnt();
@@ -41,9 +52,7 @@ public class AdminMainController {
 		int day3cnt = orderDao.day3cnt();
 		int day2cnt = orderDao.day2cnt();
 		int day1cnt = orderDao.day1cnt(); 
-		
-		mav.addObject("ordercnt", ordercnt);		
-		
+				
 		mav.addObject("day7cnt", day7cnt);
 		mav.addObject("day6cnt", day6cnt);
 		mav.addObject("day5cnt", day5cnt);
