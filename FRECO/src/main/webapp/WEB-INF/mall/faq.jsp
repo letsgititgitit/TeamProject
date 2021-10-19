@@ -3,18 +3,17 @@
 <%@include file="./../display/top_header.jsp" %> 
 <%@include file="../display/top.jsp" %>
 
+<!--  FAQ 스타일 -->
 <style>
   summary {
     cursor: pointer;
   }
-
   summary {
     list-style: none;
   }
   summary::-webkit-details-marker {
     display: none;
   }
-
 </style>
 
  <!-- Breadcrumb Section Begin -->

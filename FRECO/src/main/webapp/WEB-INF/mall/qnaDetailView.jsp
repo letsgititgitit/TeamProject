@@ -93,9 +93,11 @@
 					    		
 					    		<tr>
 					    			<td align="center" colspan="2">
-					    				<input type="button" value="글수정" onClick="location.href='update.mall?QNUM=${qna.QNUM}&pageNumber=${pageNumber}'"> 
-										<input type="button" value="글삭제" onClick="location.href='delete.mall?QNUM=${qna.QNUM}&pageNumber=${pageNumber}'">
-										<input type="button" value="답글쓰기" onClick="location.href='reply.mall?QREF=${qna.QREF}&QRESTEP=${qna.QRESTEP }&QRELEVEL=${qna.QRELEVEL }&pageNumber=${pageNumber}'"> 
+					    				<c:if test="${loginInfo.getMID() eq 'ADMIN' || qna.QID eq loginInfo.getMID()}">
+					    					<input type="button" value="글수정" onClick="location.href='update.mall?QNUM=${qna.QNUM}&pageNumber=${pageNumber}'"> 
+											<input type="button" value="글삭제" onClick="location.href='delete.mall?QNUM=${qna.QNUM}&pageNumber=${pageNumber}'">
+					    				</c:if>					    				
+										<%-- <input type="button" value="답글쓰기" onClick="location.href='reply.mall?QREF=${qna.QREF}&QRESTEP=${qna.QRESTEP }&QRELEVEL=${qna.QRELEVEL }&pageNumber=${pageNumber}'"> --%>  
 										<input type="button" value="글목록" onClick="location.href='qna.mall?pageNumber=${pageNumber}'">			
 					    			</td>
 					    		</tr>			    					    				    				    				    						    		

@@ -99,7 +99,7 @@ replyForm.jsp <br>
 								
 								<tr>
 									<td colspan="2" align="center">
-										<input type="submit" value="댓글쓰기">
+										<input type="submit" value="댓글쓰기"> 
 										<input type="reset" value="다시작성">
 										<input type="button" value="목록보기" onclick="location.href='qna.mall?pageNumber=${pageNumber }'">
 									</td>

@@ -3,6 +3,12 @@
 <%@include file="./../display/top_header.jsp" %> 
 <%@include file="../display/top.jsp" %>
 
+<script type="text/javascript">
+	function aClick() {
+		alert("작성자만 볼 수 있습니다.");
+	}
+</script>
+
 
  <!-- Breadcrumb Section Begin -->
     <section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb.jpg">
@@ -57,28 +63,55 @@
 				    			<th>작성일</th>
 				    		</tr>
 				    		
-				    		<c:forEach var="QNA" items="${lists }">			    					    		
-				    		<tr class="menu">
-				    			<td width="10%" > ${QNA.QNUM} </td>
-				    			<td width="15%"> ${QNA.QREPLY} </td>
-								<td width="40%"> 
-									<c:if test="${QRELEVEL > 0 }">
-										${width} = 30 * ${QRELEVEL}									
-										<img src="../../img/level.gif" width="${width}" height="15">
-										<img src="../../img/re.gif">
-									</c:if>
-									<c:if test="${QRELEVEL <= 0 }">
-										<img src="../../img/level.gif" width="${width}" height="15">
-									</c:if>
-									<a href="detail.mall?QNUM=${QNA.QNUM}&pageNumber=${pageInfo.pageNumber}"> ${QNA.QSUBJECT} </a>
-								</td>
-								<td width="15%"> ${QNA.QID} </td>
-								<td width="15%"> 
-									<fmt:parseDate var="fmtDate" value="${QNA.QREGDATE}" pattern="yyyy-MM-dd"/>
-									<fmt:formatDate var="regDate" value="${fmtDate}" pattern="yyyy-MM-dd"/>
-									${regDate} 
-								</td>
-				    		</tr>				    		
+				    		<!-- 현재 게시판 레코드의 토탈 갯수 - ((현재 페이지-1) * 한 화면에 보여질 레코드의 갯수) -->
+				    		<c:set var="vnum" value="${count - (pageInfo.pageNumber-1) * 5}"/>  
+				    		<c:forEach var="QNA" items="${lists }">				    				    					    		
+					    		<tr class="menu">
+					    			<td width="10%" >
+					    				${vnum }	    				
+					    			</td>
+					    			<td width="15%"> ${QNA.QREPLY} </td>
+									<td width="40%"> 
+										<c:if test="${QNA.QRELEVEL > 0 }">
+											<c:set var="width" value="${QNA.QRELEVEL * 30}"/>								
+											<img src="img/level.gif" width="${width}" height="15">
+											<img src="img/re.gif">
+										</c:if>
+										<c:if test="${QNA.QRELEVEL <= 0 }">
+											<img src="img/level.gif" width="${width}" height="15">
+										</c:if>
+										
+										<!-- 관리자로 로그인 했을 경우  -->
+										<c:if test="${ loginInfo.getMID() eq 'ADMIN' }">
+											<a href="detail.mall?QNUM=${QNA.QNUM}&pageNumber=${pageInfo.pageNumber}"> ${QNA.QSUBJECT}</a>
+										</c:if>																				
+										<!-- 사용자로 로그인 했을 경우  -->
+										<c:if test="${ loginInfo.getMID() != 'ADMIN' }">
+											<!-- QNA에서 제목 클릭해서 detailView로 넘어갈 때 관리자 답변일 경우  -->
+											<c:if test="${ QNA.QID eq 'ADMIN' }">
+												<a href="detail.mall?QNUM=${QNA.QNUM}&pageNumber=${pageInfo.pageNumber}"> ${QNA.QSUBJECT}</a>
+											</c:if>
+											<!-- QNA에서 제목 클릭해서 detailView로 넘어갈 때 관리자 답변이 아닐 경우  -->
+											<c:if test="${ QNA.QID != 'ADMIN' }">
+												<!-- QNA에서 제목 클릭해서 detailView로 넘어갈 때 작성자와 로그인한 사람이 다를 경우  -->
+												<c:if test="${QNA.QID != loginInfo.getMID()}">											
+													<a href="qna.mall?QNUM=${QNA.QNUM}&pageNumber=${pageInfo.pageNumber}" onClick="aClick()"> ${QNA.QSUBJECT}</a>												
+												</c:if>
+												<!-- QNA에서 제목 클릭해서 detailView로 넘어갈 때 작성자와 로그인한 사람이 같을 경우  -->
+												<c:if test="${QNA.QID eq loginInfo.getMID()}">																							
+													<a href="detail.mall?QNUM=${QNA.QNUM}&pageNumber=${pageInfo.pageNumber}"> ${QNA.QSUBJECT}</a>
+												</c:if>	
+											</c:if>
+										</c:if>
+									</td>
+									<td width="15%"> ${QNA.QID} </td>
+									<td width="15%"> 
+										<fmt:parseDate var="fmtDate" value="${QNA.QREGDATE}" pattern="yyyy-MM-dd"/>
+										<fmt:formatDate var="regDate" value="${fmtDate}" pattern="yyyy-MM-dd"/>
+										${regDate} 
+									</td>
+					    		</tr>
+					    		<c:set var="vnum" value="${vnum-1 }" />			    					    		
 				    		</c:forEach>		    				    				    						    		
 				    	</table>
 				    	

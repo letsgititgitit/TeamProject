@@ -21,7 +21,7 @@ import utility.Paging;
 public class QNAController {
 	
 	private final String command = "/qna.mall";
-	private final String gotoPage = "qna";
+	private final String getPage = "qna";
 	
 	@Autowired
 	QNADao qdao;
@@ -42,28 +42,31 @@ public class QNAController {
 		} 
 		//로그인 O
 		else {	
-/*			
-			int pageSize = 10;
-			
+			int pageSize = 5;			
 			if(pageNumber == null){
 				pageNumber = "1";  //어느 페이지부터 보이게 할것인지 지정
-			}
+			}			
 			
-			int currentPage = Integer.parseInt(pageNumber);  //내가 클릭한 페이지번호
-			int startRow = (currentPage - 1) * pageSize + 1;  // 시작하는 행번호 : 1 11 21
-			int endRow = currentPage * pageSize; // 끝나는 행번호 : 10 20 30
-			int count = 0;
+			int currentPage = Integer.parseInt(pageNumber);
+			int startRow = (currentPage - 1) * pageSize + 1;  // 시작하는 행번호
+			int endRow = currentPage * pageSize; // 끝나는 행번호 
+			int count = 0;  // 레코드 갯수
 			int number = 0;  //화면에 보여줄 번호
+/*
+			List<QNABean> Qlists = null;
+			Map<Integer,Integer> map2 = new HashMap<Integer,Integer>();
+			map2.put(startRow, startRow) ;
+			map2.put(endRow, endRow);
 			
-			List<QNABean> Qlist = null;
-			count = qdao.getArticleCount();
-			System.out.println("레코드갯수 count:" + count);
+			
 			if(count > 0){
-				Qlist = qdao.getArticles(startRow, endRow);  // 답글쓰기 
-		 	}
+				Qlists = qdao.getArticles(map2);  // 답글쓰기 
+		 	}		 	
+*/
+			count = qdao.getArticleCount(); 
+			System.out.println("count : " + count);
 			number= count-(currentPage-1) * pageSize;
-*/			
-			int width = 0;
+			System.out.println("number : " + number);
 			
 			Map<String,String> map = new HashMap<String,String>();
 			map.put("whatColumn", whatColumn);  
@@ -78,10 +81,10 @@ public class QNAController {
 			System.out.println("lists 갯수 : " + lists.size());
 			
 			mav.addObject("lists", lists);
+			mav.addObject("count", count);
 			mav.addObject("pageInfo", pageInfo);
-			mav.addObject("width", width);
 			
-			mav.setViewName(gotoPage);
+			mav.setViewName(getPage);
 			
 			return mav;				
 		}
