@@ -26,7 +26,7 @@
                             </div>
                                  <a>&nbsp;|&nbsp;</a> 
                             <div class="header__top__right__auth">
-                               <a href="logout.me">&nbsp;로그아웃</a>
+                               <a href="logout.jsp">&nbsp;로그아웃</a>
                             </div>
                         </c:otherwise>
                      </c:choose>
