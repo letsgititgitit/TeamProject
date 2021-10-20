@@ -1,7 +1,19 @@
 <%@page import="product.model.ProductBean"%>
+<%@include file="../display/top_header.jsp" %>
 <%@include file="../display/top.jsp" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
 <%@include file="../common/common.jsp" %>
+
+<link rel="stylesheet" href="css/rating.css" type="text/css">
+<style type="text/css">
+	table{
+		text-align: left;
+    	margin: 10px 50px;
+	}
+	td{
+		padding: 0px 20px 50px;
+	}
+</style>
 
 <script type="text/javascript">
 	function cartPopup(PNUM,PNAME,ORDERPQTY){
@@ -94,12 +106,36 @@
                     
                         <h3>${pbean.PNAME}</h3>
                         <div class="product__details__rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star-half-o"></i>   
-                            <span>(0 reviews)</span>
+                        	<c:if test="${average == 0}">
+                        			☆ ☆ ☆ ☆ ☆
+                        	</c:if>
+                        	<c:if test="${average == 1}">
+	                            <i class="fa fa-star"></i>
+                        	</c:if>
+                        	<c:if test="${average == 2}">
+	                            <i class="fa fa-star"></i>
+	                            <i class="fa fa-star"></i>
+                        	</c:if>
+                        	<c:if test="${average == 3}">
+	                            <i class="fa fa-star"></i>
+	                            <i class="fa fa-star"></i>
+	                            <i class="fa fa-star"></i>
+                        	</c:if>
+                        	<c:if test="${average == 4}">
+	                            <i class="fa fa-star"></i>
+	                            <i class="fa fa-star"></i>
+	                            <i class="fa fa-star"></i>
+	                            <i class="fa fa-star"></i>
+                        	</c:if>
+                        	<c:if test="${average == 5}">
+	                            <i class="fa fa-star"></i>
+	                            <i class="fa fa-star"></i>
+	                            <i class="fa fa-star"></i>
+	                            <i class="fa fa-star"></i>
+	                            <i class="fa fa-star"></i>
+                        	</c:if> 
+                        	 &nbsp;&nbsp;  ${average}
+                            <span>(${totalCountRating} reviews)</span>
                         </div>
                         
                         <div class="product__details__price">
@@ -108,17 +144,9 @@
                         
                         <p>
                         	<ul>
-                            <li><b>상품디테일</b> <span>( ${pbean.PCATEGORY} - ${pbean.PSUBCATEGORY} - ${pbean.PNAME} )</span></li>
-                            <li><b>재고 수량</b> <span>${pbean.PQTY} <samp>&nbsp;&nbsp; Free pickup today</samp></span></li>
-                            <li><b>적립 포인트</b> <span>${pbean.PPOINT}</span></li>
-                            <!-- <li><b>Share on</b>
-                                <div class="share">
-                                    <a href="#"><i class="fa fa-facebook"></i></a>
-                                    <a href="#"><i class="fa fa-twitter"></i></a>
-                                    <a href="#"><i class="fa fa-instagram"></i></a>
-                                    <a href="#"><i class="fa fa-pinterest"></i></a>
-                                </div>
-                            </li> -->
+	                            <li><b>상품디테일</b> <span>( ${pbean.PCATEGORY} - ${pbean.PSUBCATEGORY} - ${pbean.PNAME} )</span></li>
+	                            <li><b>재고 수량</b> <span>${pbean.PQTY} <samp>&nbsp;&nbsp; Free pickup today</samp></span></li>
+	                            <li><b>적립 포인트</b> <span>${pbean.PPOINT}</span></li>
                         	</ul>
                         </p>
                             
@@ -131,7 +159,6 @@
                         </div>
                         
                         <a type="button" onClick="cartPopup(${pbean.PNUM},'${pbean.PNAME}',ORDERPQTY2.value)" class="primary-btn">ADD TO CARD</a>
-                        <!-- <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a> -->
                     </div>
                 </div>
                 
@@ -149,7 +176,7 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab"
-                                    aria-selected="false">상품 리뷰<span>(0)</span></a>
+                                    aria-selected="false">상품 리뷰<span>(${totalCountRating})</span></a>
                             </li>
                         </ul>
                         
@@ -158,6 +185,7 @@
                             <div class="tab-pane active" id="tabs-1" role="tabpanel">
                                 <div class="product__details__tab__desc">
                                     <p>
+                                    	<!-- 상품 설명  -->
                                     	<img src="img/product/product_img/${pbean.PSUBCATEGORY}/${pbean.PNAME}/${pbean.PSUBIMG}" alt="${pbean.PSUBIMG}">
                                     </p>
                                 </div> 
@@ -166,6 +194,7 @@
                             <div class="tab-pane" id="tabs-2" role="tabpanel">
                                 <div class="product__details__tab__desc">
                                     <p>
+                                    	<!-- 상품 info  -->
                                     	<img src="img/product/product_img/${pbean.PSUBCATEGORY}/${pbean.PNAME}/${pbean.PINFOIMG}" alt="${pbean.PINFOIMG}">
                                     </p>
                                 </div>
@@ -173,13 +202,123 @@
                             
                             <div class="tab-pane" id="tabs-3" role="tabpanel">
                                 <div class="product__details__tab__desc">
+                                
                                     <p>
-                                    
-                                    
-                                     table 게시판형식처럼 가져올 수 있도록
-                                    
-                                    
+                                    	<!-- 여기서부터 리뷰 -->
+										<table>
+											<c:if test="${empty relists}">
+                                    			<tr>
+                                    				<td>리뷰가 없습니다.</td>
+                                    			</tr>
+                                    		</c:if>
+										 
+											<c:forEach var="rebean" items="${relists}">
+											
+											<!-- 관리자라면 -->
+											<c:if test="${rebean.RRELEVEL > 0}">
+												<tr>
+													<td style="background-color: gray;">
+														<b>${rebean.RID}</b><br>
+														${rebean.RCONTENT}
+													</td>
+												</tr>
+											</c:if>
+											
+											<!-- 사용자라면(이미지 있을때) -->
+											<c:if test="${!empty rebean.RIMG}">
+												<tr>
+													<th colspan="2">
+														 ${rebean.RID} 
+														<c:if test="${rebean.RRELEVEL == 0}">
+																 <div class="product__details__text">
+											                        <div class="product__details__rating">
+											                        	<c:if test="${rebean.RRATING == 1}">
+												                            <i class="fa fa-star"></i>
+											                        	</c:if>
+											                        	<c:if test="${rebean.RRATING == 2}">
+												                            <i class="fa fa-star"></i>
+												                            <i class="fa fa-star"></i>
+											                        	</c:if>
+											                        	<c:if test="${rebean.RRATING == 3}">
+												                            <i class="fa fa-star"></i>
+												                            <i class="fa fa-star"></i>
+												                            <i class="fa fa-star"></i>
+											                        	</c:if>
+											                        	<c:if test="${rebean.RRATING == 4}">
+												                            <i class="fa fa-star"></i>
+												                            <i class="fa fa-star"></i>
+												                            <i class="fa fa-star"></i>
+												                            <i class="fa fa-star"></i>
+											                        	</c:if>
+											                        	<c:if test="${rebean.RRATING == 5}">
+												                            <i class="fa fa-star"></i>
+												                            <i class="fa fa-star"></i>
+												                            <i class="fa fa-star"></i>
+												                            <i class="fa fa-star"></i>
+												                            <i class="fa fa-star"></i>
+											                        	</c:if> 
+											                            <span>(${rebean.RRATING})</span>
+											                        </div>
+																</div>
+														</c:if>
+													</th>
+												</tr>
+												<tr>
+													<td>
+														<img src="<%=request.getContextPath() %>/resources/${rebean.RIMG}" width="150px" height="150px">
+													</td>
+													<td>${rebean.RCONTENT}</td>
+												</tr>
+											</c:if>
+											
+											<!-- 사용자라면(이미지없을때) -->
+												<tr>
+													<th>${rebean.RID}
+														<c:if test="${rebean.RRELEVEL == 0}">
+															<div class="product__details__text">
+																<div class="product__details__rating">
+																	<c:if test="${rebean.RRATING == 1}">
+																		<i class="fa fa-star"></i>
+																	</c:if>
+																	<c:if test="${rebean.RRATING == 2}">
+																		<i class="fa fa-star"></i>
+																		<i class="fa fa-star"></i>
+																	</c:if>
+																	<c:if test="${rebean.RRATING == 3}">
+																		<i class="fa fa-star"></i>
+																		<i class="fa fa-star"></i>
+																		<i class="fa fa-star"></i>
+																	</c:if>
+																	<c:if test="${rebean.RRATING == 4}">
+																		<i class="fa fa-star"></i>
+																		<i class="fa fa-star"></i>
+																		<i class="fa fa-star"></i>
+																		<i class="fa fa-star"></i>
+																	</c:if>
+																	<c:if test="${rebean.RRATING == 5}">
+																		<i class="fa fa-star"></i>
+																		<i class="fa fa-star"></i>
+																		<i class="fa fa-star"></i>
+																		<i class="fa fa-star"></i>
+																		<i class="fa fa-star"></i>
+																	</c:if>
+																	<span>(${rebean.RRATING})</span>
+																</div>
+															</div>
+														</c:if>
+													</th>
+												</tr>
+												<tr>
+													<td colspan="2">${rebean.RCONTENT}</td>
+												</tr>
+											</c:forEach>
+										</table>
+										
+										<div class='product__pagination'>
+	                						${pageInfo.getPagingHtml()}
+	               						</div>
                                     </p>
+                                    
                                 </div>
                             </div>
                             
@@ -231,3 +370,6 @@
     <!-- Related Product Section End -->
 
 <%@include file="../display/bottom.jsp"%>
+
+
+												
