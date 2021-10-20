@@ -100,9 +100,11 @@ public class PaymentController {
 		int MPOINT = mbean.getMPOINT();
 
 		if(CNUM != 0) { //쿠폰이 있으면
+			System.out.println("쿠폰있음");
 			Coupon cbean = CDao.oneData(CNUM);  
+			
 			mav.addObject("MCouponName", cbean.getCNAME()); //쿠폰의 이름 들어감
-			mav.addObject("MCOUPON", cbean.getCPRICE());    //쿠폰의 적용 가격들어감    
+			mav.addObject("MCOUPON", cbean.getCPRICE());    //쿠폰의 적용금액이 가격들어감    
 		}
 		else {  //쿠폰이 없으면
 			mav.addObject("MCouponName", "쿠폰 없음");
@@ -152,6 +154,9 @@ public class PaymentController {
 			System.out.println("쿠폰사용했다면 쿠폰 0으로: "+rembean.getMCOUPON());
 		}
 		
+		MemberBean dbMember = MDao.getData(mbean.getMID());
+		session.setAttribute("loginInfo", dbMember);
+		
 		//장바구니에 담았던 내용 가져오기
 		CartList cart = (CartList)session.getAttribute("cart"); 
 		Map<Integer,Integer> cartlists = cart.getAllList();  
@@ -167,17 +172,21 @@ public class PaymentController {
 		
 		int maxOINVOICE = ODao.getMaxOrderOINVOICE();
 			System.out.println("maxOINVOICE: "+ maxOINVOICE);        
-		
+			
 		//송장에 해당하는 주문 상품-수량 디테일에 입력
 		for(Integer key : keylists) {
 			Integer value = cartlists.get(key);    
 	
+			String ODREVIEW = "NO";
+			
 			PDao.stockDecrease(key, value);  //결제 : 해당상품 수량감소
+			PDao.plusPBest(key); //결제: 해당상품 pbest +1   
 			
 			OrderDetailBean odBean = new OrderDetailBean();
 			odBean.setODOINVOICE(maxOINVOICE);
 			odBean.setODPNUM(key);
 			odBean.setODQTY(value);
+			odBean.setODREVIEW(ODREVIEW);
 			
 			ODDao.insertData(odBean);
 		}	
