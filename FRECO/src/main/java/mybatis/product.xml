@@ -278,6 +278,217 @@
 		UPDATE PRODUCT SET PBEST= PBEST+1
 		WHERE PNUM=#{key}
 	</update>
+	
+		 <!-- 베스트 상품 출력 -->
+ 	<select id="getRankList" resultType="MyProduct">
+		SELECT * FROM (SELECT PNUM,PNAME,PQTY,PPRICE,PPOINT,PBEST,PINPUTDATE,PCATEGORY,
+		PSUBCATEGORY,PIMG1,PIMG2,PIMG3,PIMG4,PIMG5,PINFOIMG,PSUBIMG, RANK() OVER(ORDER BY PBEST DESC)
+		AS RANK FROM PRODUCT)
+		WHERE <![CDATA[ RANK <= 5 ]]>
+	</select> 
+
+	<!-- BEST 카테고리 : list출력 -->
+	<select id="getTotalCountCateBest" resultType="int">
+		SELECT COUNT (*) FROM (SELECT PNUM,PNAME,PQTY,PPRICE,PPOINT,PBEST,PINPUTDATE,PCATEGORY,
+		PSUBCATEGORY,PIMG1,PIMG2,PIMG3,PIMG4,PIMG5,PINFOIMG,PSUBIMG, RANK() OVER(ORDER BY PBEST DESC)
+		AS RANK FROM PRODUCT)
+		WHERE <![CDATA[ RANK <= 20 ]]>
+	</select>
+	<select id="getProductListCateBest" resultType="MyProduct">
+		SELECT * FROM (SELECT PNUM,PNAME,PQTY,PPRICE,PPOINT,PBEST,PINPUTDATE,PCATEGORY,
+		PSUBCATEGORY,PIMG1,PIMG2,PIMG3,PIMG4,PIMG5,PINFOIMG,PSUBIMG, RANK() OVER(ORDER BY PBEST DESC)
+		AS RANK FROM PRODUCT)
+		WHERE <![CDATA[ RANK <= 20 ]]>
+		<if test="lineUp=='신상품순'">
+	  		ORDER BY PINPUTDATE DESC, PNUM ASC
+	  	</if>
+	  	<if test="lineUp=='인기상품순'">
+	  		ORDER BY PBEST DESC, PNUM ASC
+	  	</if>
+	  	<if test="lineUp=='낮은가격순'">
+	  		ORDER BY PPRICE ASC, PNUM ASC 
+	  	</if>
+	  	<if test="lineUp=='높은가격순'">
+	  		ORDER BY PPRICE DESC, PNUM ASC 
+	  	</if>
+	  	<if test="lineUp=='null'">
+	  		ORDER BY PNUM ASC 
+	  	</if>	 
+	</select>
+	
+	<!-- 가격별 : BEST list출력 -->
+	<select id="getTotalCountPriceBest" resultType="int">
+		SELECT COUNT (*) FROM (SELECT PNUM,PNAME,PQTY,PPRICE,PPOINT,PBEST,PINPUTDATE,PCATEGORY,
+		PSUBCATEGORY,PIMG1,PIMG2,PIMG3,PIMG4,PIMG5,PINFOIMG,PSUBIMG, RANK() OVER(ORDER BY PBEST DESC)
+		AS RANK FROM PRODUCT)
+		WHERE <![CDATA[ RANK <= 20 ]]>
+		<if test="lineUpPrice=='5,000원 이하'">
+			<![CDATA[ AND PPRICE<=5000 ]]>
+		</if>
+		<if test="lineUpPrice=='10,000원 이하'">
+			<![CDATA[ AND PPRICE<=10000 ]]>
+		</if>
+		<if test="lineUpPrice=='15,000원 이하'">
+			<![CDATA[ AND PPRICE<=15000 ]]>
+		</if>
+		<if test="lineUpPrice=='20,000원 이하'">
+			<![CDATA[ AND PPRICE<=20000 ]]>
+		</if>
+		<if test="lineUpPrice=='20,000원 이상'">
+			<![CDATA[ AND PPRICE>=20000 ]]>
+		</if>				
+	</select>
+	<select id="getProductListPriceBest" resultType="MyProduct">
+		SELECT * FROM (SELECT PNUM,PNAME,PQTY,PPRICE,PPOINT,PBEST,PINPUTDATE,PCATEGORY,
+		PSUBCATEGORY,PIMG1,PIMG2,PIMG3,PIMG4,PIMG5,PINFOIMG,PSUBIMG, RANK() OVER(ORDER BY PBEST DESC)
+		AS RANK FROM PRODUCT)
+		WHERE <![CDATA[ RANK <= 20 ]]>
+		<if test="lineUpPrice=='5,000원 이하'">
+			<![CDATA[ AND PPRICE<=5000 ]]>
+		</if>
+		<if test="lineUpPrice=='10,000원 이하'">
+			<![CDATA[ AND PPRICE<=10000 ]]>
+		</if>
+		<if test="lineUpPrice=='15,000원 이하'">
+			<![CDATA[ AND PPRICE<=15000 ]]>
+		</if>
+		<if test="lineUpPrice=='20,000원 이하'">
+			<![CDATA[ AND PPRICE<=20000 ]]>
+		</if>
+		<if test="lineUpPrice=='20,000원 이상'">
+			<![CDATA[ AND PPRICE>=20000 ]]>
+		</if>
+		<if test="lineUp=='신상품순'">
+	  		ORDER BY PINPUTDATE DESC, PNUM ASC
+	  	</if>
+	  	<if test="lineUp=='인기상품순'">
+	  		ORDER BY PBEST DESC, PNUM ASC
+	  	</if>
+	  	<if test="lineUp=='낮은가격순'">
+	  		ORDER BY PPRICE ASC, PNUM ASC 
+	  	</if>
+	  	<if test="lineUp=='높은가격순'">
+	  		ORDER BY PPRICE DESC, PNUM ASC 
+	  	</if>
+	  	<if test="lineUp=='null'">
+	  		ORDER BY PNUM DESC 
+	  	</if>	
+	</select>
+	
+	<!-- /////////////////////////////////////////////////////////////////////////////////	 -->
+	
+	 <!-- 신상품 출력 -->
+ 	<select id="getRankListNew" resultType="MyProduct">
+		SELECT * FROM (SELECT PNUM,PNAME,PQTY,PPRICE,PPOINT,PBEST,PINPUTDATE,PCATEGORY,
+		PSUBCATEGORY,PIMG1,PIMG2,PIMG3,PIMG4,PIMG5,PINFOIMG,PSUBIMG, RANK() OVER(ORDER BY PINPUTDATE DESC)
+		AS RANK FROM PRODUCT)
+		WHERE <![CDATA[ RANK <= 8 ]]>
+	</select> 
+
+	<!-- NEW 카테고리 : list출력 -->
+	<select id="getTotalCountCateNew" resultType="int">
+		SELECT COUNT (*) FROM (SELECT PNUM,PNAME,PQTY,PPRICE,PPOINT,PBEST,PINPUTDATE,PCATEGORY,
+		PSUBCATEGORY,PIMG1,PIMG2,PIMG3,PIMG4,PIMG5,PINFOIMG,PSUBIMG, RANK() OVER(ORDER BY PINPUTDATE DESC)
+		AS RANK FROM PRODUCT)
+		WHERE <![CDATA[ RANK <= 20 ]]>
+	</select>
+	<select id="getProductListCateNew" resultType="MyProduct">
+		SELECT * FROM (SELECT PNUM,PNAME,PQTY,PPRICE,PPOINT,PBEST,PINPUTDATE,PCATEGORY,
+		PSUBCATEGORY,PIMG1,PIMG2,PIMG3,PIMG4,PIMG5,PINFOIMG,PSUBIMG, RANK() OVER(ORDER BY PINPUTDATE DESC)
+		AS RANK FROM PRODUCT)
+		WHERE <![CDATA[ RANK <= 20 ]]>
+		<if test="lineUp=='신상품순'">
+	  		ORDER BY PINPUTDATE DESC, PNUM ASC
+	  	</if>
+	  	<if test="lineUp=='인기상품순'">
+	  		ORDER BY PBEST DESC, PNUM ASC
+	  	</if>
+	  	<if test="lineUp=='낮은가격순'">
+	  		ORDER BY PPRICE ASC, PNUM ASC 
+	  	</if>
+	  	<if test="lineUp=='높은가격순'">
+	  		ORDER BY PPRICE DESC, PNUM ASC 
+	  	</if>
+	  	<if test="lineUp=='null'">
+	  		ORDER BY PNUM ASC 
+	  	</if>	 
+	</select>
+	
+	<!-- 가격별 : 신상품 list출력 -->
+	<select id="getTotalCountPriceNew" resultType="int">
+		SELECT COUNT (*) FROM (SELECT PNUM,PNAME,PQTY,PPRICE,PPOINT,PBEST,PINPUTDATE,PCATEGORY,
+		PSUBCATEGORY,PIMG1,PIMG2,PIMG3,PIMG4,PIMG5,PINFOIMG,PSUBIMG, RANK() OVER(ORDER BY PINPUTDATE DESC)
+		AS RANK FROM PRODUCT)
+		WHERE <![CDATA[ RANK <= 20 ]]>
+		<if test="lineUpPrice=='5,000원 이하'">
+			<![CDATA[ AND PPRICE<=5000 ]]>
+		</if>
+		<if test="lineUpPrice=='10,000원 이하'">
+			<![CDATA[ AND PPRICE<=10000 ]]>
+		</if>
+		<if test="lineUpPrice=='15,000원 이하'">
+			<![CDATA[ AND PPRICE<=15000 ]]>
+		</if>
+		<if test="lineUpPrice=='20,000원 이하'">
+			<![CDATA[ AND PPRICE<=20000 ]]>
+		</if>
+		<if test="lineUpPrice=='20,000원 이상'">
+			<![CDATA[ AND PPRICE>=20000 ]]>
+		</if>				
+	</select>
+	<select id="getProductListPriceNew" resultType="MyProduct">
+		SELECT * FROM (SELECT PNUM,PNAME,PQTY,PPRICE,PPOINT,PBEST,PINPUTDATE,PCATEGORY,
+		PSUBCATEGORY,PIMG1,PIMG2,PIMG3,PIMG4,PIMG5,PINFOIMG,PSUBIMG, RANK() OVER(ORDER BY PINPUTDATE DESC)
+		AS RANK FROM PRODUCT)
+		WHERE <![CDATA[ RANK <= 20 ]]>
+		<if test="lineUpPrice=='5,000원 이하'">
+			<![CDATA[ AND PPRICE<=5000 ]]>
+		</if>
+		<if test="lineUpPrice=='10,000원 이하'">
+			<![CDATA[ AND PPRICE<=10000 ]]>
+		</if>
+		<if test="lineUpPrice=='15,000원 이하'">
+			<![CDATA[ AND PPRICE<=15000 ]]>
+		</if>
+		<if test="lineUpPrice=='20,000원 이하'">
+			<![CDATA[ AND PPRICE<=20000 ]]>
+		</if>
+		<if test="lineUpPrice=='20,000원 이상'">
+			<![CDATA[ AND PPRICE>=20000 ]]>
+		</if>
+		<if test="lineUp=='신상품순'">
+	  		ORDER BY PINPUTDATE DESC, PNUM ASC
+	  	</if>
+	  	<if test="lineUp=='인기상품순'">
+	  		ORDER BY PBEST DESC, PNUM ASC
+	  	</if>
+	  	<if test="lineUp=='낮은가격순'">
+	  		ORDER BY PPRICE ASC, PNUM ASC 
+	  	</if>
+	  	<if test="lineUp=='높은가격순'">
+	  		ORDER BY PPRICE DESC, PNUM ASC 
+	  	</if>
+	  	<if test="lineUp=='null'">
+	  		ORDER BY PNUM DESC 
+	  	</if>	
+	</select>
+<!-- /////////////////////////////////////////////////////////////////////////////////	 -->	
+	<!-- 	검색 -->
+ 	<select id="getTotalSearchCount" resultType="int">
+		SELECT COUNT(*) FROM PRODUCT	
+		<if test="whatColumn == 'all'">
+			WHERE PNAME LIKE #{keyword}
+		</if>		
+	</select>
+	
+	<select id="getProductSearchList" resultType="MyProduct">
+		SELECT * FROM PRODUCT	
+		<if test="whatColumn == 'all'">
+			WHERE PNAME LIKE #{keyword}
+		</if>	
+		ORDER BY PNUM DESC
+	</select> 
+
 </mapper>
 
 
