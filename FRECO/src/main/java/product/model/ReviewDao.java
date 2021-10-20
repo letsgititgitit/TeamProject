@@ -50,4 +50,61 @@ public class ReviewDao {
 		return cnt;
 	}
 	
+	//관리자 리뷰 리스트 출력
+	public List<ReviewBean> getAdminList(){
+		List<ReviewBean> rlist = sqlSessionTemplate.selectList(namespace+".getAdminList");
+		return rlist;
+	}
+	
+	//관리자 답글대기 개수 출력
+	public int replyCount() {
+		int cnt = sqlSessionTemplate.selectOne(namespace+".replyCount");
+		return cnt;
+	}
+	
+	//관리자 답글대기 리스트 출력
+	public List<ReviewBean> getReplyWait(){
+		List<ReviewBean> rlist = sqlSessionTemplate.selectList(namespace+".getReplyWait");
+		return rlist;
+	}
+	
+	//관리자 답글 쓰기
+	public void insertReply(ReviewBean rbean) {
+		sqlSessionTemplate.insert(namespace+".insertReply",rbean);
+	}
+	
+	//관리자 답글 상태 변경
+	public void updateRREPLY(ReviewBean rbean) {
+		sqlSessionTemplate.update(namespace+".updateRREPLY",rbean);
+	}
+	
+	//관리자 답글 보기
+	public ReviewBean getReply(int RREF) {
+		ReviewBean bean = sqlSessionTemplate.selectOne(namespace+".getReply",RREF);
+		return bean;
+	}
+	
+	//관리자 답글 수정 폼
+	public ReviewBean getReplyByNum(int RNUM) {
+		ReviewBean bean = sqlSessionTemplate.selectOne(namespace+".getReplyByNum",RNUM);
+		return bean;
+	}
+	
+	//관리자 답글 수정
+	public void updateReply(ReviewBean rbean) {
+		sqlSessionTemplate.update(namespace+".updateReply",rbean);
+	}
+	
+	//관리자 답글완료 개수
+	public int getAdminCnt() {
+		int cnt = sqlSessionTemplate.selectOne(namespace+".getAdminCnt");
+		return cnt;
+	}
+	
+	//관리자 답글대기 개수
+		public int getAdminWaitCnt() {
+			int cnt = sqlSessionTemplate.selectOne(namespace+".getAdminWaitCnt");
+			return cnt;
+		}
+	
 }
