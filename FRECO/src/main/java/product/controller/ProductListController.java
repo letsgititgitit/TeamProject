@@ -39,6 +39,7 @@ public class ProductListController {
 			
 			@RequestParam(value="lineUp", required = false) String lineUp,
 			@RequestParam(value="lineUpPrice", required = false) String lineUpPrice,
+
 			ModelAndView mav,
 			HttpServletRequest request) {
 		
@@ -130,8 +131,7 @@ public class ProductListController {
 		else {
 			System.out.println("==카테고리 선택을 통한 LIST요청 ==");
 			Map<String,String> map = new HashMap<String,String>();
-			map.put("whatCate", PCATEGORY);
-			
+			map.put("whatCate", PCATEGORY);			
 			map.put("lineUp", lineUp);
 			
 			int totalCount = PDao.getTotalCountCate(map);
@@ -146,6 +146,7 @@ public class ProductListController {
 		}//
 		
 		//////////////////////////////////////////////////////////////
+		
 		if(PCATEGORY.equals("식품")) {
 			System.out.println("식품 선택");
 			mav.setViewName(foodPage);

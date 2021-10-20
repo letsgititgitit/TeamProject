@@ -26,7 +26,7 @@ public class ProductSearchListController {
 	
 	private final String command = "listSearh.product";
 	private final String getPage = "productList_Search";
-	private final String gotoPage = "";
+	private final String gotoPage = "redirect:/main.mall";
 	
 	@Autowired
 	@Qualifier("myProductDao")
@@ -57,7 +57,12 @@ public class ProductSearchListController {
 			pw.println("<script>alert('검색어를 입력하세요!');</script>");
 			pw.flush(); 
 			
-			mav.setViewName(gotoPage);
+			int totalCount = 0;
+			List<ProductBean> searchLists = null;
+			
+			mav.addObject("searchLists", searchLists);
+			mav.addObject("totalCount", totalCount);
+			mav.setViewName(getPage);
 		}
 		else {
 			System.out.println("검색어 입력 함");
