@@ -113,10 +113,10 @@ public class ProductDetailController {
 		mav.addObject("average", Math.round(average)); 
 		
 			//로그인 세션도 챙겨가기
-		MemberBean mbean = (MemberBean) session.getAttribute("loginInfo");
-		String OMID = mbean.getMID();
-			System.out.println("로그인된 아이디: "+ OMID);
-		mav.addObject(OMID);
+//		MemberBean mbean = (MemberBean) session.getAttribute("loginInfo");
+//		String OMID = mbean.getMID();
+//			System.out.println("로그인된 아이디: "+ OMID);
+//		mav.addObject(OMID);
 		
 		mav.setViewName(gotoPage);
 		return mav;
