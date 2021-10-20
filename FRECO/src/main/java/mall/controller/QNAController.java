@@ -36,7 +36,7 @@ public class QNAController {
 		
 		//로그인 X
 		if(session.getAttribute("loginInfo") == null) {
-			session.setAttribute("destination", "redirect:/mypageOrderList.mp");
+			session.setAttribute("destination", "redirect:/qna.mall");
 			mav.setViewName("redirect:/login.me");
 			return mav;
 		} 
