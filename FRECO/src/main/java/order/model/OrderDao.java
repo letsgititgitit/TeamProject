@@ -117,4 +117,15 @@ public class OrderDao {
 			System.out.println("OrderDao 해당송장 환불여부 cnt : "+ cnt);
 		return cnt;
 	}
+	
+	//관리자 주문 상세보기
+	public List<AdminOrderBean> getAdminOrderList(int OINVOICE){
+		List<AdminOrderBean> olist = sqlSessionTemplate.selectList(namespace+".getAdminOrderList",OINVOICE);
+		return olist;
+	}
+	
+	//관리자 환불시 주문 삭제
+	public void deleteRefund(int OINVOICE) {
+		sqlSessionTemplate.delete(namespace+".deleteRefund",OINVOICE);
+	}
 }
