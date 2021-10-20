@@ -145,6 +145,18 @@ public class ProductDao {
 			pbean.setPNUM(key);
 			pbean.setPQTY(value);
 			return sqlSessionTemplate.update(namespace+".stockDecrease", pbean);
+		}
+		
+		//하은 : 주문내역 상세보기를 위한 상품정보가져오기
+		public ProductBean odGetPnum(int odPNUM) {
+			ProductBean pbean =  new ProductBean();
+			pbean = sqlSessionTemplate.selectOne(namespace+".odGetPnum", odPNUM);	
+				System.out.println("PDao 상품정보가져오기 이름: "+ pbean.getPNAME());
+			return pbean;
+		}
+		//결제: 해당상품 pbest +1 
+		public int plusPBest(Integer key) {
+			return sqlSessionTemplate.update(namespace+".plusPBest", key);
 		}	
 	
 	
