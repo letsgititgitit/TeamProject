@@ -15,6 +15,17 @@ public class ReviewBean {
 	private int RRESTEP;
 	private int RRELEVEL;
 	private String RREPLY; //답글여부
+	
+	private String RPNAME;
+	
+	public String getRPNAME() {
+		return RPNAME;
+	}
+
+	public void setRPNAME(String rPNAME) {
+		RPNAME = rPNAME;
+	}
+	
 	//file 담을수 있는 file////////////////////////////////////////////////
 	private MultipartFile uploadRIMG;
 
