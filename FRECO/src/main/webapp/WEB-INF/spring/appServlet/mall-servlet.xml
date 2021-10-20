@@ -18,4 +18,6 @@
 	<context:component-scan base-package="product" />
 	<context:component-scan base-package="order" />   
 	<context:component-scan base-package="member" />
+	<context:component-scan base-package="admin" />
+	<context:component-scan base-package="mypage" />   
 </beans>

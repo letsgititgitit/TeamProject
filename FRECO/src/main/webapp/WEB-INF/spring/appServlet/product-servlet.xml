@@ -15,6 +15,7 @@
 	</bean>	
 
 	<context:component-scan base-package="product" />
+	<context:component-scan base-package="order" />
 
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
