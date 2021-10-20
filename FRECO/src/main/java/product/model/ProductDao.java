@@ -159,8 +159,93 @@ public class ProductDao {
 			return sqlSessionTemplate.update(namespace+".plusPBest", key);
 		}	
 	
+	/////////////////////////////////////////////////////////////////////////////
 	
+	// BEST 상품 출력
+		public List<ProductBean> getRankList() {
+			List<ProductBean> rlists = sqlSessionTemplate.selectList(namespace + ".getRankList");
+			return rlists;
+		}
+		
+		//베스트 상품 정렬 + 출력
+		public int getTotalCountCateBest(Map<String, String> map) {
+			int cnt = sqlSessionTemplate.selectOne(namespace+".getTotalCountCateBest", map);
+				System.out.println("ProductDao-getTotalCountCateBest(카테고리) cnt : "+ cnt);
+			return cnt;
+		}
+		public List<ProductBean> getProductListCateBest(PagingPcategory pageInfo, Map<String, String> map) {
+			List<ProductBean> lists = new ArrayList<ProductBean>();
+			RowBounds rowBounds = new RowBounds(pageInfo.getOffset(), pageInfo.getLimit());
+			lists = sqlSessionTemplate.selectList(namespace+".getProductListCateBest", map, rowBounds);
+				System.out.println("ProductDao-getProductListCateBest(카테고리)레코드갯수: "+ lists.size());
+			return lists;
+		}		
 	
+		//가격별 : 베스트 상품 list출력
+		public int getTotalCountPriceBest(Map<String, String> map) {
+			int cnt = sqlSessionTemplate.selectOne(namespace+".getTotalCountPriceBest", map);
+				System.out.println("ProductDao-getTotalCountPriceBest(가격별카테고리ALL) cnt : "+ cnt);
+			return cnt;
+		}
+		public List<ProductBean> getProductListPriceBest(PagingPcategory pageInfo, Map<String, String> map) {
+			List<ProductBean> lists = new ArrayList<ProductBean>();
+			RowBounds rowBounds = new RowBounds(pageInfo.getOffset(), pageInfo.getLimit());
+			lists = sqlSessionTemplate.selectList(namespace+".getProductListPriceBest", map, rowBounds);
+				System.out.println("ProductDao-getProductListPriceBest(가격별+카테고리ALL)레코드갯수: "+ lists.size());
+			return lists;
+		}
+		
+		///////////////////////////////////////////////////////////////////////
+		
+		
+		// NEW 상품 출력
+		public List<ProductBean> getRankListNew() {
+			List<ProductBean> rlists = sqlSessionTemplate.selectList(namespace + ".getRankListNew");
+			return rlists;
+		}
+		
+		//신상품 정렬 + 출력
+		public int getTotalCountCateNew(Map<String, String> map) {
+			int cnt = sqlSessionTemplate.selectOne(namespace+".getTotalCountCateNew", map);
+				System.out.println("ProductDao-getTotalCountCateNew(카테고리) cnt : "+ cnt);
+			return cnt;
+		}
+		public List<ProductBean> getProductListCateNew(PagingPcategory pageInfo, Map<String, String> map) {
+			List<ProductBean> lists = new ArrayList<ProductBean>();
+			RowBounds rowBounds = new RowBounds(pageInfo.getOffset(), pageInfo.getLimit());
+			lists = sqlSessionTemplate.selectList(namespace+".getProductListCateNew", map, rowBounds);
+				System.out.println("ProductDao-getProductListCateNew(카테고리)레코드갯수: "+ lists.size());
+			return lists;
+		}		
+	
+		//가격별 : 신상품 list출력
+		public int getTotalCountPriceNew(Map<String, String> map) {
+			int cnt = sqlSessionTemplate.selectOne(namespace+".getTotalCountPriceNew", map);
+				System.out.println("ProductDao-getTotalCountPriceNew(가격별카테고리ALL) cnt : "+ cnt);
+			return cnt;
+		}
+		public List<ProductBean> getProductListPriceNew(PagingPcategory pageInfo, Map<String, String> map) {
+			List<ProductBean> lists = new ArrayList<ProductBean>();
+			RowBounds rowBounds = new RowBounds(pageInfo.getOffset(), pageInfo.getLimit());
+			lists = sqlSessionTemplate.selectList(namespace+".getProductListPriceNew", map, rowBounds);
+				System.out.println("ProductDao-getProductListPriceNew(가격별+카테고리ALL)레코드갯수: "+ lists.size());
+			return lists;
+		}
+		
+	/////////////////////////////////////////////////////////////////////////////////
+	
+		// 검색
+		public int getTotalSearchCount(Map<String, String> map) {
+			int cnt = sqlSessionTemplate.selectOne(namespace + ".getTotalSearchCount", map);			
+			return cnt;
+		}
+		public List<ProductBean> getProductSearchList(Paging pageInfo, Map<String, String> map) {
+			List<ProductBean> searchLists = new ArrayList<ProductBean>();			
+			RowBounds rowBounds = new RowBounds(pageInfo.getOffset(), pageInfo.getLimit());			
+			searchLists = sqlSessionTemplate.selectList(namespace + ".getProductSearchList", map, rowBounds);			
+			return searchLists;
+		}
+		
 	
 	
 	
