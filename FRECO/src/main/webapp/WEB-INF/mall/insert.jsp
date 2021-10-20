@@ -100,7 +100,7 @@
 		            	<div align="center">
 		            		<input type="submit" value="글쓰기"> &nbsp;
 							<input type="reset" value="다시작성"> &nbsp;
-							<input type="button" value="목록보기" onClick="document.location.href='qna.mall?pageNumber=${pageNumber}'">			
+							<input type="button" value="목록보기" onClick="document.location.href='qna.mall'">			
 		            	</div>
 	            	</div>		                         	 
 	            </form:form>

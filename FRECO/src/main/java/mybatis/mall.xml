@@ -21,6 +21,26 @@
 			where name like #{keyword}
 		</if>
 	</select>
+	
+	<insert id="insertFAQ">
+		INSERT INTO FAQ
+		VALUES(FAQSEQ.NEXTVAL, #{FCATEGORY}, #{FSUBJECT}, #{FCONTENT})
+	</insert>
+	
+	<delete id="deleteFAQ">
+		DELETE FROM FAQ
+		WHERE FNUM = #{FNUM}
+	</delete>
+	
+	<select id="getFAQ" resultType="MyFAQ">
+		SELECT * FROM FAQ
+		WHERE FNUM = #{FNUM}
+	</select>
+	
+	<update id="updateQNA">
+		UPDATE FAQ SET FCATEGORY=#{FCATEGORY}, FSUBJECT=#{FSUBJECT}, FCONTENT=#{FCONTENT}
+		WHERE FNUM = #{FNUM}
+	</update>
 
 </mapper>  
   
