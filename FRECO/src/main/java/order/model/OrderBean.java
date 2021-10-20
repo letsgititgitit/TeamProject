@@ -4,7 +4,7 @@ public class OrderBean {
 	private int OINVOICE;  //송장번호 1001 주문순서(번호)
 	private String OMID;   //주문회원아이디
 	private String OORDERDATE; //주문 날짜(결제일)
-	private int OUSECOUPON; //결제시 사용된 쿠폰
+	private int OUSECOUPON; //결제시 사용된 쿠폰(금액)
 	private int OUSEPOINT; //결제시 사용된 포인트
 	private String OREFUND; //환불여부 (환불안함 NO) (환불요청됨 YES) 
 	

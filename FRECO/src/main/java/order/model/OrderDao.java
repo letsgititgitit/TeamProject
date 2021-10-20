@@ -1,9 +1,15 @@
 package order.model;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import utility.OrderListPaging;
 
 
 @Component("myOrderDao")
@@ -86,4 +92,29 @@ public class OrderDao {
 		return cnt;
 	}
 
+	//하은: Mypage Order-list: 주문내역출력
+	public int getTotalCountOrder(String OMID) {
+		int cnt = sqlSessionTemplate.selectOne(namespace+".getTotalCountOrder", OMID);
+			System.out.println("OrderDao 주문내역 출력(getTotalCountOrder) cnt : "+ cnt);
+		return cnt;
+	}
+	public List<OrderBean> getOrderList(OrderListPaging pageInfo, String OMID) {
+		List<OrderBean> olists = new ArrayList<OrderBean>();
+		RowBounds rowBounds = new RowBounds(pageInfo.getOffset(), pageInfo.getLimit());
+		olists = sqlSessionTemplate.selectList(namespace+".getOrderList", OMID, rowBounds);
+		return olists;
+	}
+	//하은: 송장에 해당하는 o정보
+	public OrderBean oneSelect(int OINVOICE) {
+		OrderBean obean = new OrderBean();
+		obean = sqlSessionTemplate.selectOne(namespace+".oneSelect", OINVOICE);
+			System.out.println("OrderDao  해당송장 환불여부: "+ obean.getOREFUND());
+		return obean;
+	}
+	//하은: 반품요청
+	public int updateInfo(int OINVOICE) {
+		int cnt = sqlSessionTemplate.update(namespace+".updateInfo", OINVOICE);
+			System.out.println("OrderDao 해당송장 환불여부 cnt : "+ cnt);
+		return cnt;
+	}
 }
