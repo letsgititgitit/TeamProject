@@ -3,6 +3,7 @@ package member.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import member.model.MemberBean;
 import member.model.MemberDao;
@@ -20,19 +22,20 @@ public class MemberLoginController {
 	private final String command = "login.me";
 	private final String getPage = "memberLoginForm";
 	
+	
 	@Autowired
 	MemberDao memberDao;
 	
 	//메인 상단에서 로그인 눌렀을 때
 	@RequestMapping(value=command, method=RequestMethod.GET)
-	public String doActionGet() {
+	public String doActionGet(HttpServletRequest request) {
 		
 		return getPage;
 	}
 	
 	//로그인 폼에서 로그인 눌렀을 때(submit): 1. 메인상단 로그인 2. 마이페이지=>로그인
 	@RequestMapping(value=command, method=RequestMethod.POST)
-	public String doActionPost(MemberBean memberBean, HttpSession session, HttpServletResponse response) throws IOException{
+	public String doActionPost(MemberBean memberBean, HttpSession session, HttpServletResponse response, HttpServletRequest request) throws IOException{
 			
 			//memberBean MID,MPW 제대로 넘어오는지 확인
 			System.out.println("memberBean.getMID(): " + memberBean.getMID());
@@ -62,13 +65,31 @@ public class MemberLoginController {
 				if(memberBean.getMPW().equals(dbMember.getMPW())) { 
 					session.setAttribute("loginInfo", dbMember);
 					
-					//메인페이지 or 마이페이지
-					//destination: myOrderList.mp
+					//메인에서 로그인
+					if((String)session.getAttribute("destination")==null) {
+						session.setAttribute("1", "redirect:/main.mall");
+						return (String)session.getAttribute("1");	
+					}
+					//마이페이지에서 로그인
+					else {
+						//운영자
+						if(memberBean.getMID().equals("ADMIN")) {
+							if(session.getAttribute("destination")=="redirect:/qna.mall") {
+								session.setAttribute("2", "redirect:/qna.mall");
+							}
+							else {
+								session.setAttribute("2", "redirect:/main.admin");
+							}
+						}
+						//회원
+						else {
+							if(session.getAttribute("destination")=="redirect:/qna.mall") {
+								session.setAttribute("2", "redirect:/qna.mall");	
+							}
+						}
+						return (String)session.getAttribute("2");
+					}//else
 					
-					//return (String)session.getAttribute("destination");//마이페이지클릭=>로그인x=>로그인한경우=>최종도착지:마이페이지
-					
-					return "redirect:/main.mall";//메인상단로그인=>로그인한경우=>최종도착지:메인페이지
-				
 				}
 				//MID O, MPW X
 				else {
@@ -77,14 +98,8 @@ public class MemberLoginController {
 					return getPage; 
 				}
 		}
-	
+			
 	}//post
-
-
-		
-		
-		
-		
 
 	
 	
