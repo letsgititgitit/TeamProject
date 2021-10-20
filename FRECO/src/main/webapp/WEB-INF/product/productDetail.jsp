@@ -312,7 +312,7 @@
 												<tr>
 													<td colspan="2">${rebean.RCONTENT}</td>
 												</tr>
-												</c:if>
+												</c:if>   
 											</c:forEach>
 										</table>
 										
