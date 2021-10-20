@@ -12,6 +12,7 @@
 		<typeAlias alias="MyQNA" type="mall.model.QNABean" />
 		<typeAlias alias="MyOrder" type="order.model.OrderBean" />
 		<typeAlias alias="MyOrderdetail" type="order.model.OrderDetailBean" />
+		<typeAlias alias="MyReview" type="product.model.ReviewBean"/>
 	</typeAliases>
 	
 	<mappers>
@@ -24,5 +25,6 @@
 		<mapper resource="mybatis/order.xml"/>
 		<mapper resource="mybatis/qna.xml"/>
 		<mapper resource="mybatis/orderdetail.xml"/>
+		<mapper resource="mybatis/review.xml"/>
 	</mappers>
 </configuration>
