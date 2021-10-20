@@ -4,9 +4,8 @@
 <%@include file="../common/common.jsp" %>
 
 <script type="text/javascript">
-	function refund_check(){
-		alert(1);
-		//rform.submit();
+	function refund_check(){		
+		rform.submit();
 	}  
 </script>
 <style type="text/css">
@@ -14,6 +13,17 @@
  a:visited { color: black; text-decoration: none;}
  a:hover { color: #747474; text-decoration: none;}
 
+	.refund{
+		color: #C90000;
+		font-size: 15px;
+		font-weight: bold;
+	}
+
+	.order{
+		color: #221DB5;
+		font-size: 15px;
+		font-weight: bold;
+	}
 </style>  
     
 <div id="layoutSidenav_content">
@@ -27,7 +37,7 @@
                         <center>
                        <div class="col-xl-4 col-md-6">
                                 <div class="card bg-danger text-white mb-4 justify-content-between">
-                                    <div class="card-body">환불 대기<h3>0개</h3></div>
+                                    <div class="card-body">환불 대기<h3>${refundcnt}개</h3></div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">                                   
                                        	 <a class="small text-white stretched-link" type="button" onClick="refund_check()">확인하기</a>                                                                                                   
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
@@ -45,38 +55,33 @@
                                     <thead>
                                         <tr>
                                             <th>주문 번호</th><!-- 누르면 주문 정보로 넘어감 -->
-                                            <th>아이디</th>
-                                           <!--  <th>상품</th>
-                                            <th>가격</th> -->
+                                            <th>아이디</th>                                         
                                             <th>주문 날짜</th>
-                                            <th>처리 현황</th>
-                                            <!-- 환불은 버튼으로 이동 refund.admin 가서 CartInfo의 total point, total price 0으로,
-                                            	member 테이블 point 적립됐던거 빼기(mid로 member 테이블에서 mpoint 구하고 적립된 point구해서 빼기), 
-                                            	mcoupon이 null이라면 다시 update 내용은 coupon 테이블에서 갖고 오고 -->
+                                            <th>처리 현황</th>                                         
                                         </tr>
                                     </thead>
                                    
                                     <tbody>
+                                      <c:forEach var="list" items="${orderlist }">
                                         <tr>
-                                        	<td><input type="button" class="btn btn-outline-dark btn-sm" value="12312" onClick="location.href='orderDetail.admin'"></td>
-                                            <td>lee</td>
-                                         <!--    <td>Edinburgh</td>
-                                            <td>15000</td> -->
-                                            <td>2011/04/25</td>                        
-                                            <td>
-                                            
-                                            	<%--  <c:choose>
-                                            	<c:when test="">
-                                            		<input type="button" class="btn btn-outline-danger btn-sm" value="환불" onClick="">
-                                            	</c:when>
+                                        	<td><input type="button" class="btn btn-outline-dark btn-sm" value="${list.OINVOICE }" onClick="location.href='orderDetail.admin?OINVOICE=${list.OINVOICE }&OMID=${list.OMID }'"></td>
+                                            <td>${list.OMID }</td>                                    
+                                            <fmt:parseDate var="date" value="${list.OORDERDATE }" pattern="yyyy-MM-dd"/>
+                                            <fmt:formatDate var="OORDERDATE" value="${date }" pattern="yyyy-MM-dd"/>
+                                            <td>${OORDERDATE }</td>                        
+                                            <td>                                      
+                                            	  <c:choose>
+                                            	<c:when test="${list.OREFUND eq 'YES'}">
+                                            		<p class="refund">환불</p>
+                                            	</c:when>                                           	                                 	
                                             	<c:otherwise>
-                                            		<input type="button" class="btn btn-outline-dark btn-sm" value="주문" onClick="">
+                                            		<p class="order">주문</p>
                                             	</c:otherwise>
-                                            </c:choose> --%>
-                                            	<input type="button" class="btn btn-outline-danger btn-sm" value="환불" onClick="">
+                                            </c:choose> 
+                                            	
                                             </td>
                                         </tr>
-                                       
+                                      </c:forEach> 
                                     </tbody>
                                 </table>
                             </div>
