@@ -24,7 +24,7 @@ import mall.model.QNADao;
 public class QNAUpdateController {
 	
 	private final String command = "/update.mall";
-	private final String getPage = "updateForm";
+	private final String getPage = "qnaUpdateForm";
 	private final String gotoPage = "redirect:/qna.mall";
 	
 	@Autowired

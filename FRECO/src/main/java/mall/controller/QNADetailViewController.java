@@ -45,7 +45,7 @@ public class QNADetailViewController {
 			mav.addObject("qna", qna);
 			mav.addObject("pageNumber", pageNumber);
 			mav.addObject("QNUM", QNUM);
-			mav.setViewName(gotoPage);
+			mav.setViewName(getPage);
 		}
 		//사용자로 로그인 했을 경우 
 		else {
