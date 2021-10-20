@@ -13,6 +13,8 @@
 		<typeAlias alias="MyOrder" type="order.model.OrderBean" />
 		<typeAlias alias="MyOrderdetail" type="order.model.OrderDetailBean" />
 		<typeAlias alias="MyReview" type="product.model.ReviewBean"/>
+		<typeAlias alias="MyReview" type="product.model.ReviewBean"/>
+		<typeAlias alias="MyOrderAdmin" type="order.model.AdminOrderBean"/>
 	</typeAliases>
 	
 	<mappers>
