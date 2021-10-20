@@ -6,6 +6,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import order.model.AdminOrderBean;
+
 @Component("myMemberDao")
 public class MemberDao {
 
@@ -69,7 +71,11 @@ public class MemberDao {
 		sqlSessionTemplate.update(namespace+".updateMcoupon", mb);
 	}
 	
-	
+	//관리자 환불 처리 사용한 쿠폰,포인트 복구,적립 포인트 삭제
+	public int updateByRefund(AdminOrderBean bean) {
+		int cnt = sqlSessionTemplate.update(namespace+".updateByRefund",bean);
+		return cnt;
+	}
 	
 	
 	

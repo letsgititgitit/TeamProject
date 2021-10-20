@@ -51,4 +51,16 @@
 		MCOUPON = #{MCOUPON}
 		WHERE MNUM=#{MNUM} 
 	</update>
+	
+	<!-- 관리자 환불 처리 사용한 쿠폰,포인트 복구,적립 포인트 삭제 -->
+	<update id="updateByRefund">
+		UPDATE MEMBER SET MCOUPON=#{AUSECOUPON}
+		<if test="AUSEPOINT gt APOINT">
+			,MPOINT=#{AUSEPOINT}-#{APOINT}
+		</if>
+		<if test="AUSEPOINT lt APOINT">
+			,MPOINT=#{APOINT}-#{AUSEPOINT}
+		</if>
+		WHERE MID=#{AID}
+	</update>
 </mapper>
