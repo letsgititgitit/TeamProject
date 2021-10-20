@@ -21,12 +21,12 @@
                            
                             <div class="col-xl-4 col-md-6">
                                 <div class="card bg-success text-white mb-4">
-                                    <div class="card-body">관리자 처리 완료 <h2>${admincnt }개</h2></div>                      
+                                    <div class="card-body">관리자 처리 완료 <h2>${admincnt+reviewcnt }개</h2></div>                      
                                 </div>
                             </div>
                             <div class="col-xl-4 col-md-6">
                                 <div class="card bg-danger text-white mb-4">
-                                    <div class="card-body">관리자 미처리 현황 <h2>${refundcnt+adminrecnt}개</h2></div>                          
+                                    <div class="card-body">관리자 미처리 현황 <h2>${refundcnt+adminrecnt+reviewaitcnt}개</h2></div>                          
                                 </div>
                             </div>
                         </div>

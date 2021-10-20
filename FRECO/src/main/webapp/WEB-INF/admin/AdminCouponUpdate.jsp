@@ -51,7 +51,7 @@
                           			</td>                        		
                           		</tr> --%>
                           		<tr>
-                          			<td>쿠폰 할인률&nbsp;</td>
+                          			<td>쿠폰 금액&nbsp;</td>
                           			<td><input class="form-control-sm" type="text" name="CPRICE" value="${coupon.CPRICE }">
                           				
                           			</td>                       		

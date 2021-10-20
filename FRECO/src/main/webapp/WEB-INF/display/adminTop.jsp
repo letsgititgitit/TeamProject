@@ -11,6 +11,8 @@
         <title>FRECO-관리자 페이지</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="css/adminstyles.css" rel="stylesheet" />
+        <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+        
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
      
        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js" integrity="sha512-Wt1bJGtlnMtGP0dqNFH1xlkLBNpEodaiQ8ZN5JLA5wpc1sUlk/O5uuOMNgvzddzkpvZ9GLyYNa8w2s7rqiTk5Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -53,6 +55,13 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 ADMIN MAIN
                             </a>
+                            
+                            <div class="sb-sidenav-menu-heading">주문 관리</div>
+                             <a class="nav-link" href="order.admin">
+                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                주문 목록
+                            </a>
+          
                             <div class="sb-sidenav-menu-heading">회원 관리</div>
                              <a class="nav-link" href="memberList.admin">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
@@ -61,8 +70,11 @@
                             <a class="nav-link" href="inquiry.admin">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 회원 문의
-                            </a>
-                                         
+                            </a>                
+                            <a class="nav-link" href="review.admin">
+                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                상품 리뷰
+                            </a>             
                             <div class="sb-sidenav-menu-heading">입출력 관리</div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
@@ -86,15 +98,7 @@
                            	        <a class="nav-link" href="clist.admin">쿠폰 목록</a>                                
                                     <a class="nav-link" href="cinsert.admin">쿠폰 등록</a>           
                                 </nav>                                                          
-                            </div>
-                            
-                            <div class="sb-sidenav-menu-heading">주문 관리</div>
-                             <a class="nav-link" href="order.admin">
-                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                주문 목록
-                            </a>
-                            
-                         
+                            </div>                                         
                         </div>
                     </div>                    
                 </nav>

@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 import mall.model.QNADao;
 import order.model.OrderBean;
 import order.model.OrderDao;
+import product.model.ReviewDao;
 
 @Controller
 public class AdminMainController {
@@ -23,6 +24,9 @@ public class AdminMainController {
 	
 	@Autowired
 	QNADao QnaDao;
+	
+	@Autowired
+	ReviewDao reviewDao;
 	
 	@RequestMapping(value=command)
 	public ModelAndView doAction(ModelAndView mav) {
@@ -44,6 +48,12 @@ public class AdminMainController {
 		
 		int adminrecnt = QnaDao.getAdminReCnt();
 		mav.addObject("adminrecnt", adminrecnt);
+		
+		int reviewcnt = reviewDao.getAdminCnt();
+		mav.addObject("reviewcnt", reviewcnt);
+		
+		int reviewaitcnt = reviewDao.getAdminWaitCnt();
+		mav.addObject("reviewaitcnt", reviewaitcnt);
 		
 		int day7cnt = orderDao.day7cnt();
 		int day6cnt = orderDao.day6cnt();
