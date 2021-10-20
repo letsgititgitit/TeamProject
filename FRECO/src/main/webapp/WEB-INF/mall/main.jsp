@@ -239,7 +239,17 @@ onselectstart="return blockSelect()">
                         </div>          
                            
                         <div class="hero__search__phone">
-                            <a href="mypageOrderList.mp"><img src="img/mypageimg11.png" width="50px" style="margin-right: 20px"></a>                           
+                            	<c:choose>
+                               	<c:when test="${loginInfo.getMID() eq 'ADMIN' }">
+                                   <a href="main.admin">
+                               	</c:when>
+                               <c:otherwise>
+                                   <a href="mypageOrderList.mp">
+                               </c:otherwise>
+                           	 </c:choose>
+				
+				
+				<img src="img/mypageimg11.png" width="50px" style="margin-right: 20px"></a>                           
                             <a href="javascript:Cart()"><img src="img/cartimg11.png" width="50px" style="margin-right: 45px"> </a>                          
                         </div>    
                     </div>
