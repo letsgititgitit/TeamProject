@@ -267,7 +267,17 @@
 		WHERE PNUM=#{PNUM}
 	</update>
 	
+	<!-- 하은 : 주문내역 상세보기를 위한 상품정보가져오기 -->
+	<select id="odGetPnum" resultType="MyProduct">
+		SELECT * FROM PRODUCT
+		WHERE PNUM=#{odPNUM}
+	</select>
 	
+	<!-- 결제: 해당상품 pbest +1  -->
+	<update id="plusPBest">
+		UPDATE PRODUCT SET PBEST= PBEST+1
+		WHERE PNUM=#{key}
+	</update>
 </mapper>
 
 
