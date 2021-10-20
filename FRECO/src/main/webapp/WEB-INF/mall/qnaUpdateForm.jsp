@@ -58,7 +58,7 @@
     			
 	            <form:form commandName="qna" action="update.mall?pageNumber=${pageNumber}" method="post">
 		            <div align="center">
-		   				<h3>글 수정하기</h3> <br><br> 
+		   				<h3>게시글 수정하기</h3> <br><br> 
 		   			</div>
 		   			
 		   			<div>		            			 
@@ -66,7 +66,7 @@
 		            		<tr >
 		            			<th>작성자</th>
 		            			<td>
-		            				<input type="text" name="QID" value="${qna.QID }">
+		            				<input type="text" name="QID" value="${qna.QID }" readonly="readonly">
 		            				<form:errors path="QID" cssClass="err" />
 		            				<input type="hidden" name="QREPLY" value="답변대기">
 		            				<input type="hidden" name="QNUM" value="${QNUM }">		            				

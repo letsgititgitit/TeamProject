@@ -46,7 +46,7 @@
                     	<div class="sidebar__item"> 
                     	 	<h4>고객센터</h4>                   	 	
                     	 	<ul>
-                    	 		<li><a href="#">공지사항</a></li>
+                    	 		<!-- <li><a href="#">공지사항</a></li> -->
                     	 		<li><a href="faq.mall">FAQ</a></li>
                     	 		<li><a href="qna.mall">1:1문의</a></li>
                     	 	</ul>
@@ -56,6 +56,11 @@
     			
     			<div class="col-lg-9">
                     <div class="container">
+                    	<div align="right">
+	                    	 <c:if test="${loginInfo.getMID() eq 'ADMIN' }"> 
+		                    	<input type="button" value="등록" onClick="location.href='faqinsert.mall'"> &nbsp;&nbsp;
+	                    	 </c:if>     
+                    	</div> <br>              
     					<table class="table table-hover">
     						<tr>
 				    			<td>번호</td>
@@ -66,11 +71,17 @@
 				    		<c:forEach var="faq" items="${lists }">			    					    		
 				    		<tr class="menu">
 				    			<td width="10%" > ${faq.FNUM} </td>
-				    			<td width="15%"> ${faq.FCATEGORY} </td>
-				    			<td width="75%">
+				    			<td width="20%"> ${faq.FCATEGORY} </td>
+				    			<td width="70%">
 				    				<details>
 				    					<summary> ${faq.FSUBJECT} </summary>
-				    					<p> ${faq.FCONTENT} </p>												    				
+				    					<p> 
+				    						${faq.FCONTENT} <br><br>
+				    						<c:if test="${loginInfo.getMID() eq 'ADMIN' }"> 
+					    						<input type="button" value="수정" onClick="location.href='faqupdate.mall?FNUM=${faq.FNUM}&pageNumber=${pageInfo.pageNumber}'"> &nbsp;&nbsp;
+			                    				<input type="button" value="삭제" onClick="location.href='faqdelete.mall?FNUM=${faq.FNUM}&pageNumber=${pageInfo.pageNumber}'">
+		                    				</c:if>    
+				    					</p>												    				
 				    				</details>
 				    			</td>
 				    		</tr>				    		

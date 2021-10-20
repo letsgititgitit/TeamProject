@@ -174,8 +174,8 @@ onselectstart="return blockSelect()">
                             <span>카테고리</span>
                         </div>
                         <ul>
-                            <li><a href="list.product?PCATEGORY=베스트">베스트</a></li>
-                            <li><a href="list.product?PCATEGORY=신상품">신상품</a></li>
+                            <li><a href="blist.product?PCATEGORY=베스트">베스트</a></li>
+                            <li><a href="nlist.product?PCATEGORY=신상품">신상품</a></li>
                             <li><a href="list.product?PCATEGORY=식품">식품</a></li>   
                             <li><a href="list.product?PCATEGORY=생활용품">생활용품</a></li>
                             <li><a href="list.product?PCATEGORY=베이비∙키즈">베이비∙키즈</a></li>

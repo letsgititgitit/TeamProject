@@ -40,7 +40,7 @@
                     	<div class="sidebar__item"> 
                     	 	<h4>고객센터</h4>                   	 	
                     	 	<ul>
-                    	 		<li><a href="#">공지사항</a></li>
+                    	 		<!-- <li><a href="#">공지사항</a></li> -->
                     	 		<li><a href="faq.mall">FAQ</a></li>
                     	 		<li><a href="qna.mall">1:1문의</a></li>
                     	 	</ul>

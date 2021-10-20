@@ -89,6 +89,34 @@
       });
     </script>
     
+    <script type="text/javascript">
+	function cartPopup(PNUM,PNAME,ORDERPQTY){
+	
+	<% if(session.getAttribute("loginInfo")==null) { 
+			session.setAttribute("destination", "redirect:/list.product"); %>
+			location.href="login.me";
+				
+	<%	}else{	%>	
+	var _width=400;
+	var _height=180;
+	var _left = Math.ceil(( window.screen.width - _width )/2);
+	var _top = Math.ceil(( window.screen.height - _height )/2); 
+	
+	var options="resizeable=no,scrollbars=no,width="+_width+",height="+_height+",left="+_left+",top="+_top;
+		 window.open(
+				"cartAdd.mall?PNUM="+PNUM+"&PNAME="+PNAME+"&ORDERPQTY="+ORDERPQTY,
+				"FRECO CART",
+				options
+				); 
+		 <%}%>
+	}
+	
+	function goCartList2(){
+		//alert(1);
+		location.href="cartlist.mall";
+	}
+</script>
+    
 <body oncontextmenu="return blockRightClick()" ondragstart="return blockDrag()" 
 onselectstart="return blockSelect()">	
 	
@@ -159,18 +187,6 @@ onselectstart="return blockSelect()">
                         </ul>
                     </nav>
                 </div>
-                
-            
-                <!-- <div class="col-lg-3">
-                    <div class="header__cart">
-                        <ul>
-                            <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                            <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
-                        </ul>
-                        <div class="header__cart__price">item: <span>$150.00</span></div>
-                    </div>
-                </div>  -->
-                
             </div>
             
             
@@ -197,8 +213,8 @@ onselectstart="return blockSelect()">
                             <span>카테고리</span>
                         </div>
                         <ul>
-                            <li><a href="list.product?PCATEGORY=베스트">베스트</a></li>
-                            <li><a href="list.product?PCATEGORY=신상품">신상품</a></li>
+                            <li><a href="blist.product?PCATEGORY=베스트">베스트</a></li>
+                            <li><a href="nlist.product?PCATEGORY=신상품">신상품</a></li>
                             <li><a href="list.product?PCATEGORY=식품">식품</a></li>   
                             <li><a href="list.product?PCATEGORY=생활용품">생활용품</a></li>
                             <li><a href="list.product?PCATEGORY=베이비∙키즈">베이비∙키즈</a></li>
@@ -237,6 +253,11 @@ onselectstart="return blockSelect()">
                         </div>
                     </div>
                 </div>
+                
+                
+                
+                
+                
             </div>
         </div>
     </section>
@@ -254,12 +275,15 @@ onselectstart="return blockSelect()">
             	</div>
             
                 <div class="categories__slider owl-carousel">
+                	<c:forEach var="bestItem" items="${bestItem}">
+                	
+                	
                     <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="img/categories/cat-1.jpg">
-                            <h5><a href="#">Fresh Fruit</a></h5>
+                        <div class="categories__item set-bg" data-setbg="img/product/product_img/${bestItem.PSUBCATEGORY}/${bestItem.PNAME}/${bestItem.PIMG1}">
+                            <h5><a href="pdetail.product?PNUM=${bestItem.PNUM}">${bestItem.PNAME}</a></h5>
                         </div>
                     </div>
-                    <div class="col-lg-3">
+<!--                     <div class="col-lg-3">
                         <div class="categories__item set-bg" data-setbg="img/categories/cat-2.jpg">
                             <h5><a href="#">Dried Fruit</a></h5>
                         </div>
@@ -278,8 +302,13 @@ onselectstart="return blockSelect()">
                         <div class="categories__item set-bg" data-setbg="img/categories/cat-5.jpg">
                             <h5><a href="#">drink fruits</a></h5>
                         </div>
-                    </div>
+                    </div>      -->
+                    
+                    </c:forEach>
                 </div>
+                
+                
+                
             </div>
         </div>
     </section>
@@ -288,6 +317,7 @@ onselectstart="return blockSelect()">
     <!-- Featured Section Begin -->
     <section class="featured spad">
         <div class="container">
+        
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title">
@@ -296,142 +326,35 @@ onselectstart="return blockSelect()">
                     <div class="featured__controls">
                         <ul>
                             <li class="active" data-filter="*">All</li>
-                            <li data-filter=".oranges">식품</li>
-                            <li data-filter=".fresh-meat">생활용품</li>
-                            <li data-filter=".vegetables">베이비/키즈</li>
-                            <li data-filter=".fastfood">반려동물</li>
+                            <li data-filter=".식품">식품</li>
+                            <li data-filter=".생활용품">생활용품</li>
+                            <li data-filter=".베이비∙키즈">베이비∙키즈</li>
+                            <li data-filter=".반려동물">반려동물</li>
                         </ul>
-                    </div>
+                    </div>                   
                 </div>
             </div>
-            
-            
+
             <div class="row featured__filter">
-                <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-1.jpg">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix vegetables fastfood">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-2.jpg">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix vegetables fresh-meat">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-3.jpg">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix fastfood oranges">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-4.jpg">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix fresh-meat vegetables">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-5.jpg">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fastfood">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-6.jpg">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix fresh-meat vegetables">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-7.jpg">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix fastfood vegetables">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-8.jpg">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
+	            <c:forEach var="newItem" items="${NewItem }">
+	                <div class="col-lg-3 col-md-4 col-sm-6 mix ${newItem.PCATEGORY }">
+	                    <div class="featured__item">
+	                        <div class="featured__item__pic set-bg" data-setbg="img/product/product_img/${newItem.PSUBCATEGORY}/${newItem.PNAME}/${newItem.PIMG1}">
+	                            <ul class="featured__item__pic__hover">
+	                                <li><a href="pdetail.product?PNUM=${newItem.PNUM}"><i class="fa fa-retweet"></i></a></li>
+                                    <li><a onClick="cartPopup(${newItem.PNUM},'${newItem.PNAME}',1)"><i class="fa fa-shopping-cart"></i></a></li>
+	                            </ul>
+	                        </div>
+	                        <div class="featured__item__text">
+	                            <h6><a href="#">${newItem.PNAME}</a></h6>
+	                            <h5>${newItem.PPRICE} 원</h5>
+	                        </div>
+	                    </div>
+	                </div>
+	             </c:forEach>
             </div>
+            
         </div>
-        
-        
-        
     </section>
     <!-- Featured Section End -->
 
