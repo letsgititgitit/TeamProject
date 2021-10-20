@@ -34,6 +34,26 @@ public class FAQDao {
 		int cnt = sqlSessionTemplate.selectOne(namespace + ".getTotalCount", map);
 		return cnt;
 	}
+
+	public int insertFAQ(FAQBean faq) {
+		int cnt = sqlSessionTemplate.insert(namespace + ".insertFAQ", faq);
+		return cnt;
+	}
+
+	public int deleteFAQ(int fNUM) {
+		int cnt = sqlSessionTemplate.delete(namespace + ".deleteFAQ", fNUM);
+		return 0;
+	}
+
+	public FAQBean getFAQ(int fNUM) {
+		FAQBean faq = sqlSessionTemplate.selectOne(namespace + ".getFAQ", fNUM);
+		return faq;
+	}
+
+	public int updateQNA(FAQBean faq) {
+		int cnt = sqlSessionTemplate.update(namespace + ".updateQNA", faq);
+		return 0;
+	}
 	
 	
 	
