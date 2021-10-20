@@ -272,6 +272,7 @@
 											</c:if>
 											
 											<!-- 사용자라면(이미지없을때) -->
+											<c:if test="${empty rebean.RIMG}">
 												<tr>
 													<th>${rebean.RID}
 														<c:if test="${rebean.RRELEVEL == 0}">
@@ -311,6 +312,7 @@
 												<tr>
 													<td colspan="2">${rebean.RCONTENT}</td>
 												</tr>
+												</c:if>
 											</c:forEach>
 										</table>
 										
