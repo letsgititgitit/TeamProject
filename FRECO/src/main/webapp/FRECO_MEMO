@@ -21,13 +21,18 @@ CREATE TABLE MEMBER(
 	MCOUPON INT,
 	MPOINT INT DEFAULT 0	
 );
-
-
 INSERT INTO MEMBER(MID, MNUM, MPW, MNAME) 
 VALUES('ADMIN', MEMSEQ.NEXTVAL, '1234', '운영자');
 
---한글처리 확인중 
- 
+INSERT INTO MEMBER
+VALUES('lee1843',MEMSEQ.NEXTVAL,'1234','이민호','1999/12/12','01011112222','139-34','서울특별시 광진구 일하로 123-3길','111동 203호',3000,34);
+
+INSERT INTO MEMBER
+VALUES('park1025',MEMSEQ.NEXTVAL,'1234','박지은','1999/12/12','01011112222','139-34','경기 일산서구 일산로 123-3길','101동 1001호',3000,34);
+
+INSERT INTO MEMBER
+VALUES('kim0911',MEMSEQ.NEXTVAL,'1234','김승인','1999/12/12','01011112222','139-34','인천 수원구 123-3길','120동 1601호',3000,34);
+
 COMMIT;
 
 SELECT * FROM MEMBER;
@@ -42,25 +47,193 @@ CREATE SEQUENCE PROSEQ
 
 DROP TABLE PRODUCT CASCADE CONSTRAINTS;
 CREATE TABLE PRODUCT(
-	PNUM INT PRIMARY KEY,
-	PNAME VARCHAR2(30),
-	PQTY INT,
-	PPRICE INT,
-	PPOINT INT,
-	PBEST INT,
-	PINPUTDATE DATE DEFAULT SYSDATE,
-	PCATEGORY VARCHAR2(50) ,
-	PSUBCATEGORY VARCHAR2(50),
-	PIMG VARCHAR2(50),
-	PSUBIMG VARCHAR2(50)
+   PNUM INT PRIMARY KEY,
+   PNAME VARCHAR2(30),
+   PQTY INT,
+   PPRICE INT,
+   PPOINT INT,
+   PBEST INT,
+   PINPUTDATE DATE DEFAULT SYSDATE,
+   PCATEGORY VARCHAR2(50),
+   PSUBCATEGORY VARCHAR2(50),
+   PIMG1 VARCHAR2(50),
+   PIMG2 VARCHAR2(50),
+   PIMG3 VARCHAR2(50),
+   PIMG4 VARCHAR2(50),
+   PIMG5 VARCHAR2(50),
+   PINFOIMG VARCHAR2(50),
+   PSUBIMG VARCHAR2(50)
 );
+
+
+
+INSERT INTO PRODUCT
+VALUES(PROSEQ.NEXTVAL, '감', 45, 10900, 109, 10, '2021/9/25', '식품', '과일',  
+'감1.jpg', '감2.jpg', '감3.jpg', '감4.jpg', '감5.jpg', '감info.jpg', '감설명.jpg');
+
+INSERT INTO PRODUCT
+VALUES(PROSEQ.NEXTVAL, '감귤', 33, 15900, 159, 4, '2021/10/2', '식품', '과일',  
+'감귤1.jpg', '감귤2.jpg', '감귤3.jpg', '감귤4.jpg', '감귤5.jpg', '감귤info.jpg', '감귤설명.jpg');
+
+INSERT INTO PRODUCT
+VALUES(PROSEQ.NEXTVAL, '망고', 10, 17500, 175, 5, '2021/10/7', '식품', '과일',  
+'망고1.jpg', '망고2.jpg', '망고3.jpg', '망고4.jpg', '망고5.jpg', '망고info.jpg', '망고설명.jpg');
+
+INSERT INTO PRODUCT
+VALUES(PROSEQ.NEXTVAL, '바나나', 50, 2200, 22, 0, '2021/10/1', '식품', '과일', 
+'바나나1.jpg', '바나나2.jpg', '바나나3.jpg', '바나나4.jpg', '바나나5.jpg', '바나나info.jpg', '바나나설명.jpg');
+
+INSERT INTO PRODUCT
+VALUES(PROSEQ.NEXTVAL, '메론', 10, 16700, 167, 11, '2021/10/1', '식품', '과일',  
+'메론1.jpg', '메론2.jpg', '메론3.jpg', '메론4.jpg', '메론5.jpg', '메론info.jpg', '메론설명.jpg');
+
+INSERT INTO PRODUCT 
+VALUES(PROSEQ.NEXTVAL, '방울토마토', 50, 3500, 35, 7, '2021/10/5', '식품', '과일',
+'방울토마토1.jpg', '방울토마토2.jpg', '방울토마토3.jpg', '방울토마토4.jpg', '방울토마토5.jpg', '방울토마토info.jpg', '방울토마토설명.jpg');
+
+INSERT INTO PRODUCT
+VALUES(PROSEQ.NEXTVAL, '배', 30, 12900, 129, 3, '2021/10/7', '식품', '과일',  
+'배1.jpg', '배2.jpg', '배3.jpg', '배4.jpg', '배5.jpg', '배info.jpg', '배설명.jpg');
+
+INSERT INTO PRODUCT
+VALUES(PROSEQ.NEXTVAL, '사과', 30, 6900, 69, 1, '2021/10/6', '식품', '과일',
+'사과1.jpg', '사과2.jpg', '사과3.jpg', '사과4.jpg', '사과5.jpg', '사과info.jpg', '사과설명.jpg');
+
+INSERT INTO PRODUCT
+VALUES(PROSEQ.NEXTVAL, '샤인머스켓', 10, 18900, 189, 2, '2021/10/4', '식품', '과일', 
+'샤인머스켓1.jpg', '샤인머스켓2.jpg', '샤인머스켓3.jpg', '샤인머스켓4.jpg', '샤인머스켓5.jpg', '샤인머스켓info.jpg', '샤인머스켓설명.jpg');
+
+INSERT INTO PRODUCT
+VALUES(PROSEQ.NEXTVAL, '수박', 8, 15800, 158, 3, '2021/9/1', '식품', '과일',  
+'수박1.jpg', '수박2.jpg', '수박3.jpg', '수박4.jpg', '수박5.jpg', '수박info.jpg', '수박설명.jpg');
+
+INSERT INTO PRODUCT
+VALUES(PROSEQ.NEXTVAL, '청포도', 30, 17600, 176, 8, '2021/10/1', '식품', '과일',  
+'청포도1.jpg', '청포도2.jpg', '청포도3.jpg', '청포도4.jpg', '청포도5.jpg', '청포도info.jpg', '청포도설명.jpg');
+
+INSERT INTO PRODUCT
+VALUES(PROSEQ.NEXTVAL, '키위', 30, 7900, 79, 15, '2021/10/1', '식품', '과일',  
+'키위1.jpg', '키위2.jpg', '키위3.jpg', '키위4.jpg', '키위5.jpg', '키위info.jpg', '키위설명.jpg');
+
+INSERT INTO PRODUCT(PNUM, PNAME, PQTY, PPRICE, PPOINT, PBEST, PINPUTDATE, PCATEGORY, PSUBCATEGORY,  PIMG1, PIMG2, PIMG3, PIMG4, PIMG5, PSUBIMG)
+VALUES(PROSEQ.NEXTVAL, '토마토', 50, 3500, 35, 0, '2021/10/5', '식품', '과일',
+'토마토1.jpg', '토마토2.jpg', '토마토3.jpg', '토마토4.jpg', '토마토5.jpg', '토마토설명.jpg');
+
+INSERT INTO PRODUCT
+VALUES(PROSEQ.NEXTVAL, '파인애플', 12, 13900, 139, 4, '2021/10/3', '식품', '과일',  
+'파인애플1.jpg', '파인애플2.jpg', '파인애플3.jpg', '파인애플4.jpg', '파인애플5.jpg', '파인애플info.jpg', '파인애플설명.jpg');
+
+INSERT INTO PRODUCT
+VALUES(PROSEQ.NEXTVAL, '파파야', 5, 9900, 99, 5, '2021/10/12', '식품', '과일',  
+'파파야1.jpg', '파파야2.jpg', '파파야3.jpg', '파파야4.jpg', '파파야5.jpg', '파파야info.jpg', '파파야설명.jpg');
+
+INSERT INTO PRODUCT
+VALUES(PROSEQ.NEXTVAL, '포도', 20, 21900, 219, 5, '2021/10/4', '식품', '과일',  
+'포도1.jpg', '포도2.jpg', '포도3.jpg', '포도4.jpg', '포도5.jpg', '포도info.jpg', '포도상세.jpg');
+
+INSERT INTO PRODUCT
+VALUES(PROSEQ.NEXTVAL, '감자', 50, 4000, 40, 11, '2021/10/5', '식품', '채소',  
+'감자1.jpg', '감자2.jpg', '감자3.jpg', '감자4.jpg', '감자5.jpg', '감자정보.png', '감자설명.jpg');
+
+INSERT INTO PRODUCT
+VALUES(PROSEQ.NEXTVAL, '깐마늘', 80, 3800, 38, 2, '2021/10/1', '식품', '채소',  
+'깐마늘1.jpg', '깐마늘2.jpg', '깐마늘3.jpg', '깐마늘4.jpg', '깐마늘5.jpg', '깐마늘info.jpg', '깐마늘설명.jpg');
+
+INSERT INTO PRODUCT
+VALUES(PROSEQ.NEXTVAL, '깐양파', 70, 2600, 26, 28, '2021/10/10', '식품', '채소',  
+'깐양파1.jpg', '깐양파2.jpg', '깐양파3.jpg', '깐양파4.jpg', '깐양파5.jpg', '깐양파info.jpg', '깐양파설명.jpg');
+
+INSERT INTO PRODUCT
+VALUES(PROSEQ.NEXTVAL, '깻잎', 33, 1400, 14, 8, '2021/10/1', '식품', '채소',  
+'깻잎1.jpg', '깻잎2.jpg', '깻잎3.jpg', '깻잎4.jpg', '깻잎5.jpg', '깻잎info.jpg', '깻잎설명.jpg');
+
+INSERT INTO PRODUCT
+VALUES(PROSEQ.NEXTVAL, '대파', 18, 2400, 24, 6, '2021/10/2', '식품', '채소',  
+'대파1.jpg', '대파2.jpg', '대파3.jpg', '대파4.jpg', '대파5.jpg', '대파info.jpg', '대파설명.jpg');
+
+INSERT INTO PRODUCT
+VALUES(PROSEQ.NEXTVAL, '맛타리버섯', 3, 1330, 13.3, 1, '2021/10/10', '식품', '채소',  
+'맛타리버섯1.jpg', '맛타리버섯2.jpg', '맛타리버섯3.jpg', '맛타리버섯4.jpg', '맛타리버섯5.jpg', '맛타리버섯info.png', '맛타리버섯설명.jpg');
+
+INSERT INTO PRODUCT
+VALUES(PROSEQ.NEXTVAL, '미나리', 8, 4600, 46, 3, '2021/10/10', '식품', '채소',  
+'미나리1.jpg', '미나리2.jpg', '미나리3.jpg', '미나리4.jpg', '미나리5.jpg', '미나리info.png', '미나리설명.jpg');
+
+INSERT INTO PRODUCT
+VALUES(PROSEQ.NEXTVAL, '부추', 45, 2100, 21, 5, '2021/10/12', '식품', '채소',  
+'부추1.jpg', '부추2.jpg', '부추3.jpg', '부추4.jpg', '부추5.jpg', '부추info.jpg', '부추설명.jpg');
+
+INSERT INTO PRODUCT
+VALUES(PROSEQ.NEXTVAL, '브로콜리', 30, 5900, 59, 10, '2021/10/12', '식품', '채소',  
+'브로콜리1.jpg', '브로콜리2.jpg', '브로콜리3.jpg', '브로콜리4.jpg', '브로콜리5.jpg', '브로콜리info.png', '브로콜리설명.jpg');
+
+INSERT INTO PRODUCT
+VALUES(PROSEQ.NEXTVAL, '상추', 11, 3200, 32, 1, '2021/10/11', '식품', '채소',  
+'상추1.jpg', '상추2.jpg', '상추3.jpg', '상추4.jpg', '상추5.jpg', '상추info.jpg', '상추설명.jpg');
+
+INSERT INTO PRODUCT
+VALUES(PROSEQ.NEXTVAL, '시금치', 26, 4500, 45, 3, '2021/10/1', '식품', '채소',  
+'시금치1.jpg', '시금치2.jpg', '시금치3.jpg', '시금치4.jpg', '시금치5.jpg', '시금치info.png', '시금치설명.jpg');
+
+INSERT INTO PRODUCT
+VALUES(PROSEQ.NEXTVAL, '쌈배추', 34, 5000, 50, 9, '2021/10/7', '식품', '채소',  
+'쌈배추1.jpg', '쌈배추2.jpg', '쌈배추3.jpg', '쌈배추4.jpg', '쌈배추5.jpg', '쌈배추info.png', '쌈배추설명.jpg');
+
+INSERT INTO PRODUCT
+VALUES(PROSEQ.NEXTVAL, '쑥갓', 20, 2200, 22, 0, '2021/10/7', '식품', '채소',  
+'쑥갓1.jpg', '쑥갓2.jpg', '쑥갓3.jpg', '쑥갓4.jpg', '쑥갓5.jpg', '쑥갓info.png', '쑥갓설명.png');
+
+INSERT INTO PRODUCT
+VALUES(PROSEQ.NEXTVAL, '아스파라거스', 15, 7500, 75, 11, '2021/10/8', '식품', '채소',  
+'아스파라거스1.jpg', '아스파라거스2.jpg', '아스파라거스3.jpg', '아스파라거스4.jpg', '아스파라거스5.jpg', '아스파라거스info.png', '아스파라거스설명.jpg');
+
+INSERT INTO PRODUCT
+VALUES(PROSEQ.NEXTVAL, '애호박', 63, 2600, 26, 13, '2021/10/5', '식품', '채소',  
+'애호박1.jpg', '애호박2.jpg', '애호박3.jpg', '애호박4.jpg', '애호박5.jpg', '애호박info.png', '애호박설명.jpg');
+
+INSERT INTO PRODUCT
+VALUES(PROSEQ.NEXTVAL, '양상추', 63, 5500, 55, 2, '2021/10/4', '식품', '채소',  
+'양상추1.jpg', '양상추2.jpg', '양상추3.jpg', '양상추4.jpg', '양상추5.jpg', '양상추info.png', '양상추설명.jpg');
+
+INSERT INTO PRODUCT
+VALUES(PROSEQ.NEXTVAL, '양송이버섯', 13, 5500, 55, 4, '2021/10/4', '식품', '채소',  
+'양송이버섯1.jpg', '양송이버섯2.jpg', '양송이버섯3.jpg', '양송이버섯4.jpg', '양송이버섯5.jpg', '양송이버섯info.png', '양송이버섯설명.jpg');
+
+INSERT INTO PRODUCT
+VALUES(PROSEQ.NEXTVAL, '양파', 43, 2800, 28, 5, '2021/10/2', '식품', '채소',  
+'양파1.jpg', '양파2.jpg', '양파3.jpg', '양파4.jpg', '양파5.jpg', '양파info.png', '양파설명.jpg');
+
+INSERT INTO PRODUCT
+VALUES(PROSEQ.NEXTVAL, '오이', 21, 7700, 77, 3, '2021/10/6', '식품', '채소',  
+'오이1.jpg', '오이2.jpg', '오이3.jpg', '오이4.jpg', '오이5.jpg', '오이info.png', '오이설명.jpg');
+
+INSERT INTO PRODUCT
+VALUES(PROSEQ.NEXTVAL, '우엉', 13, 5330, 53.3, 7, '2021/10/10', '식품', '채소',  
+'우엉1.jpg', '우엉2.jpg', '우엉3.jpg', '우엉4.jpg', '우엉5.jpg', '우엉info.png', '우엉설명.jpg');
+
+INSERT INTO PRODUCT
+VALUES(PROSEQ.NEXTVAL, '청양고추', 50, 1800, 18, 4, '2021/10/4', '식품', '채소',  
+'청양고추1.jpg', '청양고추2.jpg', '청양고추3.jpg', '청양고추4.jpg', '청양고추5.jpg', '청양고추info.jpg', '청양고추설명.jpg');
+
+INSERT INTO PRODUCT
+VALUES(PROSEQ.NEXTVAL, '표고버섯', 21, 3500, 35, 5, '2021/10/5', '식품', '채소',  
+'표고버섯1.jpg', '표고버섯2.jpg', '표고버섯3.jpg', '표고버섯4.jpg', '표고버섯5.jpg', '표고버섯info.jpg', '표고버섯설명.jpg');
+
+INSERT INTO PRODUCT
+VALUES(PROSEQ.NEXTVAL, '프릴아이스', 17, 2700, 27, 4, '2021/10/8', '식품', '채소',  
+'프릴아이스1.jpg', '프릴아이스2.jpg', '프릴아이스3.jpg', '프릴아이스4.jpg', '프릴아이스5.jpg', '프릴아이스info.jpg', '프릴아이스설명.jpg');
+
+INSERT INTO PRODUCT
+VALUES(PROSEQ.NEXTVAL, '호박고구마', 17, 8800, 88, 7, '2021/10/9', '식품', '채소',  
+'호박고구마1.jpg', '호박고구마2.jpg', '호박고구마3.jpg', '호박고구마4.jpg', '호박고구마5.jpg', '호박고구마info.jpg', '호박고구마설명.jpg');
+
 
 COMMIT;
 
 SELECT * FROM PRODUCT;
 -------------------------------------------------------------------------------------
 -- ORDERS TABLE
--------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------DROP SEQUENCE ORDSEQ;
 DROP SEQUENCE ORDSEQ;
 CREATE SEQUENCE ORDSEQ
 	START WITH 1001
@@ -69,17 +242,168 @@ CREATE SEQUENCE ORDSEQ
 
 DROP TABLE ORDERS CASCADE CONSTRAINTS;
 CREATE TABLE ORDERS(
-	OINVOICE INT PRIMARY KEY,
-	OMID VARCHAR2(50) REFERENCES MEMBER(MID) ON DELETE SET NULL,
-	OPNUM INT REFERENCES PRODUCT(PNUM) ON DELETE SET NULL,
-	OQTY INT,
-	OORDERDATE DATE DEFAULT SYSDATE,
-	OREFUND VARCHAR2(20)
-);
+	OINVOICE INT PRIMARY KEY,  --송장번호
+	OMID VARCHAR2(50) REFERENCES MEMBER(MID) ON DELETE SET NULL, --주문자
+	OORDERDATE DATE DEFAULT SYSDATE,   --주문날짜
+	OUSECOUPON INT, --결제시 사용된 쿠폰
+	OUSEPOINT INT, --결제시 사용된 포인트
+	OREFUND VARCHAR2(20)   --환불여부
+); 
+
+INSERT INTO ORDERS
+VALUES(ORDSEQ.NEXTVAL,'park1025','2021-10-15',34,0,'YES');
+
+INSERT INTO ORDERS
+VALUES(ORDSEQ.NEXTVAL,'park1025','2021-10-16',34,0,'YES');
+
+INSERT INTO ORDERS
+VALUES(ORDSEQ.NEXTVAL,'lee1843','2021-10-16',34,100,'YES');
+
+INSERT INTO ORDERS
+VALUES(ORDSEQ.NEXTVAL,'park1025','2021-10-16',34,0,'YES');
+
+INSERT INTO ORDERS
+VALUES(ORDSEQ.NEXTVAL,'lee1843','2021-10-16',34,100,'YES');
+
+INSERT INTO ORDERS
+VALUES(ORDSEQ.NEXTVAL,'park1025','2021-10-16',34,0,'YES');
+
+INSERT INTO ORDERS
+VALUES(ORDSEQ.NEXTVAL,'lee1843','2021-10-16',34,100,'YES');
+
+INSERT INTO ORDERS
+VALUES(ORDSEQ.NEXTVAL,'park1025','2021-10-16',34,0,'YES');
+
+INSERT INTO ORDERS
+VALUES(ORDSEQ.NEXTVAL,'lee1843','2021-10-16',34,100,'YES');
+
+INSERT INTO ORDERS
+VALUES(ORDSEQ.NEXTVAL,'park1025','2021-10-17',34,0,'YES');
+
+INSERT INTO ORDERS
+VALUES(ORDSEQ.NEXTVAL,'lee1843','2021-10-17',34,100,'YES');
+
+INSERT INTO ORDERS
+VALUES(ORDSEQ.NEXTVAL,'park1025','2021-10-18',34,0,'YES');
+
+INSERT INTO ORDERS
+VALUES(ORDSEQ.NEXTVAL,'park1025','2021-10-18',34,0,'YES');
+
+INSERT INTO ORDERS
+VALUES(ORDSEQ.NEXTVAL,'park1025','2021-10-18',34,0,'YES');
+
+INSERT INTO ORDERS
+VALUES(ORDSEQ.NEXTVAL,'lee1843','2021-10-19',34,100,'YES');
+
+INSERT INTO ORDERS
+VALUES(ORDSEQ.NEXTVAL,'lee1843','2021-10-19',34,100,'YES');
+
+INSERT INTO ORDERS
+VALUES(ORDSEQ.NEXTVAL,'lee1843','2021-10-19',34,100,'YES');
+
+INSERT INTO ORDERS
+VALUES(ORDSEQ.NEXTVAL,'park1025','2021-10-19',34,0,'YES');
+
+INSERT INTO ORDERS
+VALUES(ORDSEQ.NEXTVAL,'park1025','2021-10-19',34,0,'YES');
+
+INSERT INTO ORDERS
+VALUES(ORDSEQ.NEXTVAL,'park1025','2021-10-19',34,0,'NO');
+
+INSERT INTO ORDERS
+VALUES(ORDSEQ.NEXTVAL,'lee1843','2021-10-20',34,100,'YES');
+
+INSERT INTO ORDERS
+VALUES(ORDSEQ.NEXTVAL,'lee1843','2021-10-20',34,100,'YES');
+
+INSERT INTO ORDERS
+VALUES(ORDSEQ.NEXTVAL,'park1025','2021-10-20',34,0,'NO');
+
+INSERT INTO ORDERS
+VALUES(ORDSEQ.NEXTVAL,'lee1843',sysdate,34,100,'YES');
+
+INSERT INTO ORDERS
+VALUES(ORDSEQ.NEXTVAL,'park1025',sysdate,34,0,'NO');
+
+INSERT INTO ORDERS
+VALUES(ORDSEQ.NEXTVAL,'kim0911',sysdate,34,0,'NO');
+
+INSERT INTO ORDERS
+VALUES(ORDSEQ.NEXTVAL,'park1025',sysdate,34,0,'NO');
+
+INSERT INTO ORDERS
+VALUES(ORDSEQ.NEXTVAL,'kim0911',sysdate,34,0,'NO');
+
+INSERT INTO ORDERS
+VALUES(ORDSEQ.NEXTVAL,'lee1843',sysdate,34,100,'YES');
+
+INSERT INTO ORDERS
+VALUES(ORDSEQ.NEXTVAL,'park1025',sysdate,34,0,'NO');
+
+INSERT INTO ORDERS
+VALUES(ORDSEQ.NEXTVAL,'kim0911',sysdate,34,0,'NO');
+
+INSERT INTO ORDERS
+VALUES(ORDSEQ.NEXTVAL,'lee1843',sysdate,34,100,'YES');
+
+INSERT INTO ORDERS
+VALUES(ORDSEQ.NEXTVAL,'park1025',sysdate,34,0,'NO');
+
+INSERT INTO ORDERS
+VALUES(ORDSEQ.NEXTVAL,'kim0911',sysdate,3000,2000,'NO');
+
+INSERT INTO ORDERS
+VALUES(ORDSEQ.NEXTVAL,'lee1843',sysdate,3000,2000,'YES');
 
 COMMIT;
-
 SELECT * FROM ORDERS;
+
+-------------------------------------------------------------------------------------
+-- ORDERDETAIL TABLE
+-------------------------------------------------------------------------------------
+
+DROP SEQUENCE ORDDTAILSEQ;
+CREATE SEQUENCE ORDDTAILSEQ
+	START WITH 1
+	INCREMENT BY 1 
+	NOCACHE;
+
+DROP TABLE ORDERDETAIL CASCADE CONSTRAINTS;
+CREATE TABLE ORDERDETAIL(
+	ODNUM INT PRIMARY KEY, -- 번호
+	ODOINVOICE INT REFERENCES ORDERS(OINVOICE) ON DELETE SET NULL, --송장번호
+	ODPNUM INT REFERENCES PRODUCT(PNUM) ON DELETE SET NULL, --주문상품
+	ODQTY INT, --주문수량
+	ODRIVEW VARCHAR2(20) --리뷰 썼는지 여부
+);
+
+INSERT INTO ORDERDETAIL
+VALUES(ORDDTAILSEQ.NEXTVAL,1035,46,1,'YES');
+
+INSERT INTO ORDERDETAIL
+VALUES(ORDDTAILSEQ.NEXTVAL,1035,10,1,'YES');
+
+INSERT INTO ORDERDETAIL
+VALUES(ORDDTAILSEQ.NEXTVAL,1035,34,1,'YES');
+
+INSERT INTO ORDERDETAIL
+VALUES(ORDDTAILSEQ.NEXTVAL,1035,22,5,'YES');
+
+INSERT INTO ORDERDETAIL
+VALUES(ORDDTAILSEQ.NEXTVAL,1034,18,1,'NO');
+
+INSERT INTO ORDERDETAIL
+VALUES(ORDDTAILSEQ.NEXTVAL,1034,28,1,'NO');
+
+INSERT INTO ORDERDETAIL
+VALUES(ORDDTAILSEQ.NEXTVAL,1034,38,1,'NO');
+
+INSERT INTO ORDERDETAIL
+VALUES(ORDDTAILSEQ.NEXTVAL,1034,2,2,'NO');
+
+COMMIT;
+SELECT * FROM ORDERDETAIL;
+
 
 -------------------------------------------------------------------------------------
 -- COUPON TABLE
@@ -99,8 +423,10 @@ CREATE TABLE COUPON(
 	CDEADLINE DATE
 );
 
-COMMIT;
+INSERT INTO COUPON(CNUM,CNAME,CPRICE,CDEADLINE)
+VALUES(COUSEQ.NEXTVAL,'!조건없이 3000원 할인!',3000,'2021-11-30');
 
+COMMIT;
 SELECT * FROM COUPON;
 -------------------------------------------------------------------------------------
 -- QNABOARD TABLE
@@ -113,19 +439,36 @@ CREATE SEQUENCE QNASEQ
 
 DROP TABLE QNABOARD CASCADE CONSTRAINTS;
 CREATE TABLE QNABOARD(
-	QNUM INT PRIMARY KEY,
-	QID VARCHAR2(50) REFERENCES MEMBER(MID) ON DELETE SET NULL,
-	QSUBJECT VARCHAR2(100),
-	QPW VARCHAR2(50),
-	QREGDATE DATE DEFAULT SYSDATE,
-	QCONTENT VARCHAR2(500),
-	QREF INT,
-	QRESTEP INT,
-	QRELEVEL INT
+   QNUM INT PRIMARY KEY,
+   QID VARCHAR2(50) REFERENCES MEMBER(MID) ON DELETE SET NULL,
+   QSUBJECT VARCHAR2(100),
+   QPW VARCHAR2(50),
+   QREGDATE DATE DEFAULT SYSDATE,
+   QCONTENT VARCHAR2(500),
+   QREPLY VARCHAR2(30),
+   QREF INT,
+   QRESTEP INT,
+   QRELEVEL INT
 );
 
 COMMIT;
 
+INSERT INTO QNABOARD
+VALUES(QNASEQ.NEXTVAL,'lee1843','환불 문의','1234',sysdate,'환불 신청했는데 언제 되나요?','답변완료',QNASEQ.CURRVAL,0,0);
+
+INSERT INTO QNABOARD
+VALUES(QNASEQ.NEXTVAL,'kim0911','주문 수정 문의','1234',sysdate,'키위 하나 주문했는데 두개로 변경 가능한가요???','답변완료',QNASEQ.CURRVAL,0,0);
+
+INSERT INTO QNABOARD
+VALUES(QNASEQ.NEXTVAL,'park1025','대량 주문 문의','1234',sysdate,'대량 주문 시 할인이 따로 없을까요','답변대기',QNASEQ.CURRVAL,0,0);
+
+INSERT INTO QNABOARD(QNUM,QID,QSUBJECT,QPW,QREGDATE,QCONTENT,QREF,QRESTEP,QRELEVEL)
+VALUES(QNASEQ.NEXTVAL,'ADMIN','[답글] 환불 문의','1234',sysdate,'환불 처리 완료했습니다',1,1,1);
+
+INSERT INTO QNABOARD(QNUM,QID,QSUBJECT,QPW,QREGDATE,QCONTENT,QREF,QRESTEP,QRELEVEL)
+VALUES(QNASEQ.NEXTVAL,'ADMIN','[답글] 주문 수정 문의','1234',sysdate,'주문 수정은 불가합니다. 취소하고 재주문해주세요.',2,1,1);
+
+COMMIT;
 SELECT * FROM QNABOARD;
 
 -------------------------------------------------------------------------------------
@@ -139,20 +482,33 @@ CREATE SEQUENCE REVSEQ
 
 DROP TABLE REVIEWBOARD CASCADE CONSTRAINTS;
 CREATE TABLE REVIEWBOARD (
-	RNUM INT PRIMARY KEY,
-	RID VARCHAR2(50) REFERENCES MEMBER(MID) ON DELETE SET NULL,
-	RPW VARCHAR2(50) NOT NULL,
-	RCONTENT VARCHAR2(500) NOT NULL,
-	RSUBJECT VARCHAR2(100) NOT NULL,
-	RRATING VARCHAR2(30) NOT NULL,
-	RIMG VARCHAR2(100),
+	RNUM INT PRIMARY KEY,  --번호
+	RID VARCHAR2(50) REFERENCES MEMBER(MID) ON DELETE SET NULL, --작성자 
+	RPW VARCHAR2(50), --작성비번 <-NOT NULL빼자
+	RCONTENT VARCHAR2(500) NOT NULL, --내용
+	RINVOICE INT, --해당송장번호
+	RSUBJECT INT REFERENCES PRODUCT(PNUM) ON DELETE SET NULL, --상품번호
+	RRATING INT, --평점
+	RIMG VARCHAR2(100), --첨부사진
 	RREF INT,
 	RRESTEP INT,
-	RRELEVEL INT
+	RRELEVEL INT,
+	RREPLY VARCHAR2(20)
 );
 
-COMMIT;
+INSERT INTO REVIEWBOARD
+VALUES(REVSEQ.NEXTVAL,'lee1843',1234,'생각보다 괜찮음',1035,34,4,'gam.jfif',REVSEQ.CURRVAL,0,0,'답글대기');
 
+INSERT INTO REVIEWBOARD(RNUM,RID,RPW,RCONTENT,RINVOICE,RSUBJECT,RRATING,RREF,RRESTEP,RRELEVEL,RREPLY)
+VALUES(REVSEQ.NEXTVAL,'lee1843',1234,'처음 구매하는데 당도도 높고 맛있네요 만족합니다~',1035,10,5, REVSEQ.CURRVAL,0,0,'답글대기');
+
+INSERT INTO REVIEWBOARD(RNUM,RID,RPW,RCONTENT,RINVOICE,RSUBJECT,RRATING,RIMG,RREF,RRESTEP,RRELEVEL,RREPLY)
+VALUES(REVSEQ.NEXTVAL,'kim0911',1234,'맛있네요',1034,38,5,'toma.jfif',REVSEQ.CURRVAL,0,0,'답글완료');
+
+INSERT INTO REVIEWBOARD(RNUM,RID,RCONTENT,RSUBJECT,RREF,RRESTEP,RRELEVEL)
+VALUES(REVSEQ.NEXTVAL,'ADMIN','소중한 후기 감사합니다~ 포인트 적립 도와드리겠습니다~ 늘 행복하세요',38,3,1,1);
+
+COMMIT;
 SELECT * FROM REVIEWBOARD;
 
 -------------------------------------------------------------------------------------
@@ -172,7 +528,51 @@ CREATE TABLE FAQ(
 	FCONTENT VARCHAR2(500)
 );
 
+
+INSERT INTO FAQ 
+VALUES(FAQSEQ.NEXTVAL, '배송문의', '해외배송 안내', '해외 배송은 우체국 EMS로 발송이 되며 배송기간은 3~15일 내외로 소요됩니다.');
+
+INSERT INTO FAQ 
+VALUES(FAQSEQ.NEXTVAL, '교환/반품/환불', '교환/반품은 어떻게 하나요', '모든 상품 수령 후 7일 이내(주말,공휴일 제외) 도착된 상품에 한해 처리가능합니다.');
+
+INSERT INTO FAQ 
+VALUES(FAQSEQ.NEXTVAL, '주문결제', '쿠폰사용', '발급받은 쿠폰은 마이페이지에서 확인 가능하며 결제 시 적용해주세요');
+
+INSERT INTO FAQ 
+VALUES(FAQSEQ.NEXTVAL, '기타문의', '리뷰 적립금 기준은 어떻게 되나요?', '후기 적립금 지급 기준 1.텍스트 리뷰 300 ~ 500원 2.포토,동영상 리뷰 500 ~ 1000원까지 3.다른 쇼핑몰 구매 포토,동영상 리뷰 250~500원');
+
+INSERT INTO FAQ 
+VALUES(FAQSEQ.NEXTVAL, '주문결제', '이미 주문을 했는데, 상품 옵션을 변경하고 싶어요.', '주문완료 이후에는 주문한 상품의 옵션을 변경할 수 없습니다. 변경을 원하신다면 주문취소 후 다시 주문하여 주시기 바랍니다.');
+
+INSERT INTO FAQ 
+VALUES(FAQSEQ.NEXTVAL, '교환/반품/환불', '반품 신청을 철회하고 싶어요', '반품접수 후, 반품할 상품을 아직 보내지 않을 경우, 마이페이지에서 반품 철회를 하실 수 있습니다.');
+
+INSERT INTO FAQ 
+VALUES(FAQSEQ.NEXTVAL, '배송문의', '상품을 받지 못했는데 배송완료로 확인됩니다.', '만약 배송완료로 확인되나 상품을 받지 못했을 경우 배송완료 문자 혹은 [마이페이지 > 배송조회]에서 사진확인');
+
+INSERT INTO FAQ 
+VALUES(FAQSEQ.NEXTVAL, '배송문의', '주문한 상품의 배송상태가 계속 상품준비중으로 표시됩니다.', '상품준비준 단계는 판매자가 고객님의 주문을 확인하여 상품을 포장,배송을 준비하는 상태입니다. 갑자스러운 주문량 증가 등 예상치 못한 상황이 발생할 경우 상품대기중 단계가 길어질 수 있습니다.');
+
+INSERT INTO FAQ 
+VALUES(FAQSEQ.NEXTVAL, '교환/반품/환불', '배송 전 취소신청을 했는데, 상품이 배송되었습니다.', '상품준비중 상태에서 취소를 한 경우 판매자가 상품의 발송을 취소할 수 있지만 판매자가 상품의 발송을 중지하지 못한 경우에는 1~3일 이내에 택배기사가 방문하여 상품을 회수하게 됩니다.');
+
+INSERT INTO FAQ 
+VALUES(FAQSEQ.NEXTVAL, '기타문의', '건강식품은 몇 개까지 구매할 수 있나요?', '건강기능식품은 최대 6병까지 구매 가능하며, 면세 통관범위를 초과한 경우에는 세관에서 폐기될 수 있습니다.');
+
+INSERT INTO FAQ 
+VALUES(FAQSEQ.NEXTVAL, '교환/반품/환불', '다른 사람 명의의 계좌로 환불 가능한가요?', '고객님 본의 명의의 계좌로만 환불이 가능합니다.');
+
+INSERT INTO FAQ 
+VALUES(FAQSEQ.NEXTVAL, '기타문의', '본인인증 시 이미 가입한 회원으로 인증이 불가합니다.', '고객님의 정보로 이미 가입된 다른 아이디가 존재할 경우 추가 본인인증이 제한 됩니다.  아이디 찾기를 통하여 재로그인 하실 수 있으며, 해당 아이디로 쿠페이 본인인증 후 이용하실 수 있습니다.');
+
+INSERT INTO FAQ 
+VALUES(FAQSEQ.NEXTVAL, '주문결제', '이미 주문을 했는데 결제수단을 변경할 수 있나요?', '고객님 본의 명의의 계좌로만 환불이 가능합니다.');
+
+INSERT INTO FAQ 
+VALUES(FAQSEQ.NEXTVAL, '배송문의', '상품을 구매했는데 일부만 배송되었어요', '상품이 누락되었다면 교환을 통해 상품을 다시 받거나, 반품하고 환불받을 수 있습니다.');
+
+INSERT INTO FAQ 
+VALUES(FAQSEQ.NEXTVAL, '주문결제', '가입하지 않고 주문할 수 있나요?', '회원가입을 하셔야만 주문이 가능합니다. 회원으로 가입할 경우 쿠팡에서 상품 구매가 가능하고, 할인 이벤트/할인쿠폰 등을 경험하실 수 있습니다.');
+
 COMMIT;
-
 SELECT * FROM FAQ;
-
