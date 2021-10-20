@@ -1,3 +1,4 @@
+<%@include file="../display/top_header.jsp" %>
 <%@include file="../display/top.jsp" %>
 <%@include file="../common/common.jsp" %> 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -11,7 +12,7 @@
 		myarea = document.getElementById("result1");
 		myarea.innerHTML= selText;    
 	}
-
+	
 	function onlyNumber(memPoint, tprice){
 		//alert(tprice);
 		
@@ -113,7 +114,7 @@
                                     </td>
                                     <td class="shoping__cart__price">                                   
                                      	<fmt:formatNumber var="PPRICE" value="${cart.PPRICE}" pattern="###,###"/>
-                                     		${PPRICE }                                      
+                                     		${PPRICE}                                      
                                          <a style="font-size:16px">
                                          <fmt:formatNumber var="PPOINT" value="${cart.PPOINT}" pattern="###,###"/>
                                          [point:${PPOINT}]</a>
@@ -126,10 +127,10 @@
                                                                         
                                     <td class="shoping__cart__total">
                                         <fmt:formatNumber var="AMOUNTPRICE" value="${cart.AMOUNTPRICE}" pattern="###,###"/>                                       
-                                        ${AMOUNTPRICE}
+                                        	${AMOUNTPRICE}
                                         <a style="font-size:16px">
                                         <fmt:formatNumber var="AMOUNTPOINT" value="${cart.AMOUNTPOINT}" pattern="###,###"/>
-                                        [point:${AMOUNTPOINT}]</a>
+                                        	[point:${AMOUNTPOINT}]</a>
                                     </td>
                                 </tr>
                                </c:forEach>
@@ -148,16 +149,16 @@
                         
                             <h5>쿠폰 선택</h5>
                             	<select name="useCoupon" id="selcou" onChange="selcoupon()">
-                            		<option value="">선택안함</option>
-                            		<option value="${MCOUPON}">
-                            			<fmt:formatNumber value="${MCOUPON}" pattern="###,###"/>원 할인 적용
-                            		</option>
+                            		<option value="0">선택안함</option>
+                            		<c:if test="${MCOUPON != 0}">
+	                            		<option value="${MCOUPON}">${MCouponName}</option>
+                            		</c:if>
                             	</select>
                             	
 							<br><br><br><br><hr><br>
 							
                             <h5>포인트 사용</h5>	       
-                            	<input type="text" id="useMPOINT" name="useMPOINT" value="" onblur="onlyNumber(${MPOINT},${totalPrice})" >
+                            	<input type="text" id="useMPOINT" name="useMPOINT" value="0" onblur="onlyNumber(${MPOINT},${totalPrice})">
                             		 &nbsp;&nbsp; 사용가능 포인트 : ${MPOINT}
                                 
                         </div>
@@ -178,10 +179,11 @@
                         <h5>최종 결제 금액</h5>
                         <ul>
 							<li>최종 금액<span id="result3">    </span></li>
-							<li>적립 포인트<span>${AMOUNTPOINT}</span></li>
+							<li>적립 포인트<span> <fmt:formatNumber value="${totalPoint}" pattern="###,###"/> </span></li>
 						</ul>
-                        	<input type="hidden" value="결과" >
-                        <input class="order-btn" type="submit" value="결제하기" >
+                        	<input type="hidden" name="totalPaymentPoint" value="${totalPoint}" >
+                        	<input type="hidden" name="totalPaymentPrice" value="${totalPrice}" >
+                        <input class="order-btn" type="submit" value="결제하기">
                     </div>
                 </div>
             </div>

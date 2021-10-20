@@ -51,47 +51,58 @@
                 <!-- 테이블 시작 -->
                 <div class="col-lg-8 col-md-7 order-md-1 order-1">
                     <div class="blog__details__text">
+                    
 						<div class="col-lg-12" style="margin-top: -70px; margin-left: -100px;margin-bottom: 100px;" >
-						<div class="section-title">
-								<h2>주문내역</h2>
+							<div class="section-title">
+									<h2>주문내역</h2>
 							</div>
 						</div>                      
                     
 						<table class="table table-hover" style="margin-top: -50px; margin-left: -100px;">
 							  <thead>
 							    <tr align="center">
-							      <th scope="col">주문번호</th>
+							      <th scope="col">번호</th>
+							      <th scope="col">송장번호</th>
 							      <th scope="col">주문날짜</th>
-							      <th scope="col">상품명</th>
-							      <th scope="col">수량</th>
-							      <th scope="col">가격</th>
+							      <th scope="col">상세보기</th>
 							      <th scope="col">반품신청</th>
 							    </tr>
 							  </thead>
 							  <tbody>
 								<tr>
-									<c:if test="${empty lists }">
+									<c:if test="${empty olists}">
 										<tr align="center">
 											<td colspan="6">주문내역이 없습니다</td>
 										</tr>
 									</c:if>	
 								</tr> 
-								<c:forEach var="#" items="${lists}">
-										<tr>
-											<td></td>
-											<td></td>
-											<td></td>
-											<td></td>
-											<td></td>
-											<td></td>
+								<c:forEach var="olists" items="${olists}">
+										<tr align="center">
+											<td>
+												<c:set var="i" value="${i-1}"/>${number +i}			
+											</td>
+											<td>${olists.OINVOICE}</td>
+											<td>${olists.OORDERDATE}</td>
+											<td><input type="button" value="상세보기" 
+														onClick="location.href='mypageODetailList.mp?pageNumber=${pageNumber}&OINVOICE=${olists.OINVOICE}&OREFUND=${olists.OREFUND}'">
+											</td>
+											<td><input type="button"
+												 <c:if test="${olists.OREFUND eq 'NO'}"> value="환불신청" </c:if>
+												 <c:if test="${olists.OREFUND eq 'YES'}"> value="환불 진행중" disabled</c:if>
+														onClick="location.href='orderReturn.mp?pageNumber=${pageNumber}&OINVOICE=${olists.OINVOICE}'"></td>
 										</tr>
-								</c:forEach>
+								</c:forEach>	
 							  </tbody>
 							</table>
 						<!-- 테이블 끝 -->	
+							<br><br>
+							<div class='product__pagination'>
+	                			${pageInfo.getPagingHtml()}
+	               			</div>   
                    		 </div>
                 	</div>
               	</div>  
+              	
          	</div> 
        </div>
    </section>
