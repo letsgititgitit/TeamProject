@@ -119,7 +119,7 @@
                                             <td>
                                             	<c:choose>
                                             		<c:when test="${review.RREPLY eq '답글대기'}">
-                                            			<input type="button" class="btn btn-outline-danger btn-sm" value="${review.RREPLY }" onClick="location.href='reviewreply.admin?RID=${review.RID }&RREF=${review.RREF}&RCONTENT=${review.RCONTENT }'">                                            
+                                            			<input type="button" class="btn btn-outline-danger btn-sm" value="${review.RREPLY }" onClick="location.href='reviewreply.admin?RID=${review.RID }&RREF=${review.RREF}&RCONTENT=${review.RCONTENT }&RSUBJECT=${review.RSUBJECT }'">                                            
                                             		</c:when>
                                             		<c:otherwise>
                                             			<input type="button" class="btn btn-outline-primary btn-sm" value="${review.RREPLY }" onClick="location.href='reviewdetail.admin?RREF=${review.RREF}'">

@@ -33,7 +33,7 @@
   	</select>
 	
 	<!-- 관리자 리뷰 리스트 출력 -->
-	<select id="getAdminList" resultType="product.model.ReviewBean">
+	<select id="getAdminList" resultType="MyReview">
 		SELECT REVIEWBOARD.RSUBJECT, 
 		PRODUCT.PNAME AS RPNAME, 
 		REVIEWBOARD.RID, 
@@ -43,7 +43,8 @@
 		REVIEWBOARD.RREPLY,
 		REVIEWBOARD.RREF
 		FROM REVIEWBOARD JOIN PRODUCT ON REVIEWBOARD.RSUBJECT=PRODUCT.PNUM
-		ORDER BY REVIEWBOARD.RNUM DESC 
+    	WHERE REVIEWBOARD.RRELEVEL=0
+		ORDER BY REVIEWBOARD.RNUM DESC
 	</select>
 	
 	<!-- 관리자 답글대기 개수 출력 -->
@@ -52,7 +53,7 @@
 	</select>
 	
 	<!-- 관리자 답글대기 리스트 출력 -->
-	<select id="getReplyWait" resultType="product.model.ReviewBean">
+	<select id="getReplyWait" resultType="MyReview">
 		SELECT REVIEWBOARD.RSUBJECT, 
 		PRODUCT.PNAME AS RPNAME, 
 		REVIEWBOARD.RID, 
@@ -68,8 +69,8 @@
 	
 	<!-- 관리자 답글 달기 -->
 	<insert id="insertReply">
-		INSERT INTO REVIEWBOARD(RNUM,RID,RCONTENT,RREF,RRESTEP,RRELEVEL)
-		VALUES(REVSEQ.NEXTVAL,#{RID},#{RCONTENT},#{RREF},1,1)
+		INSERT INTO REVIEWBOARD(RNUM,RID,RCONTENT,RSUBJECT,RREF,RRESTEP,RRELEVEL)
+		VALUES(REVSEQ.NEXTVAL,#{RID},#{RCONTENT},#{RSUBJECT},#{RREF},1,1)
 	</insert>
 	
 	<!-- 답글 상태 변경 -->
@@ -78,12 +79,12 @@
 	</update>
 	
 	<!-- 관리자 답글 보기 -->
-	<select id="getReply" resultType="product.model.ReviewBean">
+	<select id="getReply" resultType="MyReview">
 		SELECT * FROM REVIEWBOARD WHERE RID='ADMIN' AND RREF=#{RREF}
 	</select>
 	
 	<!-- 관리자 답글 폼 -->
-	<select id="getReplyByNum" resultType="product.model.ReviewBean">
+	<select id="getReplyByNum" resultType="MyReview">
 		SELECT * FROM REVIEWBOARD WHERE RNUM=#{RNUM}
 	</select>
 	

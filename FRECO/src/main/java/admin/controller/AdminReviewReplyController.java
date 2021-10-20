@@ -13,7 +13,7 @@ import product.model.ReviewDao;
 @Controller
 public class AdminReviewReplyController {
 	
-	private final String command="/reviewreply";
+	private final String command="/reviewreply.admin";
 	private final String gotoPage="AdminReviewReply";
 	private final String getPage="redirect:/review.admin";
 	 
@@ -24,12 +24,14 @@ public class AdminReviewReplyController {
 	public ModelAndView doAction(@RequestParam(value="RID") String RID,
 								@RequestParam(value="RREF") int RREF,								
 								@RequestParam(value="RCONTENT") String RCONTENT,
+								@RequestParam(value="RSUBJECT") int RSUBJECT,
 								ModelAndView mav) {
 		
 			
 		mav.addObject("ORID", RID);
 		mav.addObject("RREF", RREF);
 		mav.addObject("ORCONTENT", RCONTENT);
+		mav.addObject("RSUBJECT", RSUBJECT);
 		mav.setViewName(gotoPage);
 		return mav;
 	}

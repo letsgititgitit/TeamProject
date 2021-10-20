@@ -33,6 +33,7 @@
 						<form method="post" action="reviewreply.admin">
 							
 							<input type="hidden" name="RREF" value="${RREF }">		
+							<input type="hidden" name="RSUBJECT" value="${RSUBJECT }">		
 							
 							<table class="table table-hover" align="center" height="400">
 								
