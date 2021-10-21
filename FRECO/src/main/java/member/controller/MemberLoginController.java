@@ -83,7 +83,7 @@ public class MemberLoginController {
 							}
 							//
 							else {
-								session.setAttribute("2", "redirect:/mypageOrderList.mp");
+								session.setAttribute("2", "redirect:/main.admin");
 							}
 						}
 						//회원
