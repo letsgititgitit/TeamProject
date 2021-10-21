@@ -40,6 +40,8 @@ public class MypageOrderListController {
 			ModelAndView mav, 
 			MemberDao mdao,
 			HttpServletRequest request) {
+		System.out.println();
+		
 		//로그인 X
 		if(session.getAttribute("loginInfo")==null) {
 			session.setAttribute("destination", "redirect:/mypageOrderList.mp");

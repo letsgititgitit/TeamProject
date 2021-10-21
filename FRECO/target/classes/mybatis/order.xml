@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">	
+
+<mapper namespace="order.model.OrderBean">
+	<insert id="insertData">
+		INSERT INTO ORDERS 
+		VALUES(ORDSEQ.NEXTVAL, #{OMID}, sysdate, #{OUSECOUPON}, #{OUSEPOINT}, 'NO')
+	</insert>
+
+	<select id="getMaxOrderOINVOICE" resultType="int">
+		SELECT MAX(OINVOICE) FROM ORDERS
+	</select>
+	
+	<!-- 관리자 차트: 주문수 -->
+	<select id="getCount" resultType="int">
+		SELECT COUNT(*) FROM ORDERS WHERE OREFUND='NO'
+	</select>
+	
+	<!-- 관리자 차트:카운트 출력 -->
+	<select id="day7cnt" resultType="int">
+		SELECT COUNT(*) FROM ORDERS  WHERE OORDERDATE = TO_CHAR(SYSDATE-6,'YYYYMMDD')      
+	</select>
+	<select id="day6cnt" resultType="int">
+		SELECT COUNT(*) FROM ORDERS  WHERE OORDERDATE = TO_CHAR(SYSDATE-5,'YYYYMMDD')      
+	</select>
+	<select id="day5cnt" resultType="int">
+		SELECT COUNT(*) FROM ORDERS  WHERE OORDERDATE = TO_CHAR(SYSDATE-4,'YYYYMMDD')      
+	</select>
+	<select id="day4cnt" resultType="int">
+		SELECT COUNT(*) FROM ORDERS  WHERE OORDERDATE = TO_CHAR(SYSDATE-3,'YYYYMMDD')      
+	</select>
+	<select id="day3cnt" resultType="int">
+		SELECT COUNT(*) FROM ORDERS  WHERE OORDERDATE = TO_CHAR(SYSDATE-2,'YYYYMMDD')      
+	</select>
+	<select id="day2cnt" resultType="int">
+		SELECT COUNT(*) FROM ORDERS  WHERE OORDERDATE = TO_CHAR(SYSDATE-1,'YYYYMMDD')      
+	</select>
+	<select id="day1cnt" resultType="int">
+		SELECT COUNT(*) FROM orders WHERE TO_CHAR(OORDERDATE,'YYYYMMDD') = TO_CHAR(SYSDATE,'YYYYMMDD')     
+	</select> 
+	
+	<!-- 관리자 주문 내역 출력 -->
+	<select id="getAllList" resultType="MyOrder">
+		SELECT * FROM ORDERS ORDER BY OINVOICE DESC
+	</select>
+	
+	<!-- 관리자 환불 내역 출력 -->
+	<select id="getRefundList" resultType="MyOrder">
+		SELECT * FROM ORDERS WHERE OREFUND='YES'
+	</select>
+	
+	<!-- 관리자 오늘 주문 수 출력 -->
+	<select id="getOrderBySysdate" resultType="int">
+		SELECT COUNT(*) FROM ORDERS WHERE TO_CHAR(OORDERDATE,'YYYYMMDD') = TO_CHAR(SYSDATE,'YYYYMMDD')
+	</select>
+	
+	<!-- 관리자 처리 환불 수 출력 -->
+	<select id="getRefundCount" resultType="int">
+		SELECT COUNT(*) FROM ORDERS WHERE OREFUND='YES'
+	</select>
+	
+	<!-- 하은: Mypage Order-list: 주문내역출력 -->
+	<select id="getTotalCountOrder" resultType="int">
+		SELECT COUNT(*) FROM ORDERS
+		WHERE OMID=#{OMID}
+	</select>
+	<select id="getOrderList" resultType="MyOrder">
+		SELECT * FROM ORDERS
+		WHERE OMID=#{OMID}
+		ORDER BY OINVOICE DESC
+	</select>
+	
+	<!-- 하은: 송장에 해당하는 o정보 -->
+	<select id="oneSelect" resultType="MyOrder">
+		SELECT * FROM ORDERS
+		WHERE OINVOICE=#{OINVOICE}
+	</select>		
+	
+	<!-- 하은:반품요청 -->
+	<update id="updateInfo">
+		UPDATE ORDERS SET OREFUND='YES'
+		WHERE OINVOICE=#{OINVOICE}
+	</update>
+	
+	<!-- 관리자 주문 상세보기 -->
+	<select id="getAdminOrderList" resultType="MyOrderAdmin">
+		SELECT MEMBER.MID AS AID, 
+		PRODUCT.PNAME AS APNAME, 
+		PRODUCT.PNUM AS APNUM, 
+		MEMBER.MNAME AS AMNAME,
+		PRODUCT.PPRICE AS APRICE,
+		ORDERDETAIL.ODQTY AS AQTY, 
+		PRODUCT.PPRICE*ORDERDETAIL.ODQTY AS AMOUNT,
+		MEMBER.MADDRESS1 AS ADRESS1, 
+		MEMBER.MADDRESS2 AS ADRESS2, 	
+	    MEMBER.MADDRESS3 AS ADRESS3, 
+		ORDERS.OUSECOUPON AS AUSECOUPON,
+		ORDERS.OUSEPOINT AS AUSEPOINT,	
+	    PRODUCT.PPOINT AS APOINT,    
+	    ORDERS.OREFUND AS AREFUND 
+	    from ((ORDERDETAIL inner join ORDERS ON ORDERDETAIL.ODOINVOICE=ORDERS.OINVOICE) 
+	    inner join PRODUCT ON PRODUCT.PNUM=ORDERDETAIL.ODPNUM)
+	    inner join MEMBER ON ORDERS.OMID=MEMBER.MID WHERE ORDERS.OINVOICE=#{OINVOICE}
+	</select>	
+
+	<!-- 관리자 환불 완료시 삭제 -->
+	<delete id="deleteRefund">
+		DELETE FROM ORDERS WHERE OINVOICE=#{OINVOICE}
+	</delete>
+</mapper>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">	
+	
+<mapper namespace="product.model.ReviewBean">
+	<insert id="insertData">
+		INSERT INTO REVIEWBOARD(RNUM , RID, RPW, RCONTENT, RINVOICE, RSUBJECT, RRATING, RREF, RRESTEP, RRELEVEL, RREPLY)
+		VALUES(REVSEQ.NEXTVAL, #{RID}, #{RPW}, #{RCONTENT}, #{RINVOICE}, #{RSUBJECT}, #{RRATING}, REVSEQ.CURRVAL, 0, 0, #{RREPLY}) 
+	</insert>
+	<insert id="insertDataWithImg">
+		INSERT INTO REVIEWBOARD(RNUM , RID, RPW, RCONTENT, RINVOICE, RSUBJECT, RRATING, RIMG, RREF, RRESTEP, RRELEVEL, RREPLY) 
+		VALUES(REVSEQ.NEXTVAL, #{RID}, #{RPW}, #{RCONTENT}, #{RINVOICE}, #{RSUBJECT}, #{RRATING}, #{RIMG}, REVSEQ.CURRVAL, 0, 0, #{RREPLY})
+	</insert>
+	
+	<!-- 리뷰리스트불러오기 (해당하는 상품것만) -->
+	<select id="getTotalCount" resultType="int">
+		SELECT COUNT(*) FROM REVIEWBOARD
+		WHERE RSUBJECT=#{PNUM}		
+	</select>
+	<select id="getBoardList" resultType="MyReview">
+  		SELECT RNUM , RID, RPW, RCONTENT, RINVOICE, RSUBJECT, RRATING, RIMG, RREF, RRESTEP, RRELEVEL, RREPLY
+  		FROM (SELECT ROWNUM AS RANK, RNUM , RID, RPW, RCONTENT, RINVOICE, RSUBJECT, RRATING, RIMG, RREF, RRESTEP, RRELEVEL, RREPLY
+  		FROM (SELECT RNUM , RID, RPW, RCONTENT, RINVOICE, RSUBJECT, RRATING, RIMG, RREF, RRESTEP, RRELEVEL, RREPLY
+  		FROM REVIEWBOARD
+  		ORDER BY RREF DESC, RRESTEP ASC))  		
+  		WHERE RSUBJECT=#{PNUM}
+  	</select>
+  	
+  	<!-- 평점 구하기 위한 사용자 작성 레코드 갯수 -->
+  	<select id="getTotalCountRating" resultType="int">
+  		SELECT COUNT(*) FROM REVIEWBOARD
+		WHERE RRELEVEL=0 AND RSUBJECT=#{PNUM} 
+  	</select>
+	
+	<!-- 관리자 리뷰 리스트 출력 -->
+	<select id="getAdminList" resultType="MyReview">
+		SELECT REVIEWBOARD.RSUBJECT, 
+		PRODUCT.PNAME AS RPNAME, 
+		REVIEWBOARD.RID, 
+		REVIEWBOARD.RRATING, 
+		REVIEWBOARD.RCONTENT,
+		REVIEWBOARD.RIMG,
+		REVIEWBOARD.RREPLY,
+		REVIEWBOARD.RREF
+		FROM REVIEWBOARD JOIN PRODUCT ON REVIEWBOARD.RSUBJECT=PRODUCT.PNUM
+    	WHERE REVIEWBOARD.RRELEVEL=0
+		ORDER BY REVIEWBOARD.RNUM DESC
+	</select>
+	
+	<!-- 관리자 답글대기 개수 출력 -->
+	<select id="replyCount" resultType="int">
+		SELECT COUNT(*) FROM REVIEWBOARD WHERE RREPLY='답글대기'
+	</select>
+	
+	<!-- 관리자 답글대기 리스트 출력 -->
+	<select id="getReplyWait" resultType="MyReview">
+		SELECT REVIEWBOARD.RSUBJECT, 
+		PRODUCT.PNAME AS RPNAME, 
+		REVIEWBOARD.RID, 
+		REVIEWBOARD.RRATING, 
+		REVIEWBOARD.RCONTENT,
+		REVIEWBOARD.RIMG,
+		REVIEWBOARD.RREPLY,
+		REVIEWBOARD.RREF,
+		REVIEWBOARD.RRESTEP	 
+		FROM REVIEWBOARD JOIN PRODUCT ON REVIEWBOARD.RSUBJECT=PRODUCT.PNUM
+		WHERE RREPLY='답글대기' ORDER BY REVIEWBOARD.RNUM DESC 
+	</select>
+	
+	<!-- 관리자 답글 달기 -->
+	<insert id="insertReply">
+		INSERT INTO REVIEWBOARD(RNUM,RID,RCONTENT,RSUBJECT,RREF,RRESTEP,RRELEVEL)
+		VALUES(REVSEQ.NEXTVAL,#{RID},#{RCONTENT},#{RSUBJECT},#{RREF},1,1)
+	</insert>
+	
+	<!-- 답글 상태 변경 -->
+	<update id="updateRREPLY">
+		UPDATE REVIEWBOARD SET RREPLY='답변완료' WHERE RREF=${RREF} AND RRELEVEL=0
+	</update>
+	
+	<!-- 관리자 답글 보기 -->
+	<select id="getReply" resultType="MyReview">
+		SELECT * FROM REVIEWBOARD WHERE RID='ADMIN' AND RREF=#{RREF}
+	</select>
+	
+	<!-- 관리자 답글 폼 -->
+	<select id="getReplyByNum" resultType="MyReview">
+		SELECT * FROM REVIEWBOARD WHERE RNUM=#{RNUM}
+	</select>
+	
+	<!-- 관리자 답글 수정 -->
+	<update id="updateReply">
+		UPDATE REVIEWBOARD SET RCONTENT=#{RCONTENT} WHERE RNUM=#{RNUM}
+	</update>
+	
+	<!-- 관리자 답글 완료 개수 -->
+	<select id="getAdminCnt" resultType="int">
+		SELECT COUNT(*) FROM REVIEWBOARD WHERE RREPLY='답변완료'
+	</select>
+	
+	<!-- 관리자 답글 대기 개수 -->
+	<select id="getAdminWaitCnt" resultType="int">
+		SELECT COUNT(*) FROM REVIEWBOARD WHERE RREPLY='답변대기'
+	</select>
+</mapper>

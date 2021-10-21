@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd"> 
+ 
+<configuration>
+	<typeAliases>
+		<typeAlias alias="MyMember" type="member.model.MemberBean"/>
+		<typeAlias alias="MyCoupon" type="admin.model.Coupon"/>
+		<typeAlias alias="MyProduct" type="product.model.ProductBean"/>
+		<typeAlias alias="MyFAQ" type="mall.model.FAQBean" />
+		<typeAlias alias="MyQNA" type="mall.model.QNABean" />
+		<typeAlias alias="MyOrder" type="order.model.OrderBean" />
+		<typeAlias alias="MyOrderdetail" type="order.model.OrderDetailBean" />
+		<typeAlias alias="MyReview" type="product.model.ReviewBean"/>
+		<typeAlias alias="MyReview" type="product.model.ReviewBean"/>
+		<typeAlias alias="MyOrderAdmin" type="order.model.AdminOrderBean"/>
+	</typeAliases>
+	
+	<mappers>
+		<mapper resource="mybatis/member.xml"/>
+		<mapper resource="mybatis/mypage.xml"/>
+		<mapper resource="mybatis/coupon.xml"/>
+		<mapper resource="mybatis/product.xml"/>
+		<mapper resource="mybatis/mall.xml"/>
+		<mapper resource="mybatis/qna.xml"/>
+		<mapper resource="mybatis/order.xml"/>
+		<mapper resource="mybatis/qna.xml"/>
+		<mapper resource="mybatis/orderdetail.xml"/>
+		<mapper resource="mybatis/review.xml"/>
+	</mappers>
+</configuration>

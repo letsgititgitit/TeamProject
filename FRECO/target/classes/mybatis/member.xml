@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">	
+<!-- member.xml -->
+
+<mapper namespace="member.model.MemberBean">
+	<!-- 회원가입  -->	
+	<insert id="insertMember">
+		INSERT INTO MEMBER(MNUM,MID,MPW,MNAME,MBIRTH,MPHONE,MADDRESS1,MADDRESS2,MADDRESS3)
+		VALUES(MEMSEQ.NEXTVAL,#{MID},#{MPW},#{MNAME},#{MBIRTH},#{MPHONE},#{MADDRESS1},#{MADDRESS2},#{MADDRESS3})	
+	</insert>
+	<!-- 로그인,비밀번호 찾기 -->
+	<select id="getData" resultType="MyMember">
+		SELECT * FROM MEMBER
+		WHERE MID=#{MID}
+	</select>
+	<!-- 아이디 찾기 -->
+	<select id="searchId" resultType="MyMember">
+		SELECT * FROM MEMBER
+		WHERE MPHONE=#{MPHONE}
+	</select>
+	<!-- 아이디 중복체크 -->	
+	<select id="IdDuplicate" resultType="int">
+		SELECT COUNT(*) FROM MEMBER
+		WHERE MID=#{MID}
+	</select>	
+	<!-- 휴대폰번호 중복체크  -->
+	<select id="PhoneDuplicate" resultType="int">
+		SELECT COUNT(*) FROM MEMBER
+		WHERE MPHONE=#{MPHONE}
+	</select>	
+	
+	<!-- 하은: 결제요청 -> 사용한 MPOINT만큼 감소 -->
+	<update id="mpointMinus">
+		UPDATE MEMBER SET MPOINT= MPOINT-#{MPOINT}
+		WHERE MID=#{MID}
+	</update>
+	<!-- 하은: 결제요청 -> 구매한 MPOINT만큼 증가 -->
+	<update id="mpointPlus">
+		UPDATE MEMBER SET MPOINT= MPOINT+#{MPOINT}
+		WHERE MID=#{MID}
+	</update>
+	<!-- 예인:관리자 회원 목록 -->
+	<select id="getAllList" resultType="MyMember">
+		SELECT * FROM MEMBER ORDER BY MNUM DESC
+	</select>
+
+	<!-- 하은: 결제요청 -> 사용한 쿠폰 지우기 -->
+	<update id="updateMcoupon">
+		UPDATE MEMBER SET 
+		MCOUPON = #{MCOUPON}
+		WHERE MNUM=#{MNUM} 
+	</update>
+	
+	<!-- 관리자 환불 처리 사용한 쿠폰,포인트 복구,적립 포인트 삭제 -->
+	<update id="updateByRefund">
+		UPDATE MEMBER SET MCOUPON=#{AUSECOUPON}
+		<if test="AUSEPOINT gt APOINT">
+			,MPOINT=#{AUSEPOINT}-#{APOINT}
+		</if>
+		<if test="AUSEPOINT lt APOINT">
+			,MPOINT=#{APOINT}-#{AUSEPOINT}
+		</if>
+		WHERE MID=#{AID}
+	</update>
+</mapper>

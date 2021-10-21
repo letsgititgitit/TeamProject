@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<!-- mall.xml -->  
+  
+<mapper namespace="mall.QNABean">
+
+	<select id="getQNAList" resultType="MyQNA">
+      SELECT * FROM QNABOARD ORDER BY QREF DESC, QRESTEP ASC 
+      <if test="whatColumn == 'QSUBJECT'">
+         where name like #{keyword}
+      </if>      
+   </select>
+	
+	<select id="getTotalCount" resultType="int">
+		SELECT COUNT(*) FROM QNABOARD
+		<if test="whatColumn == 'QSUBJECT'">
+			where name like #{keyword}
+		</if>
+	</select>
+
+	<insert id="insertQNA">
+		INSERT INTO QNABOARD(QNUM, QID, QSUBJECT, QCONTENT, QPW, QREGDATE, QREPLY, QREF, QRESTEP, QRELEVEL)
+		VALUES(QNASEQ.NEXTVAL, #{QID}, #{QSUBJECT}, #{QCONTENT}, #{QPW}, SYSDATE, #{QREPLY}, QNASEQ.CURRVAL, 0, 0)
+	</insert>
+	
+	<select id="getQNA" resultType="MyQNA">
+		SELECT * FROM QNABOARD
+		WHERE QNUM = #{QNUM}
+	</select>
+	
+	<update id="updateQNA">
+		UPDATE QNABOARD SET QID = #{QID}, QSUBJECT= #{QSUBJECT}, QCONTENT = #{QCONTENT}
+		WHERE QNUM = #{QNUM}
+	</update>
+	
+	<delete id="deleteQNA">
+		DELETE FROM QNABOARD
+		WHERE QNUM = #{QNUM}
+	</delete>
+	
+	<update id="replyQNAUpdate">
+		UPDATE QNABOARD SET QRESTEP = QRESTEP+1 
+		WHERE QREF = #{QREF} AND QRESTEP > #{QRESTEP}
+	</update>
+	
+ 	<insert id="replyQNAInsert">
+		INSERT INTO QNABOARD (QNUM, QID, QSUBJECT, QREGDATE, QREF, QRESTEP, QRELEVEL, QCONTENT, QPW)
+		VALUES(QNASEQ.NEXTVAL, #{QID}, #{QSUBJECT}, SYSDATE, #{QREF}, #{QRESTEP}+1, #{QRELEVEL}+1, #{QCONTENT}, #{QPW})
+	</insert> 
+	
+	<select id="getArticleCount" resultType="int">
+		SELECT COUNT(*) AS CNT FROM QNABOARD
+	</select>
+<!-- 	
+	<select id="getArticles" resultType="MyQNA">
+		SELECT QNUM, QID, QSUBJECT, QPW, QREGDATE, QREF, QRESTEP, QRELEVEL, QCONTENT
+		FROM (SELECT ROWNUM AS RANK, QNUM, QID, QSUBJECT, QPW, QREGDATE, QREF, QRESTEP, QRELEVEL, QCONTENT
+		FROM (SELECT QNUM, QID, QSUBJECT, QPW, QREGDATE, QREF, QRESTEP, QRELEVEL, QCONTENT
+		FROM QNABOARD
+		ORDER BY QREF DESC, QRESTEP ASC))
+		WHERE RANK BETWEEN #{startRow} AND ${endRow}
+	</select>
+-->
+	
+	<!-- 관리자 문의 내역 출력 -->
+	<select id="getAdminQNAList" resultType="MyQNA">
+		SELECT * FROM QNABOARD WHERE QRELEVEL=0 ORDER BY QREF DESC, QRESTEP ASC
+	</select>
+	
+	<!-- 관리자 미답변 갯수 출력 -->
+	<select id="getReplyCount" resultType="int">
+		SELECT COUNT(*) FROM QNABOARD WHERE QREPLY='답변대기'
+	</select>
+	
+	<!-- 관리자 미답변 리스트 출력 -->
+	<select id="getNoReply" resultType="MyQNA" >
+		SELECT * FROM QNABOARD WHERE QREPLY='답변대기'
+	</select>
+	
+	<!-- 원글 상태 변경 -->
+	<update id="originalUpdate">
+		UPDATE QNABOARD SET QREPLY='답변완료' WHERE QNUM=#{ORIGINQNUM}
+	</update>
+
+	<!-- 관리자 답변 내용 출력 -->
+	<select id="getReplyByQREF" resultType="MyQNA">
+		SELECT * FROM QNABOARD WHERE QREF=#{QREF} AND QRELEVEL=1
+	</select>
+	
+	<!-- 관리자 답변 확인 출력 -->
+	<update id="getReplyUpdate">
+		UPDATE QNABOARD SET QSUBJECT=#{QSUBJECT}, QCONTENT=#{QCONTENT} WHERE QNUM=#{QNUM}
+	</update>
+	
+	<!-- 관리자 답변완료 갯수 출력 -->
+	<select id="getAdminCnt" resultType="int">
+		SELECT COUNT(*) FROM QNABOARD WHERE QREPLY='답변완료'	
+	</select>
+	
+	<!-- 관리자 답변대기 갯수 출력 -->
+	<select id="getAdminReCnt" resultType="int">
+		SELECT COUNT(*) FROM QNABOARD WHERE QREPLY='답변대기'	
+	</select>
+</mapper>  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

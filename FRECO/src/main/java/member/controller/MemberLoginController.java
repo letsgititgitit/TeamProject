@@ -37,6 +37,7 @@ public class MemberLoginController {
 	@RequestMapping(value=command, method=RequestMethod.POST)
 	public String doActionPost(MemberBean memberBean, HttpSession session, HttpServletResponse response, HttpServletRequest request) throws IOException{
 			
+			System.out.println("destination 뭐나오니?" + session.getAttribute("destination"));
 			//memberBean MID,MPW 제대로 넘어오는지 확인
 			System.out.println("memberBean.getMID(): " + memberBean.getMID());
 			System.out.println("memberBean.getMPW(): " + memberBean.getMPW());
@@ -66,19 +67,23 @@ public class MemberLoginController {
 					session.setAttribute("loginInfo", dbMember);
 					
 					//메인에서 로그인
-					if((String)session.getAttribute("destination")==null) {
+					if((String)session.getAttribute("destination")=="redirect:/list.product") {
 						session.setAttribute("1", "redirect:/main.mall");
 						return (String)session.getAttribute("1");	
 					}
+					
 					//마이페이지에서 로그인
 					else {
 						//운영자
 						if(memberBean.getMID().equals("ADMIN")) {
+							
+							//QNA=>로그인
 							if(session.getAttribute("destination")=="redirect:/qna.mall") {
 								session.setAttribute("2", "redirect:/qna.mall");
 							}
+							//
 							else {
-								session.setAttribute("2", "redirect:/main.admin");
+								session.setAttribute("2", "redirect:/mypageOrderList.mp");
 							}
 						}
 						//회원
@@ -86,6 +91,10 @@ public class MemberLoginController {
 							if(session.getAttribute("destination")=="redirect:/qna.mall") {
 								session.setAttribute("2", "redirect:/qna.mall");	
 							}
+							else {
+								session.setAttribute("2", "redirect:/mypageOrderList.mp");
+							}
+							
 						}
 						return (String)session.getAttribute("2");
 					}//else

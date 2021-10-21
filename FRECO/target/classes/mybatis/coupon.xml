@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="coupon.CouponBean">
+
+	<insert id="insertCoupon">
+		insert into COUPON(CNUM,CNAME,<!-- CIMG, -->CPRICE,CDEADLINE)
+		values(COUSEQ.NEXTVAL,#{CNAME},<!-- #{CIMG}, -->#{CPRICE},#{CDEADLINE})
+	</insert>
+
+	<select id="getList" resultType="MyCoupon">
+		select * from COUPON
+		order by CNUM
+	</select>
+	
+	<select id="oneData" resultType="MyCoupon">
+		select * from COUPON where CNUM=#{CNUM}
+	</select>
+	
+	<update id="updateData">
+		update COUPON set CNAME=#{CNAME},CPRICE=#{CPRICE},CDEADLINE=#{CDEADLINE}
+		<!-- <if test='CIMG != null and !CIMG.equals("")'>
+		,CIMG=#{CIMG}
+		</if>
+		
+		<if test='CIMG == null and CIMG.equals("")'>
+		,CIMG=#{UPLOADOLD}
+		</if> -->
+		where CNUM=#{CNUM}
+	</update>
+	
+	<delete id="deleteData">
+		delete from COUPON where CNUM=#{CNUM}
+	</delete>
+	
+	<update id="insertMemberByCoupon">
+		update MEMBER set MCOUPON=(select CNUM from COUPON)
+	</update>
+
+</mapper>
