@@ -89,7 +89,7 @@
 						<table align="center">
 							<tr>
 								<td width="110px" valign="middle" algin="center">아이디</td>
-								<td><input class="form-control" name="MID" value="${member.MID}" style="width:350px;height:50px;margin-bottom: 10px;margin-top:10px;margin-right: 10px;" type="text" placeholder="5자 이상(영어 또는 영/숫자 조합)" required oninput="idDuplicate()">
+								<td><input class="form-control" name="MID" value="${loginInfo.MID}" style="width:350px;height:50px;margin-bottom: 10px;margin-top:10px;margin-right: 10px;" type="text" placeholder="5자 이상(영어 또는 영/숫자 조합)" required oninput="idDuplicate()">
 							</tr>
 							<tr>
 								<td></td>
@@ -99,7 +99,7 @@
 							
 							<tr>
 								<td>비밀번호</td>
-								<td><input class="form-control" name="MPW" value="${member.MPW}" style="width:350px;height:50px;margin-bottom: 10px;margin-top:10px;" type="password" placeholder="8자 이상(영/숫자 조합)"></td>
+								<td><input class="form-control" name="MPW" value="${loginInfo.MPW}" style="width:350px;height:50px;margin-bottom: 10px;margin-top:10px;" type="password" placeholder="8자 이상(영/숫자 조합)"></td>
 							</tr>
 							<tr>
 								<td></td>
@@ -107,7 +107,7 @@
 							</tr>
 							<tr>
 								<td>비밀번호확인</td>
-								<td><input class="form-control" name="MPW2" value="${member.MPW}" style="width:350px;height:50px;margin-bottom: 10px;margin-top:10px;" type="password" placeholder="비밀번호를 한 번 더 입력해주세요"></td>
+								<td><input class="form-control" name="MPW2" value="${loginInfo.MPW}" style="width:350px;height:50px;margin-bottom: 10px;margin-top:10px;" type="password" placeholder="비밀번호를 한 번 더 입력해주세요"></td>
 							</tr>
 					<%-- 		<tr>
 								<td></td>
@@ -115,7 +115,7 @@
 							</tr> --%>
 							<tr>
 								<td>이름</td>
-								<td><input class="form-control" name="MNAME" value="${member.MNAME}" style="width:350px;height:50px;margin-bottom: 10px;margin-top:10px;" type="text" placeholder="이름을 입력해주세요"></td>
+								<td><input class="form-control" name="MNAME" value="${loginInfo.MNAME}" style="width:350px;height:50px;margin-bottom: 10px;margin-top:10px;" type="text" placeholder="이름을 입력해주세요"></td>
 							</tr>
 							<tr>
 								<td></td>
@@ -123,7 +123,7 @@
 							</tr>
 							<tr>
 								<td>생년월일</td>
-								<td><input class="form-control" name="MBIRTH" value="${member.MBIRTH}" style="width:350px;height:50px;margin-bottom: 10px;margin-top:10px;" type="text" placeholder="YYMMDD 형태로 입력해주세요"></td>
+								<td><input class="form-control" name="MBIRTH" value="${loginInfo.MBIRTH}" style="width:350px;height:50px;margin-bottom: 10px;margin-top:10px;" type="text" placeholder="YYMMDD 형태로 입력해주세요"></td>
 							</tr>
 							<tr>
 								<td></td>
@@ -131,7 +131,7 @@
 							</tr>				
 							<tr>
 								<td>휴대폰</td>
-								<td><input class="form-control" name="MPHONE" value="${member.MPHONE}" style="width:350px;height:50px;margin-bottom: 10px;margin-top:10px;" type="text" placeholder="휴대폰번호를 -빼고 입력해주세요"></td>
+								<td><input class="form-control" name="MPHONE" value="${loginInfo.MPHONE}" style="width:350px;height:50px;margin-bottom: 10px;margin-top:10px;" type="text" placeholder="휴대폰번호를 -빼고 입력해주세요"></td>
 							</tr>
 							<tr>
 								<td></td>
@@ -139,7 +139,7 @@
 							</tr>				
 							<tr>
 								<td>우편번호</td>
-								<td><input class="form-control" id="MADDRESS1" value="${member.MADDRESS1}" style="width:350px;height:50px;margin-bottom: 10px;margin-top:10px;" type="text" placeholder=""></td>
+								<td><input class="form-control" id="MADDRESS1" value="${loginInfo.MADDRESS1}" style="width:350px;height:50px;margin-bottom: 10px;margin-top:10px;" type="text" placeholder=""></td>
 								<td valign="middle"><button onclick="kakaopost()" class="btn btn-primary btn-xl text-uppercase" style="background-color: #ffffff; border-color: #7fad39; color:#7fad39 ;width: 125px;height:48px;">우편번호찾기</button>
 					
 							
@@ -147,12 +147,12 @@
 									
 							<tr>
 								<td>주소</td>
-								<td><input class="form-control" id="MADDRESS2" value="${member.MADDRESS2}" style="width:350px;height:50px;margin-bottom: 10px;margin-top:10px;" type="text" placeholder=""></td>
+								<td><input class="form-control" id="MADDRESS2" value="${loginInfo.MADDRESS2}" style="width:350px;height:50px;margin-bottom: 10px;margin-top:10px;" type="text" placeholder=""></td>
 							</tr>		
 							
 							<tr>
 								<td>상세주소</td>
-								<td><input class="form-control" name="MADDRESS3" value="${member.MADDRESS3}" style="width:350px;height:50px;margin-bottom: 10px;margin-top:10px;" type="text" placeholder="상세주소를 입력해주세요"></td>
+								<td><input class="form-control" name="MADDRESS3" value="${loginInfo.MADDRESS3}" style="width:350px;height:50px;margin-bottom: 10px;margin-top:10px;" type="text" placeholder="상세주소를 입력해주세요"></td>
 							</tr>		
 							<tr>
 								<td colspan="3" align="center">
